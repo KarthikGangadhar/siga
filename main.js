@@ -2,7 +2,7 @@
 
 // start and configure server
 // return server + app & io
-var server = require('./server')(8000);
+var server = require('./server')(8001);
 
 // define routes & sockets' behavior
 require('./routes')(server.app);

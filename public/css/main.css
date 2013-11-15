@@ -13,6 +13,26 @@ body {
     font-size: 2.12em;
 }
 
+h1.sg,
+h2.sg,
+h3.sg,
+h4.sg,
+h5.sg,
+h6.sg,
+legend.sg {
+    color: #666666;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-shadow: 2px 2px 3px #dddddd;
+}
+
+fieldset.sg {
+    margin-top: 20px;
+}
+
+legend.sg {
+    font-size: 1.8em;
+}
+
 #home {
     margin: 10px 0;
     text-align: center;
