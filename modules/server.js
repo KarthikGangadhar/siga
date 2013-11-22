@@ -1,15 +1,15 @@
 'use strict';
 // server module
 
-module.exports = function core(port) {
+var express = require('express'),
+    app = express(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server);
+
+module.exports = function startServer(port) {
 
     // start and configure server
     // return server + app & io
-
-    var express = require('express'),
-        app = express(),
-        server = require('http').createServer(app),
-        io = require('socket.io').listen(server);
 
     app.use(express.compress());
     app.use(express.favicon());
