@@ -1,4 +1,5 @@
-"use strict";
+/*jslint node: true */
+'use strict';
 
 // start and configure server
 // return server + app & io
