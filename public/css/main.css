@@ -50,6 +50,10 @@ body {
     margin-top: 20px;
 }
 
-#ficha legend {
+#ficha fieldset legend {
     font-size: 1.8em;
+}
+
+#ficha fieldset fieldset legend {
+    font-size: 1.6em;
 }
