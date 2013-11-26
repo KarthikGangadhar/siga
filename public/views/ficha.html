@@ -12,44 +12,37 @@
         <hr>
 
         <form
+            name="ficha"
+            novalidate
             role="form"
             >
 
             <div
                 class="form-group"
+                data-ng-class="{
+                    'has-error': isInvalidField('nome_completo')
+                }"
                 >
 
                 <label
+                    class="control-label"
                     for="nome_completo"
                     >Nome Completo
                 </label>
 
                 <input
                     class="form-control"
+                    data-ng-model="inscrito.nome_completo"
                     id="nome_completo"
-                    type="text"
-                    >
-
-            </div>
-
-            <div
-                class="form-group"
-                >
-
-                <label
-                    for="data_de_nascimento"
-                    >Data de Nascimento
-                </label>
-
-                <input
-                    class="form-control"
-                    id="data_de_nascimento"
-                    type="text"
+                    maxlength="256"
+                    name="nome_completo"
+                    type="tel"
+                    required
                     >
 
                 <p
-                    class="help-block"
-                    >Exemplo: 5/8/1981
+                    class="help-block pull-right"
+                    >$valid: {{ficha.nome_completo.$valid}}; $invalid: {{ficha.nome_completo.$invalid}}; $pristine: {{ficha.nome_completo.$pristine}}; $dirty: {{ficha.nome_completo.$dirty}};
                 </p>
 
             </div>
@@ -59,38 +52,24 @@
                 >
 
                 <label
-                    for="sexo"
-                    >Sexo
+                    class="control-label"
+                    for="data_de_nascimento"
+                    >Data de Nascimento
                 </label>
 
-                <div
-                    class="radio"
+                <input
+                    class="form-control"
+                    data-ng-model="inscrito.data_de_nascimento"
+                    id="data_de_nascimento"
+                    maxlength="10"
+                    name="data_de_nascimento"
+                    type="text"
                     >
 
-                    <label><input
-                        checked
-                        id="Feminino"
-                        name="sexo"
-                        type="radio"
-                        value="Feminino"
-                        > Feminino
-                    </label>
-
-                </div>
-
-                <div
-                    class="radio"
-                    >
-
-                    <label><input
-                        id="Masculino"
-                        name="sexo"
-                        type="radio"
-                        value="Masculino"
-                        > Masculino
-                    </label>
-
-                </div>
+                <p
+                    class="help-block"
+                    >Exemplo: {{helpers.data_de_nascimento}}
+                </p>
 
             </div>
 
@@ -99,14 +78,65 @@
                 >
 
                 <label
+                    class="control-label"
+                    for="sexo"
+                    >Sexo
+                </label>
+
+                <div
+                    class="radio"
+                    >
+
+                    <label>
+                        <input
+                            checked
+                            data-ng-model="inscrito.sexo"
+                            id="Feminino"
+                            name="sexo"
+                            type="radio"
+                            value="Feminino"
+                            > Feminino
+                    </label>
+
+                </div>
+
+                <div
+                    class="radio"
+                    >
+
+                    <label>
+                        <input
+                            data-ng-model="inscrito.sexo"
+                            id="Masculino"
+                            name="sexo"
+                            type="radio"
+                            value="Masculino"
+                            > Masculino
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                class="form-group"
+                data-ng-class="{ 'has-error': isInvalidField('email') }"
+                >
+
+                <label
+                    class="control-label"
                     for="email"
                     >E-mail
                 </label>
 
                 <input
                     class="form-control"
+                    data-ng-model="inscrito.email"
                     id="email"
-                    type="text"
+                    maxlength="256"
+                    name="email"
+                    type="email"
+                    required
                     >
 
             </div>
@@ -119,9 +149,13 @@
                     class="checkbox"
                     >
 
-                    <label><input
-                        type="checkbox"
-                        > Não sou brasileiro
+                    <label>
+                        <input
+                            data-ng-model="inscrito.estrangeiro"
+                            id="estrangeiro"
+                            name="estrangeiro"
+                            type="checkbox"
+                            > Sou estrangeiro
                     </label>
 
                 </div>
@@ -134,11 +168,15 @@
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('cpf') }"
+                    data-ng-hide="inscrito.estrangeiro"
                     >
 
                     <label
+                        class="control-label"
                         for="cpf"
-                        ><abbr
+                        >
+                        <abbr
                             class="initialism"
                             title="Cadastro de Pessoa Física"
                             >CPF
@@ -147,41 +185,70 @@
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.cpf"
+                        data-ng-required="!inscrito.estrangeiro"
+                        data-sg-cadastro-de-pessoa-fisica
                         id="cpf"
+                        maxlength="11"
+                        name="cpf"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: {{helpers.cpf}}
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('nome_do_documento') }"
+                    data-ng-show="inscrito.estrangeiro"
                     >
 
                     <label
+                        class="control-label"
                         for="nome_do_documento"
                         >Nome do Documento
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.nome_do_documento"
+                        data-ng-required="inscrito.estrangeiro"
                         id="nome_do_documento"
+                        maxlength="128"
+                        name="nome_do_documento"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: Passaporte
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('numero_do_documento') }"
+                    data-ng-show="inscrito.estrangeiro"
                     >
 
                     <label
-                        for="codigo_do_documento"
-                        >Còdigo do Documento
+                        class="control-label"
+                        for="numero_do_documento"
+                        >Número do Documento
                     </label>
 
                     <input
                         class="form-control"
-                        id="codigo_do_documento"
+                        data-ng-model="inscrito.numero_do_documento"
+                        data-ng-required="inscrito.estrangeiro"
+                        id="numero_do_documento"
+                        maxlength="64"
+                        name="numero_do_documento"
                         type="text"
                         >
 
@@ -191,202 +258,337 @@
 
             <fieldset>
 
-                <legend>Telefones</legend>
+                <legend>Telefones
+                    <span
+                        data-ng-show="inscrito.estrangeiro"
+                        >&amp; Endereço
+                    </span>
+                </legend>
 
-                <div
-                    class="form-group"
-                    >
+                <fieldset>
 
-                    <label
-                        for="codigo_internacional_1"
-                        >Código Internacional
-                    </label>
+                    <legend>Telefone &#8470; 1</legend>
 
-                    <input
-                        class="form-control"
-                        id="codigo_internacional_1"
-                        type="text"
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_internacional_1') }"
+                        data-ng-show="inscrito.estrangeiro"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_internacional_1"
+                            >Código Internacional
+                        </label>
 
-                <div
-                    class="form-group"
-                    >
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_internacional_1"
+                            id="codigo_internacional_1"
+                            maxlength="3"
+                            name="codigo_internacional_1"
+                            type="tel"
+                            required
+                            >
 
-                    <label
-                        for="codigo_nacional_1"
-                        >Código Nacional
-                    </label>
+                        <p
+                            class="help-block"
+                            >Ex.: 55
+                        </p>
 
-                    <input
-                        class="form-control"
-                        id="codigo_nacional_1"
-                        type="text"
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_nacional_1') }"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_nacional_1"
+                            >Código Nacional
+                        </label>
 
-                <div
-                    class="form-group"
-                    >
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_nacional_1"
+                            id="codigo_nacional_1"
+                            maxlength="8"
+                            name="codigo_nacional_1"
+                            type="tel"
+                            required
+                            >
 
-                    <label
-                        for="numero_1"
-                        >Número
-                    </label>
+                        <p
+                            class="help-block"
+                            >Ex.: 91
+                        </p>
 
-                    <input
-                        class="form-control"
-                        id="numero_1"
-                        type="text"
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('numero_1') }"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="numero_1"
+                            >Número
+                        </label>
 
-                <hr>
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.numero_1"
+                            id="numero_1"
+                            maxlength="16"
+                            name="numero_1"
+                            type="tel"
+                            required
+                            >
 
-                <div
-                    class="form-group"
-                    >
+                        <p
+                            class="help-block"
+                            >Ex.: 40057401
+                        </p>
 
-                    <label
-                        for="codigo_internacional_2"
-                        >Código Internacional
-                    </label>
+                    </div>
 
-                    <input
-                        class="form-control"
-                        id="codigo_internacional_2"
-                        type="text"
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>Telefone &#8470; 2</legend>
+
+                    <div
+                        class="form-group"
+                        data-ng-show="inscrito.estrangeiro"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_internacional_2"
+                            >Código Internacional
+                        </label>
 
-                <div
-                    class="form-group"
-                    >
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_internacional_2"
+                            id="codigo_internacional_2"
+                            maxlength="3"
+                            name="codigo_internacional_2"
+                            type="tel"
+                            >
 
-                    <label
-                        for="codigo_nacional_2"
-                        >Código Nacional
-                    </label>
+                    </div>
 
-                    <input
-                        class="form-control"
-                        id="codigo_nacional_2"
-                        type="text"
+                    <div
+                        class="form-group"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_nacional_2"
+                            >Código Nacional
+                        </label>
 
-                <div
-                    class="form-group"
-                    >
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_nacional_2"
+                            id="codigo_nacional_2"
+                            maxlength="8"
+                            name="codigo_nacional_2"
+                            type="tel"
+                            >
 
-                    <label
-                        for="numero_2"
-                        >Número
-                    </label>
+                    </div>
 
-                    <input
-                        class="form-control"
-                        id="numero_2"
-                        type="text"
+                    <div
+                        class="form-group"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="numero_2"
+                            >Número
+                        </label>
 
-                <hr>
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.numero_2"
+                            id="numero_2"
+                            maxlength="16"
+                            name="numero_2"
+                            type="tel"
+                            >
 
-                <div
-                    class="form-group"
-                    >
+                    </div>
 
-                    <label
-                        for="codigo_internacional_3"
-                        >Código Internacional
-                    </label>
+                </fieldset>
 
-                    <input
-                        class="form-control"
-                        id="codigo_internacional_3"
-                        type="text"
+                <fieldset>
+
+                    <legend>Telefone &#8470; 3</legend>
+
+                    <div
+                        class="form-group"
+                        data-ng-show="inscrito.estrangeiro"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_internacional_3"
+                            >Código Internacional
+                        </label>
 
-                <div
-                    class="form-group"
-                    >
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_internacional_3"
+                            id="codigo_internacional_3"
+                            maxlength="3"
+                            name="codigo_internacional_3"
+                            type="tel"
+                            >
 
-                    <label
-                        for="codigo_nacional_3"
-                        >Código Nacional
-                    </label>
+                    </div>
 
-                    <input
-                        class="form-control"
-                        id="codigo_nacional_3"
-                        type="text"
+                    <div
+                        class="form-group"
                         >
 
-                </div>
+                        <label
+                            class="control-label"
+                            for="codigo_nacional_3"
+                            >Código Nacional
+                        </label>
+
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.codigo_nacional_3"
+                            id="codigo_nacional_3"
+                            maxlength="8"
+                            name="codigo_nacional_3"
+                            type="tel"
+                            >
+
+                    </div>
+
+                    <div
+                        class="form-group"
+                        >
+
+                        <label
+                            class="control-label"
+                            for="numero_3"
+                            >Número
+                        </label>
+
+                        <input
+                            class="form-control"
+                            data-ng-model="inscrito.numero_3"
+                            id="numero_3"
+                            maxlength="16"
+                            name="numero_3"
+                            type="tel"
+                            >
+
+                    </div>
+
+                </fieldset>
 
                 <div
-                    class="form-group"
+                    data-ng-show="inscrito.estrangeiro"
                     >
 
-                    <label
-                        for="numero_3"
-                        >Número
-                    </label>
+                    <hr>
 
-                    <input
-                        class="form-control"
-                        id="numero_3"
-                        type="text"
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('endereco') }"
                         >
+
+                        <label
+                            class="control-label"
+                            for="endereco"
+                            >Endereço
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            data-ng-model="inscrito.endereco"
+                            data-ng-required="inscrito.estrangeiro"
+                            id="endereco"
+                            maxlength="512"
+                            name="endereco"
+                            rows="5"
+                            >
+                        </textarea>
+
+                    </div>
 
                 </div>
 
             </fieldset>
 
-            <fieldset>
+            <fieldset
+                data-ng-hide="inscrito.estrangeiro"
+                >
 
                 <legend>Endereço</legend>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('logradouro') }"
                     >
 
                     <label
+                        class="control-label"
                         for="logradouro"
                         >Logradouro
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.logradouro"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="logradouro"
+                        maxlength="256"
+                        name="logradouro"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: Rua João Diogo
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('numero') }"
                     >
 
                     <label
+                        class="control-label"
                         for="numero"
                         >Número
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.numero"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="numero"
+                        maxlength="8"
+                        name="numero"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: 100
+                    </p>
 
                 </div>
 
@@ -395,13 +597,17 @@
                     >
 
                     <label
+                        class="control-label"
                         for="complemento"
                         >Complemento
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.complemento"
                         id="complemento"
+                        maxlength="128"
+                        name="complemento"
                         type="text"
                         >
 
@@ -409,45 +615,70 @@
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('bairro') }"
                     >
 
                     <label
+                        class="control-label"
                         for="bairro"
                         >Bairro
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.bairro"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="bairro"
+                        maxlength="128"
+                        name="bairro"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: Cidade Velha
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('localidade') }"
                     >
 
                     <label
+                        class="control-label"
                         for="localidade"
                         >Localidade
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.localidade"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="localidade"
+                        maxlength="128"
+                        name="localidade"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: Belém
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('uf') }"
                     >
 
                     <label
+                        class="control-label"
                         for="uf"
-                        ><abbr
+                        >
+                        <abbr
                             class="initialism"
                             title="Unidade Federativa"
                             >UF
@@ -456,19 +687,31 @@
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.uf"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="uf"
+                        maxlength="2"
+                        name="uf"
                         type="text"
                         >
+
+                    <p
+                        class="help-block"
+                        >Ex.: PA
+                    </p>
 
                 </div>
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('cep') }"
                     >
 
                     <label
+                        class="control-label"
                         for="cep"
-                        ><abbr
+                        >
+                        <abbr
                             class="initialism"
                             title="Código de Endereçamento Postal"
                             >CEP
@@ -477,31 +720,23 @@
 
                     <input
                         class="form-control"
+                        data-ng-model="inscrito.cep"
+                        data-ng-required="!inscrito.estrangeiro"
                         id="cep"
+                        maxlength="8"
+                        name="cep"
                         type="text"
                         >
 
-                </div>
-
-                <div
-                    class="form-group"
-                    >
-
-                    <label
-                        for="endereco"
-                        >Endereço Completo
-                    </label>
-
-                    <textarea
-                        class="form-control"
-                        id="endereco"
-                        rows="3"
-                        >
-                    </textarea>
+                    <p
+                        class="help-block"
+                        >Ex.: 66015160
+                    </p>
 
                 </div>
 
             </fieldset>
+
 
             <fieldset>
 
@@ -509,17 +744,23 @@
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('nome_no_cracha') }"
                     >
 
                     <label
+                        class="control-label"
                         for="nome_no_cracha"
                         >Nome no Crachá
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="detalhes.nome_no_cracha"
                         id="nome_no_cracha"
+                        maxlength="256"
+                        name="nome_no_cracha"
                         type="text"
+                        required
                         >
 
                 </div>
@@ -529,6 +770,7 @@
                     >
 
                     <label
+                        class="control-label"
                         for="categoria"
                         >Categoria
                     </label>
@@ -537,13 +779,15 @@
                         class="radio"
                         >
 
-                        <label><input
-                            checked
-                            id="Estudante"
-                            name="categoria"
-                            type="radio"
-                            value="Estudante"
-                            > Estudante
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="detalhes.categoria"
+                                id="Estudante"
+                                name="categoria"
+                                type="radio"
+                                value="Estudante"
+                                > Estudante
                         </label>
 
                     </div>
@@ -552,12 +796,14 @@
                         class="radio"
                         >
 
-                        <label><input
-                            id="Profissional"
-                            name="categoria"
-                            type="radio"
-                            value="Profissional"
-                            > Profissional
+                        <label>
+                            <input
+                                data-ng-model="detalhes.categoria"
+                                id="Profissional"
+                                name="categoria"
+                                type="radio"
+                                value="Profissional"
+                                > Profissional
                         </label>
 
                     </div>
@@ -566,17 +812,23 @@
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('curso_ou_formacao') }"
                     >
 
                     <label
+                        class="control-label"
                         for="curso_ou_formacao"
                         >Curso ou Formação
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="detalhes.curso_ou_formacao"
                         id="curso_ou_formacao"
+                        maxlength="256"
+                        name="curso_ou_formacao"
                         type="text"
+                        required
                         >
 
                 </div>
@@ -586,13 +838,17 @@
                     >
 
                     <label
+                        class="control-label"
                         for="acronimo_da_instituicao_ou_empresa"
                         >Acrônimo da Instituição ou Empresa
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="detalhes.acronimo_da_instituicao_ou_empresa"
                         id="acronimo_da_instituicao_ou_empresa"
+                        maxlength="64"
+                        name="acronimo_da_instituicao_ou_empresa"
                         type="text"
                         >
 
@@ -600,17 +856,23 @@
 
                 <div
                     class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('nome_da_instituicao_ou_empresa') }"
                     >
 
                     <label
+                        class="control-label"
                         for="nome_da_instituicao_ou_empresa"
                         >Nome da Instituição ou Empresa
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-model="detalhes.nome_da_instituicao_ou_empresa"
                         id="nome_da_instituicao_ou_empresa"
+                        maxlength="256"
+                        name="nome_da_instituicao_ou_empresa"
                         type="text"
+                        required
                         >
 
                 </div>
@@ -621,6 +883,13 @@
                 class="btn btn-default"
                 type="submit"
                 >Salvar
+            </button>
+
+            <button
+                class="btn btn-default"
+                data-ng-click="form_actions.reset()"
+                type="reset"
+                >Limpar
             </button>
 
         </form>
