@@ -1,3 +1,4 @@
+/*jslint node: true */
 'use strict';
 // server module
 
@@ -14,16 +15,16 @@ module.exports = function startServer(port) {
     app.use(express.compress());
     app.use(express.favicon());
     app.use(express.bodyParser());
-    app.use(express.static('./public'));
+    app.use(express['static']('./public'));
 
-    if (app.get('env') == 'development') {
+    if (app.get('env') === 'development') {
         app.use(express.errorHandler({
             stack: true,
             dump: true
         }));
     }
 
-    if (app.get('env') == 'production') {
+    if (app.get('env') === 'production') {
         app.use(express.errorHandler());
     }
 
@@ -44,4 +45,4 @@ module.exports = function startServer(port) {
 
     return server;
 
-}
+};
