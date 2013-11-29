@@ -1,5 +1,12 @@
 angular
-    .module('sg', ['ngRoute', 'ngTouch', 'ngAnimate'])
+    .module('sg', [
+        'angular-growl',
+        'ngAnimate',
+        'ngRoute',
+        'ngSanitize',
+        'ngTouch',
+        'Scope.safeApply'
+    ])
     .config(function config($routeProvider, $locationProvider) {
 
         'use strict';
