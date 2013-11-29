@@ -102,6 +102,10 @@ angular
 
         };
 
+        inscricao.save = function save() {
+
+        };
+
         return inscricao;
 
     });

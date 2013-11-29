@@ -11,7 +11,29 @@
 
         <hr>
 
+        <div
+            class="alert alert-warning"
+            >
+
+            <button
+                aria-hidden="true"
+                class="close"
+                data-dismiss="alert"
+                type="button"
+                >&times;
+            </button>
+
+            <strong>Atenção!</strong> Os campos marcados com um
+            <span
+                class="glyphicon glyphicon-asterisk"
+            >
+            </span>
+            (asterisco) são de preenchimento obrigatório.
+
+        </div>
+
         <form
+            data-ng-submit="submit()"
             name="ficha"
             novalidate
             role="form"
@@ -28,6 +50,10 @@
                     class="control-label"
                     for="nome_completo"
                     >Nome Completo
+                    <span
+                        class="glyphicon glyphicon-asterisk"
+                        >
+                    </span>
                 </label>
 
                 <input
@@ -36,14 +62,9 @@
                     id="nome_completo"
                     maxlength="256"
                     name="nome_completo"
-                    type="tel"
+                    type="text"
                     required
                     >
-
-                <p
-                    class="help-block pull-right"
-                    >$valid: {{ficha.nome_completo.$valid}}; $invalid: {{ficha.nome_completo.$invalid}}; $pristine: {{ficha.nome_completo.$pristine}}; $dirty: {{ficha.nome_completo.$dirty}};
-                </p>
 
             </div>
 
@@ -68,7 +89,7 @@
 
                 <p
                     class="help-block"
-                    >Exemplo: {{helpers.data_de_nascimento}}
+                    >Exemplo: {{data_de_nascimento}}
                 </p>
 
             </div>
@@ -81,6 +102,10 @@
                     class="control-label"
                     for="sexo"
                     >Sexo
+                    <span
+                        class="glyphicon glyphicon-asterisk"
+                        >
+                    </span>
                 </label>
 
                 <div
@@ -127,6 +152,10 @@
                     class="control-label"
                     for="email"
                     >E-mail
+                    <span
+                        class="glyphicon glyphicon-asterisk"
+                        >
+                    </span>
                 </label>
 
                 <input
@@ -181,6 +210,10 @@
                             title="Cadastro de Pessoa Física"
                             >CPF
                         </abbr>
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -191,12 +224,13 @@
                         id="cpf"
                         maxlength="11"
                         name="cpf"
-                        type="text"
+                        type="tel"
                         >
+                        <!-- type tel for mobile convenience... -->
 
                     <p
                         class="help-block"
-                        >Ex.: {{helpers.cpf}}
+                        >Ex.: {{cpf}}
                     </p>
 
                 </div>
@@ -211,6 +245,10 @@
                         class="control-label"
                         for="nome_do_documento"
                         >Nome do Documento
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -240,6 +278,10 @@
                         class="control-label"
                         for="numero_do_documento"
                         >Número do Documento
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -279,11 +321,16 @@
                             class="control-label"
                             for="codigo_internacional_1"
                             >Código Internacional
+                            <span
+                                class="glyphicon glyphicon-asterisk"
+                                >
+                            </span>
                         </label>
 
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_internacional_1"
+                            data-sg-number
                             id="codigo_internacional_1"
                             maxlength="3"
                             name="codigo_internacional_1"
@@ -307,11 +354,16 @@
                             class="control-label"
                             for="codigo_nacional_1"
                             >Código Nacional
+                            <span
+                                class="glyphicon glyphicon-asterisk"
+                                >
+                            </span>
                         </label>
 
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_nacional_1"
+                            data-sg-number
                             id="codigo_nacional_1"
                             maxlength="8"
                             name="codigo_nacional_1"
@@ -335,11 +387,16 @@
                             class="control-label"
                             for="numero_1"
                             >Número
+                            <span
+                                class="glyphicon glyphicon-asterisk"
+                                >
+                            </span>
                         </label>
 
                         <input
                             class="form-control"
                             data-ng-model="inscrito.numero_1"
+                            data-sg-number
                             id="numero_1"
                             maxlength="16"
                             name="numero_1"
@@ -374,6 +431,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_internacional_2"
+                            data-sg-number
                             id="codigo_internacional_2"
                             maxlength="3"
                             name="codigo_internacional_2"
@@ -395,6 +453,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_nacional_2"
+                            data-sg-number
                             id="codigo_nacional_2"
                             maxlength="8"
                             name="codigo_nacional_2"
@@ -416,6 +475,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.numero_2"
+                            data-sg-number
                             id="numero_2"
                             maxlength="16"
                             name="numero_2"
@@ -444,6 +504,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_internacional_3"
+                            data-sg-number
                             id="codigo_internacional_3"
                             maxlength="3"
                             name="codigo_internacional_3"
@@ -465,6 +526,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.codigo_nacional_3"
+                            data-sg-number
                             id="codigo_nacional_3"
                             maxlength="8"
                             name="codigo_nacional_3"
@@ -486,6 +548,7 @@
                         <input
                             class="form-control"
                             data-ng-model="inscrito.numero_3"
+                            data-sg-number
                             id="numero_3"
                             maxlength="16"
                             name="numero_3"
@@ -511,6 +574,10 @@
                             class="control-label"
                             for="endereco"
                             >Endereço
+                            <span
+                                class="glyphicon glyphicon-asterisk"
+                                >
+                            </span>
                         </label>
 
                         <textarea
@@ -545,6 +612,10 @@
                         class="control-label"
                         for="logradouro"
                         >Logradouro
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -573,6 +644,10 @@
                         class="control-label"
                         for="numero"
                         >Número
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -582,8 +657,9 @@
                         id="numero"
                         maxlength="8"
                         name="numero"
-                        type="text"
+                        type="tel"
                         >
+                        <!-- type tel for mobile convenience... -->
 
                     <p
                         class="help-block"
@@ -622,6 +698,10 @@
                         class="control-label"
                         for="bairro"
                         >Bairro
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -650,6 +730,10 @@
                         class="control-label"
                         for="localidade"
                         >Localidade
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -683,12 +767,18 @@
                             title="Unidade Federativa"
                             >UF
                         </abbr>
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-minlength="2"
                         data-ng-model="inscrito.uf"
                         data-ng-required="!inscrito.estrangeiro"
+                        data-sg-uppercase
                         id="uf"
                         maxlength="2"
                         name="uf"
@@ -716,17 +806,24 @@
                             title="Código de Endereçamento Postal"
                             >CEP
                         </abbr>
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
                         class="form-control"
+                        data-ng-minlength="8"
                         data-ng-model="inscrito.cep"
                         data-ng-required="!inscrito.estrangeiro"
+                        data-sg-number
                         id="cep"
                         maxlength="8"
                         name="cep"
-                        type="text"
+                        type="tel"
                         >
+                        <!-- type tel for mobile convenience... -->
 
                     <p
                         class="help-block"
@@ -736,7 +833,6 @@
                 </div>
 
             </fieldset>
-
 
             <fieldset>
 
@@ -751,6 +847,10 @@
                         class="control-label"
                         for="nome_no_cracha"
                         >Nome no Crachá
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -773,6 +873,10 @@
                         class="control-label"
                         for="categoria"
                         >Categoria
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <div
@@ -819,6 +923,10 @@
                         class="control-label"
                         for="curso_ou_formacao"
                         >Curso ou Formação
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -863,6 +971,10 @@
                         class="control-label"
                         for="nome_da_instituicao_ou_empresa"
                         >Nome da Instituição ou Empresa
+                        <span
+                            class="glyphicon glyphicon-asterisk"
+                            >
+                        </span>
                     </label>
 
                     <input
@@ -887,8 +999,8 @@
 
             <button
                 class="btn btn-default"
-                data-ng-click="form_actions.reset()"
-                type="reset"
+                data-ng-click="reset()"
+                type="button"
                 >Limpar
             </button>
 
