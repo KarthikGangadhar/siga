@@ -13,7 +13,7 @@ module.exports = function startServer(port) {
     // return server + app & io
 
     app.use(express.compress());
-    app.use(express.favicon());
+    app.use(express.favicon('./public/img/gear_blue.png'));
     app.use(express.bodyParser());
     app.use(express['static']('./public'));
 
