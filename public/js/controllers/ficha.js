@@ -12,9 +12,15 @@ angular
 
         $scope.cpf = cadastroDePessoaFisica();
 
+        $scope.$_setBlurred = function $_setBlurred(fieldName) {
+
+            $scope.ficha[fieldName].$_blurred = true;
+
+        };
+
         $scope.isInvalidField = function isInvalidField(fieldName) {
 
-            return $scope.ficha[fieldName].$invalid && ($scope.ficha[fieldName].$dirty || afterInvalidSubmission);
+            return $scope.ficha[fieldName].$invalid && ($scope.ficha[fieldName].$_blurred || afterInvalidSubmission);
 
         };
 
@@ -36,9 +42,21 @@ angular
 
         $scope.reset = function reset() {
 
+            var property;
+
             $scope.ficha.$setPristine();
 
             afterInvalidSubmission = false;
+
+            for (property in $scope.ficha) {
+
+                if ($scope.ficha.hasOwnProperty(property) && $scope.ficha[property].$_blurred === true) {
+
+                    $scope.ficha[property].$_blurred = false;
+
+                }
+
+            }
 
             inscricao.reset();
 

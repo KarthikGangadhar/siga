@@ -28,7 +28,7 @@
                 class="glyphicon glyphicon-asterisk"
             >
             </span>
-            (asterisco) são de preenchimento obrigatório.
+            (asterisco) são obrigatórios.
 
         </div>
 
@@ -41,9 +41,7 @@
 
             <div
                 class="form-group"
-                data-ng-class="{
-                    'has-error': isInvalidField('nome_completo')
-                }"
+                data-ng-class="{ 'has-error': isInvalidField('nome_completo') }"
                 >
 
                 <label
@@ -58,6 +56,7 @@
 
                 <input
                     class="form-control"
+                    data-ng-blur="$_setBlurred('nome_completo')"
                     data-ng-model="inscrito.nome_completo"
                     id="nome_completo"
                     maxlength="256"
@@ -70,6 +69,7 @@
 
             <div
                 class="form-group"
+                data-ng-class="{ 'has-error': isInvalidField('data_de_nascimento') }"
                 >
 
                 <label
@@ -80,7 +80,9 @@
 
                 <input
                     class="form-control"
+                    data-ng-blur="$_setBlurred('data_de_nascimento')"
                     data-ng-model="inscrito.data_de_nascimento"
+                    data-sg-valid-date
                     id="data_de_nascimento"
                     maxlength="10"
                     name="data_de_nascimento"
@@ -160,6 +162,7 @@
 
                 <input
                     class="form-control"
+                    data-ng-blur="$_setBlurred('email')"
                     data-ng-model="inscrito.email"
                     id="email"
                     maxlength="256"
@@ -218,6 +221,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('cpf')"
                         data-ng-model="inscrito.cpf"
                         data-ng-required="!inscrito.estrangeiro"
                         data-sg-cadastro-de-pessoa-fisica
@@ -253,6 +257,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('nome_do_documento')"
                         data-ng-model="inscrito.nome_do_documento"
                         data-ng-required="inscrito.estrangeiro"
                         id="nome_do_documento"
@@ -286,6 +291,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('numero_do_documento')"
                         data-ng-model="inscrito.numero_do_documento"
                         data-ng-required="inscrito.estrangeiro"
                         id="numero_do_documento"
@@ -329,8 +335,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_internacional_1')"
                             data-ng-model="inscrito.codigo_internacional_1"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_internacional_1"
                             maxlength="3"
                             name="codigo_internacional_1"
@@ -362,8 +369,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_nacional_1')"
                             data-ng-model="inscrito.codigo_nacional_1"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_nacional_1"
                             maxlength="8"
                             name="codigo_nacional_1"
@@ -395,8 +403,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('numero_1')"
                             data-ng-model="inscrito.numero_1"
-                            data-sg-number
+                            data-sg-digits-only
                             id="numero_1"
                             maxlength="16"
                             name="numero_1"
@@ -419,6 +428,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_internacional_2') }"
                         data-ng-show="inscrito.estrangeiro"
                         >
 
@@ -430,8 +440,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_internacional_2')"
                             data-ng-model="inscrito.codigo_internacional_2"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_internacional_2"
                             maxlength="3"
                             name="codigo_internacional_2"
@@ -442,6 +453,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_nacional_2') }"
                         >
 
                         <label
@@ -452,8 +464,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_nacional_2')"
                             data-ng-model="inscrito.codigo_nacional_2"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_nacional_2"
                             maxlength="8"
                             name="codigo_nacional_2"
@@ -464,6 +477,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('numero_2') }"
                         >
 
                         <label
@@ -474,8 +488,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('numero_2')"
                             data-ng-model="inscrito.numero_2"
-                            data-sg-number
+                            data-sg-digits-only
                             id="numero_2"
                             maxlength="16"
                             name="numero_2"
@@ -492,6 +507,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_internacional_3') }"
                         data-ng-show="inscrito.estrangeiro"
                         >
 
@@ -503,8 +519,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_internacional_3')"
                             data-ng-model="inscrito.codigo_internacional_3"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_internacional_3"
                             maxlength="3"
                             name="codigo_internacional_3"
@@ -515,6 +532,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('codigo_nacional_3') }"
                         >
 
                         <label
@@ -525,8 +543,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('codigo_nacional_3')"
                             data-ng-model="inscrito.codigo_nacional_3"
-                            data-sg-number
+                            data-sg-digits-only
                             id="codigo_nacional_3"
                             maxlength="8"
                             name="codigo_nacional_3"
@@ -537,6 +556,7 @@
 
                     <div
                         class="form-group"
+                        data-ng-class="{ 'has-error': isInvalidField('numero_3') }"
                         >
 
                         <label
@@ -547,8 +567,9 @@
 
                         <input
                             class="form-control"
+                            data-ng-blur="$_setBlurred('numero_3')"
                             data-ng-model="inscrito.numero_3"
-                            data-sg-number
+                            data-sg-digits-only
                             id="numero_3"
                             maxlength="16"
                             name="numero_3"
@@ -582,6 +603,7 @@
 
                         <textarea
                             class="form-control"
+                            data-ng-blur="$_setBlurred('endereco')"
                             data-ng-model="inscrito.endereco"
                             data-ng-required="inscrito.estrangeiro"
                             id="endereco"
@@ -620,6 +642,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('logradouro')"
                         data-ng-model="inscrito.logradouro"
                         data-ng-required="!inscrito.estrangeiro"
                         id="logradouro"
@@ -652,14 +675,14 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('numero')"
                         data-ng-model="inscrito.numero"
                         data-ng-required="!inscrito.estrangeiro"
                         id="numero"
                         maxlength="8"
                         name="numero"
-                        type="tel"
+                        type="text"
                         >
-                        <!-- type tel for mobile convenience... -->
 
                     <p
                         class="help-block"
@@ -680,6 +703,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('complemento')"
                         data-ng-model="inscrito.complemento"
                         id="complemento"
                         maxlength="128"
@@ -706,6 +730,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('bairro')"
                         data-ng-model="inscrito.bairro"
                         data-ng-required="!inscrito.estrangeiro"
                         id="bairro"
@@ -738,6 +763,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('localidade')"
                         data-ng-model="inscrito.localidade"
                         data-ng-required="!inscrito.estrangeiro"
                         id="localidade"
@@ -775,6 +801,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('uf')"
                         data-ng-minlength="2"
                         data-ng-model="inscrito.uf"
                         data-ng-required="!inscrito.estrangeiro"
@@ -814,10 +841,11 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('cep')"
                         data-ng-minlength="8"
                         data-ng-model="inscrito.cep"
                         data-ng-required="!inscrito.estrangeiro"
-                        data-sg-number
+                        data-sg-digits-only
                         id="cep"
                         maxlength="8"
                         name="cep"
@@ -855,6 +883,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('nome_no_cracha')"
                         data-ng-model="detalhes.nome_no_cracha"
                         id="nome_no_cracha"
                         maxlength="256"
@@ -931,6 +960,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('curso_ou_formacao')"
                         data-ng-model="detalhes.curso_ou_formacao"
                         id="curso_ou_formacao"
                         maxlength="256"
@@ -953,6 +983,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('acronimo_da_instituicao_ou_empresa')"
                         data-ng-model="detalhes.acronimo_da_instituicao_ou_empresa"
                         id="acronimo_da_instituicao_ou_empresa"
                         maxlength="64"
@@ -979,6 +1010,7 @@
 
                     <input
                         class="form-control"
+                        data-ng-blur="$_setBlurred('nome_da_instituicao_ou_empresa')"
                         data-ng-model="detalhes.nome_da_instituicao_ou_empresa"
                         id="nome_da_instituicao_ou_empresa"
                         maxlength="256"
