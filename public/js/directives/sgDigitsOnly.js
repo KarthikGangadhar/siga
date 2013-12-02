@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .directive('sgNumber', function sgNumber() {
+    .directive('sgDigitsOnly', function sgDigitsOnly() {
 
         'use strict';
 
@@ -14,25 +14,33 @@ angular
 
                     var processedValue;
 
+                    if (viewValue === '') {
+
+                        control.$setValidity('digits-only', true);
+
+                        return '';
+
+                    }
+
                     if (viewValue) {
 
                         var processedValue = +viewValue;
 
                         if (isNaN(processedValue)) {
 
-                            control.$setValidity('sgNumber', false);
+                            control.$setValidity('digits-only', false);
 
                             return undefined;
 
                         }
 
-                        control.$setValidity('sgNumber', true);
+                        control.$setValidity('digits-only', true);
 
                         return viewValue;
 
                     }
 
-                    control.$setValidity('sgNumber', false);
+                    control.$setValidity('digits-only', false);
 
                     return undefined;
 
