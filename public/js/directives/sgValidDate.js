@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .directive('sgValidDate', function sgValidDate() {
+    .directive('sgValidDate', function sgValidDateDirective() {
 
         'use strict';
 

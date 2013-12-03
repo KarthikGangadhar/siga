@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .factory('messenger', function messenger(growl) {
+    .factory('messenger', function messengerFactory(growl) {
 
         'use strict';
 

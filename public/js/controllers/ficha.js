@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .controller('ficha', function ficha($scope, cadastroDePessoaFisica, random, inscricao, messenger) {
+    .controller('ficha', function fichaController($scope, cadastroDePessoaFisica, random, ficha, messenger) {
 
         'use strict';
 
@@ -30,7 +30,7 @@ angular
 
             if ($scope.ficha.$valid) {
 
-                inscricao.save();
+                ficha.save();
 
             } else {
 
@@ -58,18 +58,18 @@ angular
 
             }
 
-            inscricao.reset();
+            ficha.reset();
 
-            $scope.inscrito = inscricao().inscrito;
+            $scope.inscrito = ficha().inscrito;
 
-            $scope.detalhes = inscricao().detalhes;
+            $scope.detalhes = ficha().detalhes;
 
         };
 
-        // inscricao('thiago');
+        ficha('sherlock');
 
-        $scope.inscrito = inscricao().inscrito;
+        $scope.inscrito = ficha().inscrito;
 
-        $scope.detalhes = inscricao().detalhes;
+        $scope.detalhes = ficha().detalhes;
 
     });

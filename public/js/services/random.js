@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .factory('random', function () {
+    .factory('random', function randomFactory() {
 
         'use strict';
 

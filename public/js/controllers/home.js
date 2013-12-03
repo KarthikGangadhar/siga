@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .controller('home', function home() {
+    .controller('home', function homeController() {
 
         'use strict';
 

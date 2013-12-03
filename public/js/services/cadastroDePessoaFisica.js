@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .factory('cadastroDePessoaFisica', function () {
+    .factory('cadastroDePessoaFisica', function cadastroDePessoaFisicaFactory() {
 
         'use strict';
 

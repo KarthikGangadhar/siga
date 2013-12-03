@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .directive('sgCadastroDePessoaFisica', function sgCadastroDePessoaFisica(cadastroDePessoaFisica) {
+    .directive('sgCadastroDePessoaFisica', function sgCadastroDePessoaFisicaDirective(cadastroDePessoaFisica) {
 
         'use strict';
 

@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .directive('sgUppercase', function sgUppercase() {
+    .directive('sgUppercase', function sgUppercaseDirective() {
 
         'use strict';
 

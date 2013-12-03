@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .directive('sgDigitsOnly', function sgDigitsOnly() {
+    .directive('sgDigitsOnly', function sgDigitsOnlyDirective() {
 
         'use strict';
 
