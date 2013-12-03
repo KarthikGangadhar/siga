@@ -66,10 +66,10 @@ angular
 
         };
 
-        ficha('sherlock');
-
         $scope.inscrito = ficha().inscrito;
 
         $scope.detalhes = ficha().detalhes;
+
+        // ficha('thiago');
 
     });

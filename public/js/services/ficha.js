@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .factory('ficha', function fichaFactory() {
+    .factory('ficha', function fichaFactory($http) {
 
         'use strict';
 
@@ -129,9 +129,9 @@ angular
                 ficha.data.inscrito.cep = '';
                 ficha.data.detalhes.nome_no_cracha = 'Holmes';
                 ficha.data.detalhes.categoria = 'Profissional';
-                ficha.data.detalhes.curso_ou_formacao = 'Chemistry';
+                ficha.data.detalhes.curso_ou_formacao = 'Consulting Detective';
                 ficha.data.detalhes.acronimo_da_instituicao_ou_empresa = '';
-                ficha.data.detalhes.nome_da_instituicao_ou_empresa = 'University of Oxford';
+                ficha.data.detalhes.nome_da_instituicao_ou_empresa = 'Scotland Yard';
 
                 cache = {
                     sherlock: ficha.data
