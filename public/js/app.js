@@ -1,6 +1,5 @@
 angular
     .module('sg', [
-        'angular-growl',
         'ngAnimate',
         'ngRoute',
         'ngSanitize',
@@ -21,6 +20,11 @@ angular
         $routeProvider.when('/ficha', {
             templateUrl: '/views/ficha.html',
             controller: 'ficha'
+        });
+
+        $routeProvider.when('/inscricao', {
+            templateUrl: '/views/inscricao.html',
+            controller: 'inscricao'
         });
 
     });
