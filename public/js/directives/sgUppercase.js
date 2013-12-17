@@ -12,9 +12,17 @@ angular
 
                 control.$parsers.unshift(function (viewValue) {
 
-                    var processedValue = angular.uppercase(viewValue);
+                    var processedValue;
 
-                    return processedValue;
+                    if (viewValue) {
+
+                        processedValue = angular.uppercase(viewValue);
+
+                        element.val(processedValue);
+
+                        return processedValue;
+
+                    }
 
                 });
 
