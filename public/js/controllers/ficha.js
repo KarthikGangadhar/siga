@@ -6,6 +6,8 @@ angular
 
         var afterInvalidSubmission = false,
 
+            validSubmissionMessage = '<strong>Sucesso!</strong> Sua inscrição foi salva com sucesso.',
+
             invalidSubmissionMessage = '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.';
 
         $scope.data_de_nascimento = random.getRandomInt(13, 28).toString(10) + '/' + random.getRandomInt(1, 12).toString(10) + '/' + random.getRandomInt(1948, 1995).toString(10);
@@ -31,6 +33,8 @@ angular
             if ($scope.ficha.$valid) {
 
                 ficha.save();
+
+                messenger.success(validSubmissionMessage);
 
             } else {
 
@@ -69,7 +73,5 @@ angular
         $scope.inscrito = ficha().inscrito;
 
         $scope.detalhes = ficha().detalhes;
-
-        // ficha('thiago');
 
     });

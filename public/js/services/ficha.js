@@ -1,10 +1,12 @@
 angular
     .module('sg')
-    .factory('ficha', function fichaFactory($http) {
+    .factory('ficha', function fichaFactory() {
 
         'use strict';
 
-        var ficha = function ficha(name) {
+        var cache = {},
+
+            ficha = function ficha(name) {
 
                 if (cache[name]) {
 
@@ -12,11 +14,15 @@ angular
 
                 }
 
-                return ficha.example[name] && ficha.example[name](), ficha.data;
+                if (ficha.example[name]) {
 
-            },
+                    ficha.example[name]();
 
-            cache = {};
+                }
+
+                return ficha.data;
+
+            };
 
         ficha.data = {};
 
@@ -142,6 +148,8 @@ angular
         };
 
         ficha.save = function save() {
+
+            return null;
 
         };
 
