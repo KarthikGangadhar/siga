@@ -1,6 +1,6 @@
 angular
     .module('sg')
-    .controller('ficha', function fichaController($scope, cadastroDePessoaFisica, random, ficha, messenger) {
+    .controller('ficha', function fichaController($scope, cadastroDePessoaFisica, random, ficha) {
 
         'use strict';
 
@@ -34,11 +34,7 @@ angular
 
                 ficha.save();
 
-                messenger.success(validSubmissionMessage);
-
             } else {
-
-                messenger.danger(invalidSubmissionMessage);
 
             }
 

@@ -1,20 +1,14 @@
 angular
     .module('sg')
-    .controller('navbar', function navbarController($scope, $route, messenger, ficha) {
+    .controller('navbar', function navbarController($scope, $route, ficha) {
 
         'use strict';
 
         $scope.login = function login() {
 
-            messenger.warning('Entrando no Sistema!');
-
         };
 
         $scope.loadExample = function loadExample(name) {
-
-            messenger.info('Carregando o exemplo <b>' + name + '</b>.', {
-                align: 'right'
-            });
 
             ficha(name);
 
@@ -23,10 +17,6 @@ angular
         };
 
         $scope.unloadExample = function unloadExample() {
-
-            messenger.info('Descarregando exemplo.', {
-                align: 'right'
-            });
 
             ficha.reset();
 
