@@ -1,5 +1,6 @@
 <nav
     class="navbar navbar-default navbar-fixed-top"
+    data-bs-navbar
     data-ng-controller="navbar"
     role="navigation"
     >
@@ -50,11 +51,24 @@
             class="nav navbar-nav"
             >
 
-            <li>
+            <li
+                data-match-route="/ficha"
+                >
 
                 <a
-                    href="#"
-                    >Administração
+                    href="/ficha"
+                    >Ficha de Inscrição
+                </a>
+
+            </li>
+
+            <li
+                data-match-route="/inscricao"
+                >
+
+                <a
+                    href="/inscricao"
+                    >Inscrição
                 </a>
 
             </li>

@@ -4,7 +4,8 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'Scope.safeApply'
+        'Scope.safeApply',
+        '$strap.directives'
     ])
     .config(function config($routeProvider, $locationProvider) {
 
