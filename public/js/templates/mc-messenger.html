@@ -1,0 +1,46 @@
+<div
+    data-ng-repeat="(location, messages) in locations"
+    >
+
+    <div
+        class="
+            alert
+            alert-{{message.type}}
+            mc-messenger
+        "
+        data-mc-messenger-element
+        data-ng-class="{
+            'alert-dismissable': message.dismissable
+        }"
+        data-ng-repeat="message in messages"
+        >
+
+        <button
+            aria-hidden="true"
+            class="close"
+            data-ng-click="close($index)"
+            data-ng-if="message.dismissable"
+            type="button"
+            >&times;
+        </button>
+
+        <span data-ng-bind-html="message.content"></span>
+
+    </div>
+
+</div>
+
+<!-- randomish -->
+<div
+    class="randomish"
+    data-ng-if="randomish.on"
+    >
+
+    <button
+        class="btn btn-default btn-lg"
+        data-ng-click="randomish()"
+        type="button"
+        >Randomish
+    </button>
+
+</div>

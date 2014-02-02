@@ -11,7 +11,7 @@
 
         <button
             class="navbar-toggle"
-            data-target="#bs-navbar-collapse"
+            data-target="#navbar"
             data-toggle="collapse"
             type="button"
             >
@@ -44,7 +44,7 @@
 
     <div
         class="collapse navbar-collapse"
-        id="bs-navbar-collapse"
+        id="navbar"
         >
 
         <ul
@@ -52,7 +52,9 @@
             >
 
             <li
-                data-match-route="/ficha"
+                data-ng-class="{
+                    'active': path === '/ficha'
+                }"
                 >
 
                 <a
@@ -63,7 +65,9 @@
             </li>
 
             <li
-                data-match-route="/inscricao"
+                data-ng-class="{
+                    'active': path === '/inscricao'
+                }"
                 >
 
                 <a

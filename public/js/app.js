@@ -5,7 +5,7 @@ angular
         'ngSanitize',
         'ngTouch',
         'Scope.safeApply',
-        '$strap.directives'
+        'mcMessenger'
     ])
     .config(function config($routeProvider, $locationProvider) {
 

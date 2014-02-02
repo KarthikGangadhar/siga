@@ -12,4 +12,4 @@
 # TECHNOLOGY COLOPHON
 
     HTML, CSS, JS
-    jQuery, AngularJS, Twitter Bootstrap
+    jQuery, AngularJS, Bootstrap

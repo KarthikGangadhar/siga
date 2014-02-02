@@ -1,10 +1,22 @@
 angular
     .module('sg')
-    .controller('navbar', function navbarController($scope, $route, ficha) {
+    .controller('navbar', function navbarController($location, $scope, $route, ficha, mcMessenger) {
 
         'use strict';
 
+        $scope.path = $location.path();
+
+        $scope.$on('$locationChangeSuccess', function onLocationChangeSuccess(event, next, current) {
+
+            $scope.path = $location.path();
+
+        });
+
         $scope.login = function login() {
+
+            mcMessenger('Entrando no sistema!', {
+                type: 'info'
+            }, 'topMiddle');
 
         };
 
@@ -14,6 +26,8 @@ angular
 
             $route.reload();
 
+            mcMessenger('Exemplo <b>' + name + '</b> carregado...', {}, 'bottomLeft');
+
         };
 
         $scope.unloadExample = function unloadExample() {
@@ -21,6 +35,8 @@ angular
             ficha.reset();
 
             $route.reload();
+
+            mcMessenger('Exemplo descarregado...', {}, 'bottomLeft');
 
         };
 
