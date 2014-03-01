@@ -1,23 +1,26 @@
 {
-    "name": "siga-prototype",
+    "name": "siga",
     "description": "Sistema de Inscrições com Gerenciamento e Acompanhamento",
     "author": "Thiago Figueiredo <jaywalking101@gmail.com>",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "scripts": {
         "start": "main.js"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/jaywalking101/siga-prototype.git"
+        "url": "https://github.com/jaywalking101/siga.git"
     },
     "dependencies": {
         "express": "3.4.x",
+        "moment": "2.5.x",
+        "mysql": "2.0.x",
+        "q": "0.9.x",
         "socket.io": "0.9.x",
-        "q": "0.9.x"
+        "underscore": "1.6.x"
     },
     "engines": {
         "node": "0.10.x"
     },
-    "subdomain": "siga-prototype",
+    "subdomain": "siga",
     "private": true
 }

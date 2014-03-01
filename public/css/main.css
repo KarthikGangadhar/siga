@@ -35,30 +35,30 @@ body {
     margin: 10px 0px;
 }
 
-#sg {
+#main {
     padding-bottom: 40px;
 }
 
-#sg h1,
-#sg h2,
-#sg legend {
+#main h1,
+#main h2,
+#main legend {
     color: #666666;
     font-family: 'Ubuntu Condensed', sans-serif;
     text-shadow: 2px 2px 3px #dddddd;
 }
 
-#sg fieldset {
+#main fieldset {
     margin-top: 20px;
 }
 
-#sg fieldset legend {
+#main fieldset legend {
     font-size: 1.8em;
 }
 
-#sg fieldset fieldset legend {
+#main fieldset fieldset legend {
     font-size: 1.6em;
 }
 
-#sg dl dt {
+#main dl dt {
     margin-top: 10px;
 }
