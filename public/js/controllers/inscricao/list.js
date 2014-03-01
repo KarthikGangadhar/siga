@@ -28,6 +28,6 @@ angular
             $scope.showPhone = function showPhone(inscricao, number) {
                 return inscricao['codigo_nacional_' + number] && inscricao['numero_' + number];
             };
-            $scope.inscricoes = $route.current.locals.inscricoes;
+            $scope.inscricoes = $route.current.locals.loadedInscricoes;
         }
     ]);

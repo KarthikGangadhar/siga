@@ -18,10 +18,10 @@ angular
             templateUrl: '/js/views/inscricao/list.html',
             controller: 'inscricao/list',
             resolve: {
-                inscricoes: [
+                loadedInscricoes: [
                     'inscricao',
                     'notifier',
-                    function (
+                    function loadInscricoes(
                         inscricao,
                         notifier
                     ) {
@@ -49,42 +49,58 @@ angular
             templateUrl: '/js/views/inscricao/edit.html',
             controller: 'inscricao/edit',
             resolve: {
-                inscricao: function ($route, inscricao) {
-                    return inscricao
-                        .read($route.current.params.id)
-                        .then(
-                            function resolve(value) {
-                                return value;
-                            },
-                            function reject(reason) {
-                                notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
-                                    timeout: 10000,
-                                    type: 'danger'
-                                });
-                            }
-                        );
-                }
+                loadedInscricao: [
+                    '$route',
+                    'inscricao',
+                    'notifier',
+                    function loadInscricao(
+                        $route,
+                        inscricao,
+                        notifier
+                    ) {
+                        return inscricao
+                            .read($route.current.params.id)
+                            .then(
+                                function resolve(value) {
+                                    return value;
+                                },
+                                function reject(reason) {
+                                    notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
+                                        timeout: 10000,
+                                        type: 'danger'
+                                    });
+                                }
+                            );
+                    }]
             }
         });
         $routeProvider.when('/inscricao/:id', {
             templateUrl: '/js/views/inscricao/view.html',
             controller: 'inscricao/view',
             resolve: {
-                inscricao: function ($route, inscricao) {
-                    return inscricao
-                        .read($route.current.params.id)
-                        .then(
-                            function resolve(value) {
-                                return value;
-                            },
-                            function reject(reason) {
-                                notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
-                                    timeout: 10000,
-                                    type: 'danger'
-                                });
-                            }
-                        );
-                }
+                loadedInscricao: [
+                    '$route',
+                    'inscricao',
+                    'notifier',
+                    function loadInscricao(
+                        $route,
+                        inscricao,
+                        notifier
+                    ) {
+                        return inscricao
+                            .read($route.current.params.id)
+                            .then(
+                                function resolve(value) {
+                                    return value;
+                                },
+                                function reject(reason) {
+                                    notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
+                                        timeout: 10000,
+                                        type: 'danger'
+                                    });
+                                }
+                            );
+                    }]
             }
         });
     });

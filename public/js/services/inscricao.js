@@ -26,6 +26,7 @@ angular
                         }
                     },
                     format: function format(toServer) {
+                        this.categoria = this.options.categoria[this.categoria];
                         this.sexo = this.options.sexo[this.sexo];
                         if (toServer) {
                             this.telefones = [
@@ -49,7 +50,7 @@ angular
                             ].join('');
                             return this;
                         }
-                        if (this.telefones) {
+                        if (this.telefones && typeof this.telefones === 'string') {
                             this.telefones = this.telefones.split(',');
                             if (this.telefones[0]) {
                                 this.telefones[0] = this.telefones[0].split('|');

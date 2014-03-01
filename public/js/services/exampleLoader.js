@@ -5,7 +5,7 @@ angular
             'use strict';
             return {
                 thiago: function thiago(inscricao) {
-                    inscricao.id = 1;
+                    inscricao.id = 0;
                     inscricao.nome_completo = 'Thiago Condurú Figueiredo';
                     inscricao.data_de_nascimento = '5/8/1981';
                     inscricao.sexo = 'Masculino';
@@ -39,7 +39,7 @@ angular
                     return inscricao;
                 },
                 sherlock: function sherlock(inscricao) {
-                    inscricao.id = 2;
+                    inscricao.id = 0;
                     inscricao.nome_completo = 'Sherlock Holmes';
                     inscricao.data_de_nascimento = '6/1/1854';
                     inscricao.sexo = 'Masculino';

@@ -49,6 +49,10 @@ angular
                                     $location.path('/inscricao/' + value);
                                 },
                                 function reject(reason) {
+                                    notifier('Ocorreu um erro durante o salvamento da inscrição. Por favor, tente novamente.', {
+                                        timeout: 10000,
+                                        type: 'danger'
+                                    });
                                     $scope.saveButtonDisabled = false;
                                     throw reason;
                                 }
@@ -67,8 +71,12 @@ angular
                                     $location.path('/inscricao/' + value);
                                 },
                                 function reject(reason) {
+                                    notifier('Ocorreu um erro durante o salvamento da inscrição. Por favor, tente novamente.', {
+                                        timeout: 10000,
+                                        type: 'danger'
+                                    });
                                     $scope.saveButtonDisabled = false;
-                                    throw reason;
+                                    // throw reason;
                                 }
                             );
                     }
@@ -93,9 +101,9 @@ angular
                 }
                 $scope.inscricao = inscricao();
             };
-            if ($route.current.locals.inscricao) {
+            if ($route.current.locals.loadedInscricao) {
                 $scope.action = 'Editar';
-                $scope.inscricao = $route.current.locals.inscricao;
+                $scope.inscricao = $route.current.locals.loadedInscricao;
             } else {
                 $scope.action = 'Nova';
                 $scope.inscricao = inscricao();

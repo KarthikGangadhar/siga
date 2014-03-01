@@ -30,7 +30,7 @@ angular
             $scope.showPhone = function showPhone(number) {
                 return $scope.inscricao['codigo_nacional_' + number] && $scope.inscricao['numero_' + number];
             };
-            $scope.inscricao = $route.current.locals.inscricao;
+            $scope.inscricao = $route.current.locals.loadedInscricao;
             // carregador de exemplos para testes
             // exampleLoader.sherlock($scope.inscricao);
             // exampleLoader.thiago($scope.inscricao);

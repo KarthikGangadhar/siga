@@ -18,10 +18,13 @@ module.exports = function database(settings) {
             var errorIsObject = underscore.isObject(error),
                 errorIsNotEmpty = !underscore.isEmpty(error);
             if (error) {
+                // definir alugm comportamento especial para o erro PROTOCOL_CONNECTION_LOST
+                // (se realmente necessário, averiguar)
+                // (desnecessário, já que este módulo não permanece conectado entre execuções?)
                 if (error.code === 'PROTOCOL_CONNECTION_LOST') {
-                    return error.code;
+                    return error + ' [' + error.errno + ']';
                 }
-                return error.code + '[' + error.errno + ']';
+                return error + ' [' + error.errno + ']';
             }
             throw 'No error object to format';
         },

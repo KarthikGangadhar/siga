@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `anzol15`.`inscricao` (
   `sexo` INT UNSIGNED NOT NULL,
   `email` VARCHAR(256) NULL,
   `cpf` VARCHAR(11) NULL,
-  `nome_do_documentto` VARCHAR(128) NULL,
+  `nome_do_documento` VARCHAR(128) NULL,
   `numero_do_documento` VARCHAR(64) NULL,
   `telefones` VARCHAR(128) NULL,
   `logradouro` VARCHAR(256) NULL,
@@ -55,21 +55,21 @@ CREATE TABLE IF NOT EXISTS `anzol15`.`inscricao` (
   `cep` VARCHAR(8) NULL,
   `endereco` VARCHAR(512) NULL,
   `nome_no_cracha` VARCHAR(256) NULL,
-  `categoria_id` INT UNSIGNED NOT NULL,
+  `categoria` INT UNSIGNED NOT NULL,
   `curso_ou_formacao` VARCHAR(256) NULL,
   `acronimo_da_instituicao_ou_empresa` VARCHAR(64) NULL,
   `nome_da_instituicao_ou_empresa` VARCHAR(256) NULL,
   `__status__` TINYINT(1) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_inscricao_sexo_idx` (`sexo` ASC),
-  INDEX `fk_inscricao_categoria1_idx` (`categoria_id` ASC),
+  INDEX `fk_inscricao_categoria1_idx` (`categoria` ASC),
   CONSTRAINT `fk_inscricao_sexo`
     FOREIGN KEY (`sexo`)
     REFERENCES `anzol15`.`sexo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_inscricao_categoria1`
-    FOREIGN KEY (`categoria_id`)
+    FOREIGN KEY (`categoria`)
     REFERENCES `anzol15`.`categoria` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

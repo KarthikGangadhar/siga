@@ -4,6 +4,7 @@ var moment = require('moment'),
 module.exports = {
     create: function create(inscricao) {
         inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();
+        console.log(inscricao);
         return db({
             query: 'INSERT INTO inscricao ( ' +
                     'nome_completo, ' +
@@ -26,7 +27,8 @@ module.exports = {
                     'categoria, ' +
                     'curso_ou_formacao, ' +
                     'acronimo_da_instituicao_ou_empresa, ' +
-                    'nome_da_instituicao_ou_empresa ' +
+                    'nome_da_instituicao_ou_empresa, ' +
+                    '__status__ ' +
                 ') ' +
                 'VALUES ( ' +
                     '?, ' +
@@ -49,7 +51,8 @@ module.exports = {
                     '?, ' +
                     '?, ' +
                     '?, ' +
-                    '? ' +
+                    '?, ' +
+                    '1 ' +
                 ') ',
             array: [
                 'nome_completo',
@@ -80,7 +83,7 @@ module.exports = {
                 return value;
             },
             function reject(reason) {
-                return reason;
+                throw reason;
             }
         );
     },
@@ -88,21 +91,26 @@ module.exports = {
         if (id) {
             return db({
                 query: 'SELECT * FROM inscricao ' +
-                    'WHERE id = ? ' +
+                    'WHERE __status__ = 1 ' +
+                    'AND id = ? ' +
                     'ORDER BY nome_completo ',
                 array: [id]
             }).then(
                 function resolve(value) {
+                    if (value.length === 0) {
+                        throw 'ID Inexistente!';
+                    }
                     value[0].data_de_nascimento = moment(value[0].data_de_nascimento).format('DD/MM/YYYY');
                     return value[0];
                 },
                 function reject(reason) {
-                    return reason;
+                    throw reason;
                 }
             );
         }
         return db({
             query: 'SELECT * FROM inscricao ' +
+                'WHERE __status__ = 1 ' +
                 'ORDER BY nome_completo '
         }).then(
             function resolve(value) {
@@ -113,7 +121,7 @@ module.exports = {
                 return value;
             },
             function reject(reason) {
-                return reason;
+                throw reason;
             }
         );
     },
@@ -174,7 +182,7 @@ module.exports = {
                 return value;
             },
             function reject(reason) {
-                return reason;
+                throw reason;
             }
         );
     },
@@ -189,7 +197,7 @@ module.exports = {
                 return value;
             },
             function reject(reason) {
-                return reason;
+                throw reason;
             }
         );
     }

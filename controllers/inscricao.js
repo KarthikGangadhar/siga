@@ -9,7 +9,8 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    response.send(reason);
+                    console.warn(reason)
+                    response.send(500);
                 }
             );
     });
@@ -21,7 +22,8 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    response.send(reason);
+                    console.warn(reason)
+                    response.send(500);
                 }
             );
     });
@@ -33,7 +35,8 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    response.send(reason);
+                    console.warn(reason)
+                    response.send(500);
                 }
             );
     });
@@ -45,7 +48,8 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    response.send(reason);
+                    console.warn(reason)
+                    response.send(500);
                 }
             );
     });
