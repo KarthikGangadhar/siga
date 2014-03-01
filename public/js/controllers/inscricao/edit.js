@@ -25,6 +25,7 @@ angular
                 invalidSubmissionMessage = '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.';
             $scope.data_de_nascimento = random.getRandomInt(13, 28).toString(10) + '/' + random.getRandomInt(1, 12).toString(10) + '/' + random.getRandomInt(1948, 1995).toString(10);
             $scope.cpf = cadastroDePessoaFisica();
+            $scope.saveButtonDisabled = false;
             $scope.$_setBlurred = function $_setBlurred(fieldName) {
                 $scope.ficha[fieldName].$_blurred = true;
             };

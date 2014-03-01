@@ -36,9 +36,11 @@ angular
                         }
                     });
                     $rootScope.$on('$routeChangeError', function onRouteChangeError(event, message) {
-                        notification.type('danger');
-                        notification.content('Ocorreu um erro no carregamento de dados. Por favor, tente novamente.');
-                        notification.timeout(5000);
+                        if (notificationIsOn) {
+                            notification.type('danger');
+                            notification.content('Ocorreu um erro no carregamento desta página. Por favor, tente novamente.');
+                            notification.timeout(5000);
+                        }
                     });
                 },
                 restrict: 'A'

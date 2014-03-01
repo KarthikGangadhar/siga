@@ -10,6 +10,7 @@ angular
             exampleLoader
         ) {
             'use strict';
+            $scope.editButtonDisabled = false;
             $scope.showAddress = function showAddress() {
                 if ($scope.inscricao.estrangeiro) {
                     return !!$scope.inscricao.endereco;
@@ -30,6 +31,9 @@ angular
             $scope.showPhone = function showPhone(number) {
                 return $scope.inscricao['codigo_nacional_' + number] && $scope.inscricao['numero_' + number];
             };
+            $scope.$on('$routeChangeStart', function onRouteChangeStart(event, message) {
+                $scope.editButtonDisabled = true;
+            });
             $scope.inscricao = $route.current.locals.loadedInscricao;
             // carregador de exemplos para testes
             // exampleLoader.sherlock($scope.inscricao);

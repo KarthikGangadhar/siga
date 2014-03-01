@@ -4,7 +4,6 @@ var moment = require('moment'),
 module.exports = {
     create: function create(inscricao) {
         inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();
-        console.log(inscricao);
         return db({
             query: 'INSERT INTO inscricao ( ' +
                     'nome_completo, ' +
@@ -114,6 +113,9 @@ module.exports = {
                 'ORDER BY nome_completo '
         }).then(
             function resolve(value) {
+                if (value.length === 0) {
+                    throw 'Há nenhuma inscrição!';
+                }
                 value.forEach(function forEach(element) {
                     // forEach(element, index, array)
                     element.data_de_nascimento = moment(element.data_de_nascimento).format('DD/MM/YYYY');
