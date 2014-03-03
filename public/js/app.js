@@ -11,96 +11,71 @@ angular
         'use strict';
         $locationProvider.html5Mode(true);
         $routeProvider.when('/', {
-            templateUrl: '/js/views/home.html',
-            controller: 'home'
+            templateUrl: '/js/templates/home.html',
+            controller: 'homeController'
         });
         $routeProvider.when('/inscricao/listar', {
-            templateUrl: '/js/views/inscricao/list.html',
+            templateUrl: '/js/templates/inscricao/list.html',
             controller: 'inscricao/list',
             resolve: {
-                loadedInscricoes: [
-                    'inscricao',
-                    'notifier',
-                    function loadInscricoes(
-                        inscricao,
-                        notifier
+                data: [
+                    'inscricaoService',
+                    function data(
+                        inscricaoService
                     ) {
-                        return inscricao
-                            .read()
-                            .then(
-                                function resolve(value) {
-                                    return value;
-                                },
-                                function reject(reason) {
-                                    notifier('Ocorreu um erro no carregamento das inscrições. Por favor, tente novamente.', {
-                                        timeout: 10000,
-                                        type: 'danger'
-                                    });
-                                }
-                            );
-                    }]
+                        return inscricaoService
+                            .read({
+                                notifyOnReject: true
+                            });
+                    }
+                ]
             }
         });
         $routeProvider.when('/inscricao/nova', {
-            templateUrl: '/js/views/inscricao/edit.html',
+            templateUrl: '/js/templates/inscricao/edit.html',
             controller: 'inscricao/edit'
         });
         $routeProvider.when('/inscricao/:id/editar', {
-            templateUrl: '/js/views/inscricao/edit.html',
+            templateUrl: '/js/templates/inscricao/edit.html',
             controller: 'inscricao/edit',
             resolve: {
-                loadedInscricao: [
+                data: [
                     '$route',
-                    'inscricao',
-                    'notifier',
-                    function loadInscricao(
+                    'inscricaoService',
+                    function data(
                         $route,
-                        inscricao,
-                        notifier
+                        inscricaoService
                     ) {
-                        return inscricao
-                            .read($route.current.params.id)
-                            .then(
-                                function resolve(value) {
-                                    return value;
-                                },
-                                function reject(reason) {
-                                    notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
-                                        timeout: 10000,
-                                        type: 'danger'
-                                    });
-                                }
-                            );
-                    }]
+                        return inscricaoService
+                            .read({
+                                id: $route.current.params.id,
+                                notifyOnReject: true
+                            });
+                    }
+                ]
             }
         });
         $routeProvider.when('/inscricao/:id', {
-            templateUrl: '/js/views/inscricao/view.html',
+            templateUrl: '/js/templates/inscricao/view.html',
             controller: 'inscricao/view',
             resolve: {
-                loadedInscricao: [
+                data: [
                     '$route',
-                    'inscricao',
-                    'notifier',
-                    function loadInscricao(
+                    'inscricaoService',
+                    function data(
                         $route,
-                        inscricao,
-                        notifier
+                        inscricaoService
                     ) {
-                        return inscricao
-                            .read($route.current.params.id)
-                            .then(
-                                function resolve(value) {
-                                    return value;
-                                },
-                                function reject(reason) {
-                                    notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
-                                        timeout: 10000,
-                                        type: 'danger'
-                                    });
-                                }
-                            );
-                    }]
+                        return inscricaoService
+                            .read({
+                                id: $route.current.params.id,
+                                notifyOnReject: true
+                            });
+                    }
+                ]
             }
+        });
+        $routeProvider.otherwise({
+            template: '<pre style="position: absolute; right: 50px; bottom: 50px;">Página Inexistente!</pre>'
         });
     });

@@ -1,12 +1,14 @@
 angular
     .module('main')
-    .factory('inscricao', [
+    .factory('inscricaoService', [
         '$http',
         '$q',
+        'notifier',
         'simpleCache',
         function inscricaoFactory(
             $http,
             $q,
+            notifier,
             simpleCache
         ) {
             'use strict';
@@ -92,41 +94,61 @@ angular
                         return this;
                     }
                 },
-                inscricao = function inscricao(data) {
-                    var novaInscricao = Object.create(inscricaoPrototype);
-                    novaInscricao.id = data ? data.id : 0;
-                    novaInscricao.nome_completo = data ? data.nome_completo : '';
-                    novaInscricao.data_de_nascimento = data ? data.data_de_nascimento : '';
-                    novaInscricao.sexo = data ? data.sexo : 'Feminino';
-                    novaInscricao.email = data ? data.email : '';
-                    novaInscricao.cpf = data ? data.cpf : '';
-                    novaInscricao.estrangeiro = data ? data.estrangeiro : '';
-                    novaInscricao.telefones = data ? data.telefones : '';
-                    novaInscricao.codigo_internacional_1 = data ? data.codigo_internacional_1 : '55';
-                    novaInscricao.codigo_nacional_1 = data ? data.codigo_nacional_1 : '';
-                    novaInscricao.numero_1 = data ? data.numero_1 : '';
-                    novaInscricao.codigo_internacional_2 = data ? data.codigo_internacional_2 : '55';
-                    novaInscricao.codigo_nacional_2 = data ? data.codigo_nacional_2 : '';
-                    novaInscricao.numero_2 = data ? data.numero_2 : '';
-                    novaInscricao.codigo_internacional_3 = data ? data.codigo_internacional_3 : '55';
-                    novaInscricao.codigo_nacional_3 = data ? data.codigo_nacional_3 : '';
-                    novaInscricao.numero_3 = data ? data.numero_3 : '';
-                    novaInscricao.logradouro = data ? data.logradouro : '';
-                    novaInscricao.numero = data ? data.numero : '';
-                    novaInscricao.complemento = data ? data.complemento : '';
-                    novaInscricao.bairro = data ? data.bairro : '';
-                    novaInscricao.localidade = data ? data.localidade : '';
-                    novaInscricao.uf = data ? data.uf : '';
-                    novaInscricao.cep = data ? data.cep : '';
-                    novaInscricao.nome_no_cracha = data ? data.nome_no_cracha : '';
-                    novaInscricao.categoria = data ? data.categoria : 'Estudante';
-                    novaInscricao.curso_ou_formacao = data ? data.curso_ou_formacao : '';
-                    novaInscricao.acronimo_da_instituicao_ou_empresa = data ? data.acronimo_da_instituicao_ou_empresa : '';
-                    novaInscricao.nome_da_instituicao_ou_empresa = data ? data.nome_da_instituicao_ou_empresa : '';
-                    return novaInscricao;
+                inscricaoService = function inscricaoService(data) {
+                    var inscricao = Object.create(inscricaoPrototype);
+                    inscricao.id = data ? data.id : 0;
+                    inscricao.nome_completo = data ? data.nome_completo : '';
+                    inscricao.data_de_nascimento = data ? data.data_de_nascimento : '';
+                    inscricao.sexo = data ? data.sexo : 'Feminino';
+                    inscricao.email = data ? data.email : '';
+                    inscricao.estrangeiro = data ? data.estrangeiro : '';
+                    inscricao.cpf = data ? data.cpf : '';
+                    inscricao.nome_do_documento = data ? data.nome_do_documento : '';
+                    inscricao.numero_do_documento = data ? data.numero_do_documento : '';
+                    inscricao.telefones = data ? data.telefones : '';
+                    inscricao.codigo_internacional_1 = data ? data.codigo_internacional_1 : '55';
+                    inscricao.codigo_nacional_1 = data ? data.codigo_nacional_1 : '';
+                    inscricao.numero_1 = data ? data.numero_1 : '';
+                    inscricao.codigo_internacional_2 = data ? data.codigo_internacional_2 : '55';
+                    inscricao.codigo_nacional_2 = data ? data.codigo_nacional_2 : '';
+                    inscricao.numero_2 = data ? data.numero_2 : '';
+                    inscricao.codigo_internacional_3 = data ? data.codigo_internacional_3 : '55';
+                    inscricao.codigo_nacional_3 = data ? data.codigo_nacional_3 : '';
+                    inscricao.numero_3 = data ? data.numero_3 : '';
+                    inscricao.logradouro = data ? data.logradouro : '';
+                    inscricao.numero = data ? data.numero : '';
+                    inscricao.complemento = data ? data.complemento : '';
+                    inscricao.bairro = data ? data.bairro : '';
+                    inscricao.localidade = data ? data.localidade : '';
+                    inscricao.uf = data ? data.uf : '';
+                    inscricao.cep = data ? data.cep : '';
+                    inscricao.endereco = data ? data.endereco : '';
+                    inscricao.nome_no_cracha = data ? data.nome_no_cracha : '';
+                    inscricao.categoria = data ? data.categoria : 'Estudante';
+                    inscricao.curso_ou_formacao = data ? data.curso_ou_formacao : '';
+                    inscricao.acronimo_da_instituicao_ou_empresa = data ? data.acronimo_da_instituicao_ou_empresa : '';
+                    inscricao.nome_da_instituicao_ou_empresa = data ? data.nome_da_instituicao_ou_empresa : '';
+                    return inscricao;
+                },
+                notifications = {
+                    read: {
+                        notifyReject: function notifyReject() {
+                            notifier('Ocorreu um erro no carregamento desta inscrição. Por favor, tente novamente.', {
+                                timeout: 10000,
+                                type: 'danger'
+                            });
+                        },
+                        notifyResolve: function notifyResolve(id) {
+                            notifier('<strong>Sucesso!</strong> A inscrição I-' + id + ' foi carregada com sucesso.', {
+                                location: 'topRight',
+                                timeout: 5000,
+                                type: 'success'
+                            });
+                        }
+                    }
                 },
                 cache = simpleCache();
-            inscricao.create = function create(inscricao) {
+            inscricaoService.create = function create(inscricao, configuration) {
                 return $http
                     .post('/api/inscricao', inscricao.format(true))
                     .then(
@@ -138,11 +160,16 @@ angular
                         }
                     );
             };
-            inscricao.read = function read(id) {
-                if (id) {
-                    if (cache.match(id)) {
+            inscricaoService.read = function read(configuration) {
+                if (typeof configuration === 'number') {
+                    configuration = {
+                        id: configuration
+                    };
+                }
+                if (configuration.id) {
+                    if (cache.match(configuration.id)) {
                         var q = $q.defer(),
-                            entity = cache.get(id);
+                            entity = cache.get(configuration.id);
                         if (angular.isObject(entity)) {
                             q.resolve(entity);
                         } else {
@@ -152,21 +179,33 @@ angular
                             .promise
                             .then(
                                 function resolve(value) {
+                                    if (configuration.notifyOnResolve) {
+                                        notifications.read.notifyResolve(value.id);
+                                    }
                                     return value;
                                 },
                                 function reject(reason) {
+                                    if (configuration.notifyOnReject) {
+                                        notifications.read.notifyReject();
+                                    }
                                     throw reason;
                                 }
                             );
                     }
                     return $http
-                        .get('/api/inscricao/' + id)
+                        .get('/api/inscricao/' + configuration.id)
                         .then(
                             function resolve(value) {
-                                var novaInscricao = inscricao(value.data).format();
-                                return cache.put(novaInscricao);
+                                var inscricao = inscricaoService(value.data).format();
+                                if (configuration.notifyOnResolve) {
+                                    notifications.read.notifyResolve(value.data.id);
+                                }
+                                return cache.put(inscricao);
                             },
                             function reject(reason) {
+                                if (configuration.notifyOnReject) {
+                                    notifications.read.notifyReject();
+                                }
                                 throw reason;
                             }
                         );
@@ -176,10 +215,13 @@ angular
                     .then(
                         function resolve(value) {
                             var inscricoes = [];
+                            if (value.data.message) {
+                                return value.data;
+                            }
                             value.data.forEach(function forEach(element) {
                                 // forEach(element, index, array)
-                                var novaInscricao = inscricao(element).format();
-                                inscricoes.push(novaInscricao);
+                                var inscricao = inscricaoService(element).format();
+                                inscricoes.push(inscricao);
                             });
                             return inscricoes;
                         },
@@ -188,7 +230,7 @@ angular
                         }
                     );
             };
-            inscricao.update = function update(inscricao) {
+            inscricaoService.update = function update(inscricao) {
                 var id = inscricao.id;
                 cache.empty();
                 return $http
@@ -202,9 +244,9 @@ angular
                         }
                     );
             };
-            inscricao.destroy = function destroy() {
+            inscricaoService.destroy = function destroy() {
                 cache.empty();
             };
-            return inscricao;
+            return inscricaoService;
         }
     ]);

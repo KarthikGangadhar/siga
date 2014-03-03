@@ -9,7 +9,8 @@
         <dl>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_completo
                 "
                 >
@@ -17,7 +18,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_completo
                 "
                 >
@@ -25,7 +27,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.data_de_nascimento
                 "
                 >
@@ -33,7 +36,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.data_de_nascimento
                 "
                 >
@@ -41,7 +45,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.sexo
                 "
                 >
@@ -49,7 +54,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.sexo
                 "
                 >
@@ -57,7 +63,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.email
                 "
                 >
@@ -65,7 +72,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.email
                 "
                 >
@@ -73,8 +81,10 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    !inscricao.estrangeiro &amp;&amp;
+                    inscricao
+                    &amp;&amp;
+                    !inscricao.estrangeiro
+                    &amp;&amp;
                     inscricao.cpf
                 "
                 >
@@ -87,8 +97,10 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    !inscricao.estrangeiro &amp;&amp;
+                    inscricao
+                    &amp;&amp;
+                    !inscricao.estrangeiro
+                    &amp;&amp;
                     inscricao.cpf
                 "
                 >
@@ -96,17 +108,24 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    inscricao.estrangeiro &amp;&amp;
-                    inscricao.nome_do_documento &amp;&amp;
+                    inscricao
+                    &amp;&amp;
+                    inscricao.estrangeiro
+                    &amp;&amp;
+                    inscricao.nome_do_documento
+                    &amp;&amp;
                     inscricao.numero_do_documento
                 "
                 >Documento de Identificação
             </dt>
             <dd
-                data-ng-if="inscricao &amp;&amp;
-                    inscricao.estrangeiro &amp;&amp;
-                    inscricao.nome_do_documento &amp;&amp;
+                data-ng-if="
+                    inscricao
+                    &amp;&amp;
+                    inscricao.estrangeiro
+                    &amp;&amp;
+                    inscricao.nome_do_documento
+                    &amp;&amp;
                     inscricao.numero_do_documento
                 "
                 >
@@ -116,53 +135,96 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showPhone('1')
+                    inscricao
+                    &amp;&amp;
+                    inscricao.codigo_nacional_1
+                    &amp;&amp;
+                    inscricao.numero_1
                 "
                 >
                 Telefones
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showPhone('1')
+                    inscricao
+                    &amp;&amp;
+                    inscricao.codigo_nacional_1
+                    &amp;&amp;
+                    inscricao.numero_1
                 "
                 >
                 +{{inscricao.codigo_internacional_1}} ({{inscricao.codigo_nacional_1}}) {{inscricao.numero_1}}
             </dd>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showPhone('2')
+                    inscricao
+                    &amp;&amp;
+                    inscricao.codigo_nacional_2
+                    &amp;&amp;
+                    inscricao.numero_2
                 "
                 >
                 +{{inscricao.codigo_internacional_2}} ({{inscricao.codigo_nacional_2}}) {{inscricao.numero_2}}
             </dd>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showPhone('3')
+                    inscricao
+                    &amp;&amp;
+                    inscricao.codigo_nacional_3
+                    &amp;&amp;
+                    inscricao.numero_3
                 "
                 >
                 +{{inscricao.codigo_internacional_3}} ({{inscricao.codigo_nacional_3}}) {{inscricao.numero_3}}
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showAddress()
+                    inscricao
+                    &amp;&amp;
+                    ((
+                    inscricao.logradouro
+                    &amp;&amp;
+                    inscricao.numero
+                    &amp;&amp;
+                    inscricao.bairro
+                    &amp;&amp;
+                    inscricao.localidade
+                    &amp;&amp;
+                    inscricao.uf
+                    &amp;&amp;
+                    inscricao.cep
+                    ) ||
+                    inscricao.endereco
+                    )
                 "
                 >
                 Endereço
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
-                    showAddress()
+                    inscricao
+                    &amp;&amp;
+                    ((
+                    inscricao.logradouro
+                    &amp;&amp;
+                    inscricao.numero
+                    &amp;&amp;
+                    inscricao.bairro
+                    &amp;&amp;
+                    inscricao.localidade
+                    &amp;&amp;
+                    inscricao.uf
+                    &amp;&amp;
+                    inscricao.cep
+                    ) ||
+                    inscricao.endereco
+                    )
                 "
                 >
                 <address
                     data-ng-if="
-                        inscricao &amp;&amp;
+                        inscricao
+                        &amp;&amp;
                         !inscricao.estrangeiro
                     "
                     >
@@ -179,7 +241,8 @@
                 <address
                     data-ng-bind-html="inscricao.endereco | nl2br"
                     data-ng-if="
-                        inscricao &amp;&amp;
+                        inscricao
+                        &amp;&amp;
                         inscricao.estrangeiro
                     "
                     >
@@ -188,8 +251,15 @@
         </dl>
         <h2
             data-ng-if="
-                inscricao &amp;&amp;
-                showDetails()
+                inscricao
+                &amp;&amp;
+                inscricao.nome_no_cracha
+                &amp;&amp;
+                inscricao.categoria
+                &amp;&amp;
+                inscricao.curso_ou_formacao
+                &amp;&amp;
+                inscricao.nome_da_instituicao_ou_empresa;
             "
             >
             Detalhes da Inscrição
@@ -197,7 +267,8 @@
         <dl>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_no_cracha
                 "
                 >
@@ -205,7 +276,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_no_cracha
                 "
                 >
@@ -213,7 +285,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.categoria
                 "
                 >
@@ -221,7 +294,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.categoria
                 "
                 >
@@ -229,7 +303,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.curso_ou_formacao
                 "
                 >
@@ -237,7 +312,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.curso_ou_formacao
                 "
                 >
@@ -245,7 +321,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.acronimo_da_instituicao_ou_empresa
                 "
                 >
@@ -253,7 +330,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.acronimo_da_instituicao_ou_empresa
                 "
                 >
@@ -261,7 +339,8 @@
             </dd>
             <dt
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_da_instituicao_ou_empresa
                 "
                 >
@@ -269,7 +348,8 @@
             </dt>
             <dd
                 data-ng-if="
-                    inscricao &amp;&amp;
+                    inscricao
+                    &amp;&amp;
                     inscricao.nome_da_instituicao_ou_empresa
                 "
                 >
@@ -278,7 +358,6 @@
         </dl>
         <a
             class="btn btn-info"
-            data-ng-disabled="editButtonDisabled"
             data-ng-href="/inscricao/{{inscricao.id}}/editar"
             data-ng-if="inscricao"
             >

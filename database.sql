@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `anzol15`.`inscricao` (
   `data_de_nascimento` DATE NULL,
   `sexo` INT UNSIGNED NOT NULL,
   `email` VARCHAR(256) NULL,
+  `estrangeiro` TINYINT(1) NULL,
   `cpf` VARCHAR(11) NULL,
   `nome_do_documento` VARCHAR(128) NULL,
   `numero_do_documento` VARCHAR(64) NULL,

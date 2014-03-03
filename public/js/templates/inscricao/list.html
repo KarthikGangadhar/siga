@@ -4,10 +4,16 @@
     <div
         class="col-md-12"
         >
-        <h1>Lista de Pacientes</h1>
+        <h1>Lista de Inscrições</h1>
         <hr>
         <div
+            data-ng-if="emptyMessage"
+            >
+            <strong>{{message}}</strong>
+        </div>
+        <div
             class="table-responsive"
+            data-ng-if="inscricoes"
             >
             <table
                 class="table table-bordered table-hover"
@@ -138,8 +144,11 @@
                             >
                             <span
                                 data-ng-show="
-                                    inscricao &amp;&amp;
-                                    showPhone(inscricao, '1')
+                                    inscricao
+                                    &amp;&amp;
+                                    inscricao.codigo_nacional_1
+                                    &amp;&amp;
+                                    inscricao.numero_1
                                 "
                                 >
                                 {{inscricao.codigo_internacional_1}}
@@ -148,8 +157,11 @@
                             </span>
                             <span
                                 data-ng-show="
-                                    inscricao &amp;&amp;
-                                    showPhone(inscricao, '2')
+                                    inscricao
+                                    &amp;&amp;
+                                    inscricao.codigo_nacional_2
+                                    &amp;&amp;
+                                    inscricao.numero_2
                                 "
                                 >
                                 |
@@ -159,8 +171,11 @@
                             </span>
                             <span
                                 data-ng-show="
-                                    inscricao &amp;&amp;
-                                    showPhone(inscricao, '3')
+                                    inscricao
+                                    &amp;&amp;
+                                    inscricao.codigo_nacional_3
+                                    &amp;&amp;
+                                    inscricao.numero_3
                                 "
                                 >
                                 |

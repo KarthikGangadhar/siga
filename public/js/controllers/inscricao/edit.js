@@ -6,7 +6,7 @@ angular
         '$scope',
         'cadastroDePessoaFisica',
         'exampleLoader',
-        'inscricao',
+        'inscricaoService',
         'notifier',
         'random',
         function paciente_EditController(
@@ -15,7 +15,7 @@ angular
             $scope,
             cadastroDePessoaFisica,
             exampleLoader,
-            inscricao,
+            inscricaoService,
             notifier,
             random
         ) {
@@ -37,7 +37,7 @@ angular
                 $scope.saveButtonDisabled = true;
                 if ($scope.ficha.$valid) {
                     if ($scope.inscricao.id) {
-                        inscricao
+                        inscricaoService
                             .update($scope.inscricao)
                             .then(
                                 function resolve(value) {
@@ -59,7 +59,7 @@ angular
                                 }
                             );
                     } else {
-                        inscricao
+                        inscricaoService
                             .create($scope.inscricao)
                             .then(
                                 function resolve(value) {
@@ -100,14 +100,14 @@ angular
                         $scope.ficha[property].$_blurred = false;
                     }
                 }
-                $scope.inscricao = inscricao();
+                $scope.inscricao = inscricaoService();
             };
-            if ($route.current.locals.loadedInscricao) {
+            if ($route.current.locals.data) {
                 $scope.action = 'Editar';
-                $scope.inscricao = $route.current.locals.loadedInscricao;
+                $scope.inscricao = $route.current.locals.data;
             } else {
                 $scope.action = 'Nova';
-                $scope.inscricao = inscricao();
+                $scope.inscricao = inscricaoService();
                 // carregador de exemplos para testes
                 // exampleLoader.sherlock($scope.inscricao);
                 // exampleLoader.thiago($scope.inscricao);

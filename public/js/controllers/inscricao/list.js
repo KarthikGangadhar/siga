@@ -3,11 +3,18 @@ angular
     .controller('inscricao/list', [
         '$route',
         '$scope',
+        'data',
         function inscricao_ListController(
             $route,
-            $scope
+            $scope,
+            data
         ) {
             'use strict';
+            if (data.message) {
+                $scope.emptyMessage = data.message;
+            } else {
+                $scope.inscricoes = data;
+            }
             $scope.show = {
                 nome_completo: true,
                 data_de_nascimento: true,
@@ -25,9 +32,5 @@ angular
                 cep: false,
                 endereco: false
             };
-            $scope.showPhone = function showPhone(inscricao, number) {
-                return inscricao['codigo_nacional_' + number] && inscricao['numero_' + number];
-            };
-            $scope.inscricoes = $route.current.locals.loadedInscricoes;
         }
     ]);

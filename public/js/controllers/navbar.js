@@ -1,6 +1,6 @@
 angular
     .module('main')
-    .controller('navbar', [
+    .controller('navbarController', [
         function navbarController() {
             'use strict';
         }

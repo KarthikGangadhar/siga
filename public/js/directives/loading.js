@@ -39,7 +39,9 @@ angular
                         if (notificationIsOn) {
                             notification.type('danger');
                             notification.content('Ocorreu um erro no carregamento desta página. Por favor, tente novamente.');
-                            notification.timeout(5000);
+                            notification.timeout(10000);
+                        } else {
+                            console.warn('"Where in the world is notification?"');
                         }
                     });
                 },

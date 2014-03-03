@@ -10,6 +10,7 @@ module.exports = {
                     'data_de_nascimento, ' +
                     'sexo, ' +
                     'email, ' +
+                    'estrangeiro, ' +
                     'cpf, ' +
                     'nome_do_documento, ' +
                     'numero_do_documento, ' +
@@ -51,6 +52,7 @@ module.exports = {
                     '?, ' +
                     '?, ' +
                     '?, ' +
+                    '?, ' +
                     '1 ' +
                 ') ',
             array: [
@@ -58,6 +60,7 @@ module.exports = {
                 'data_de_nascimento',
                 'sexo',
                 'email',
+                'estrangeiro',
                 'cpf',
                 'nome_do_documento',
                 'numero_do_documento',
@@ -114,7 +117,9 @@ module.exports = {
         }).then(
             function resolve(value) {
                 if (value.length === 0) {
-                    throw 'Há nenhuma inscrição!';
+                    return {
+                        message: 'Há nenhuma inscrição!'
+                    };
                 }
                 value.forEach(function forEach(element) {
                     // forEach(element, index, array)
@@ -136,6 +141,7 @@ module.exports = {
                     'data_de_nascimento = ?, ' +
                     'sexo = ?, ' +
                     'email = ?, ' +
+                    'estrangeiro = ?, ' +
                     'cpf = ?, ' +
                     'nome_do_documento = ?, ' +
                     'numero_do_documento = ?, ' +
@@ -159,6 +165,7 @@ module.exports = {
                 'data_de_nascimento',
                 'sexo',
                 'email',
+                'estrangeiro',
                 'cpf',
                 'nome_do_documento',
                 'numero_do_documento',

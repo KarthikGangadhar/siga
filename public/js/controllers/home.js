@@ -1,6 +1,6 @@
 angular
     .module('main')
-    .controller('home', [
+    .controller('homeController', [
         function homeController() {
             'use strict';
         }
