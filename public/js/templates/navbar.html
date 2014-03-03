@@ -48,7 +48,7 @@
             >
             <li
                 class="dropdown"
-                title="Pacientes"
+                title="Inscrições"
                 >
                 <a
                     class="dropdown-toggle"
@@ -83,6 +83,7 @@
         </ul>
         <ul
             class="nav navbar-nav navbar-right"
+            data-ng-if="session.email"
             >
             <li
                 class="dropdown"
@@ -92,7 +93,7 @@
                     data-toggle="dropdown"
                     href="#"
                     >
-                    Usuário
+                    {{session.email}}
                     <b
                         class="caret"
                         >
@@ -103,7 +104,7 @@
                     >
                     <li>
                         <a
-                            href="#"
+                            data-ng-href="/inscricao/{{session.inscricao}}"
                             >
                             Ver Inscrição
                         </a>
@@ -114,6 +115,7 @@
                     </li>
                     <li>
                         <a
+                            data-ng-click="session.logout()"
                             href="#"
                             >
                             Sair do Sistema
@@ -124,6 +126,8 @@
         </ul>
         <button
             class="btn btn-default navbar-btn navbar-right"
+            data-ng-click="session.login()"
+            data-ng-if="!session.email"
             type="button"
             >
             Entrar

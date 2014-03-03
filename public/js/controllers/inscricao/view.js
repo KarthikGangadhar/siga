@@ -1,6 +1,6 @@
 angular
     .module('main')
-    .controller('inscricao/view', [
+    .controller('inscricao/viewController', [
         '$scope',
         'exampleLoader',
         'data',

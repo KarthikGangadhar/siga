@@ -1,6 +1,6 @@
 angular
     .module('main')
-    .controller('inscricao/edit', [
+    .controller('inscricao/editController', [
         '$location',
         '$route',
         '$scope',

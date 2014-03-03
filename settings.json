@@ -1,0 +1,23 @@
+{
+    "audience": {
+        "development": "http://localhost:8002",
+        "production": "https://siga.jit.su"
+    },
+    "cookies": {
+        "cookieName": "authentication",
+        "secret": "1i7kATyBJEtnZqAujpgs9LYGFGUONhw7",
+        "duration": 86400000,
+        "cookie": {
+            "path": "/api",
+            "ephemeral": false,
+            "httpOnly": true,
+            "secure": false
+        }
+    },
+    "database": {
+        "host": "mysql16.anzol.biz",
+        "user": "anzol15",
+        "password": "nzl2501",
+        "database": "anzol15"
+    }
+}

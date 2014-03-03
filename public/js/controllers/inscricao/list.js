@@ -1,6 +1,6 @@
 angular
     .module('main')
-    .controller('inscricao/list', [
+    .controller('inscricao/listController', [
         '$route',
         '$scope',
         'data',

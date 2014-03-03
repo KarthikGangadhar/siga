@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 module.exports = function sockets(io) {
     // define sockets' behavior
