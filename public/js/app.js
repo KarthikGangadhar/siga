@@ -85,4 +85,24 @@ angular
                 template: '<pre style="position: absolute; right: 50px; bottom: 50px;">Página Inexistente!</pre>'
             });
         }
+    ])
+    .run([
+        '$rootScope',
+        'loading',
+        'sessionService',
+        function run(
+            $rootScope,
+            loading,
+            sessionService
+        ) {
+            sessionService
+                .then(
+                    function resolve(session) {
+                        $rootScope.session = session;
+                    },
+                    function reject(reason) {
+                        throw reason;
+                    }
+                );
+        }
     ]);

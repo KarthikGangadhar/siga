@@ -153,7 +153,7 @@ angular
                     .post('/api/inscricao', inscricao.format(true))
                     .then(
                         function resolve(value) {
-                            return value.data.insertId;
+                            return value.data;
                         },
                         function reject(reason) {
                             throw reason;
@@ -196,11 +196,13 @@ angular
                         .get('/api/inscricao/' + configuration.id)
                         .then(
                             function resolve(value) {
-                                var inscricao = inscricaoService(value.data).format();
                                 if (configuration.notifyOnResolve) {
                                     notifications.read.notifyResolve(value.data.id);
                                 }
-                                return cache.put(inscricao);
+                                if (value.data.message) {
+                                    return value.data;
+                                }
+                                return cache.put(inscricaoService(value.data).format());
                             },
                             function reject(reason) {
                                 if (configuration.notifyOnReject) {

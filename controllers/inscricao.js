@@ -1,6 +1,7 @@
 'use strict';
-var inscricao = require('../models/inscricao');
-module.exports = function inscricaoController(app) {
+module.exports = function inscricaoController(models, app, logbook) {
+    var inscricao = models.inscricao,
+        usuario = models.usuario;
     app.get('/api/inscricao/:id?', function (request, response, next) {
         inscricao
             .read(request.params.id)
@@ -9,7 +10,7 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    console.warn(reason)
+                    logbook.error(reason, '\nat: ' + __filename);
                     response.send(500);
                 }
             );
@@ -19,11 +20,24 @@ module.exports = function inscricaoController(app) {
             .create(request.body)
             .then(
                 function resolve(value) {
-                    response.send(value);
+                    return value.insertId;
                 },
                 function reject(reason) {
-                    console.warn(reason)
+                    logbook.error(reason, '\nat: ' + __filename);
                     response.send(500);
+                }
+            )
+            .then(
+                function resolve(insertId) {
+                    request.authentication.inscricao = insertId;
+                    usuario
+                        .update(request.authentication)
+                        .then(
+                            function resolve() {
+                                // function resolve(value)
+                                response.send('' + insertId);
+                            }
+                        );
                 }
             );
     });
@@ -35,7 +49,7 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    console.warn(reason)
+                    logbook.error(reason, '\nat: ' + __filename);
                     response.send(500);
                 }
             );
@@ -48,7 +62,7 @@ module.exports = function inscricaoController(app) {
                     response.send(value);
                 },
                 function reject(reason) {
-                    console.warn(reason)
+                    logbook.error(reason, '\nat: ' + __filename);
                     response.send(500);
                 }
             );

@@ -2,6 +2,7 @@ angular
     .module('main')
     .controller('inscricao/editController', [
         '$location',
+        '$rootScope',
         '$route',
         '$scope',
         'cadastroDePessoaFisica',
@@ -11,6 +12,7 @@ angular
         'random',
         function paciente_EditController(
             $location,
+            $rootScope,
             $route,
             $scope,
             cadastroDePessoaFisica,
@@ -47,6 +49,7 @@ angular
                                         type: 'success'
                                     });
                                     $scope.saveButtonDisabled = false;
+                                    $rootScope.session.inscricao = parseInt(value, 10);
                                     $location.path('/inscricao/' + value);
                                 },
                                 function reject(reason) {
@@ -110,7 +113,7 @@ angular
                 $scope.inscricao = inscricaoService();
                 // carregador de exemplos para testes
                 // exampleLoader.sherlock($scope.inscricao);
-                // exampleLoader.thiago($scope.inscricao);
+                exampleLoader.thiago($scope.inscricao);
             }
         }
     ]);

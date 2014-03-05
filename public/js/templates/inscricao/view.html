@@ -6,7 +6,14 @@
         >
         <h1>Inscrição</h1>
         <hr>
-        <dl>
+        <div
+            data-ng-if="emptyMessage"
+            >
+            <strong>{{emptyMessage}}</strong>
+        </div>
+        <dl
+            data-ng-if="inscricao"
+            >
             <dt
                 data-ng-if="
                     inscricao
@@ -264,7 +271,9 @@
             >
             Detalhes da Inscrição
         </h2>
-        <dl>
+        <dl
+            data-ng-if="inscricao"
+            >
             <dt
                 data-ng-if="
                     inscricao

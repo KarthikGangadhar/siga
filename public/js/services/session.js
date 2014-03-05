@@ -2,9 +2,11 @@ angular
     .module('main')
     .factory('sessionService', [
         '$http',
+        '$location',
         '$q',
         function sessionFactory(
             $http,
+            $location,
             $q
         ) {
             'use strict';
@@ -18,9 +20,17 @@ angular
                     },
                     set: function set(data) {
                         this.email = data ? data.email : '';
+                        this.clearence = data ? data.clearence : '';
+                        this.inscricao = data ? data.inscricao : '';
+                        if (this.inscricao) {
+                            $location.path('/inscricao/' + this.inscricao);
+                        }
                     },
                     unset: function unset() {
-                        this.email = '';
+                        this.email = null;
+                        this.clearence = null;
+                        this.inscricao = null;
+                        $location.path('/');
                     }
                 },
                 Session = function Session(data) {
@@ -33,7 +43,7 @@ angular
                         loggedInUser: currentUser,
                         onlogin: function onlogin(assertion) {
                             $http
-                                .post('/api/session/login/', {
+                                .post('/api/session', {
                                     assertion: assertion
                                 })
                                 .then(
@@ -41,12 +51,13 @@ angular
                                         session.set(value.data);
                                     },
                                     function reject(reason) {
+                                        navigator.id.logout();
                                         throw reason;
                                     }
                                 );
                         },
                         onlogout: function onlogout() {
-                            $http['delete']('/api/session/logout/')
+                            $http['delete']('/api/session')
                                 .then(
                                     function resolve() {
                                         // function resolve(value)
@@ -60,11 +71,11 @@ angular
                     });
                 };
             $http
-                .get('/api/session/')
+                .get('/api/session')
                 .then(
                     function resolve(value) {
                         var session = new Session(value.data);
-                        activatePersona(session, value.data.email);
+                        activatePersona(session, value.data.email || null);
                         deferred.resolve(session);
                     },
                     function reject(reason) {

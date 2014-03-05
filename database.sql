@@ -77,6 +77,27 @@ CREATE TABLE IF NOT EXISTS `anzol15`.`inscricao` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `anzol15`.`usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `anzol15`.`usuario` ;
+
+CREATE TABLE IF NOT EXISTS `anzol15`.`usuario` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(256) NOT NULL,
+  `clearence` INT NULL,
+  `inscricao` INT UNSIGNED NULL,
+  `__status__` TINYINT(1) NULL,
+  PRIMARY KEY (`id`, `email`),
+  INDEX `fk_usuario_inscricao1_idx` (`inscricao` ASC),
+  CONSTRAINT `fk_usuario_inscricao1`
+    FOREIGN KEY (`inscricao`)
+    REFERENCES `anzol15`.`inscricao` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

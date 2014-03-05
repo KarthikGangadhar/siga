@@ -1,7 +1,6 @@
 <nav
     class="navbar navbar-default navbar-fixed-top"
     data-bs-navbar
-    data-ng-controller="navbarController"
     role="navigation"
     >
     <div
@@ -45,6 +44,7 @@
         >
         <ul
             class="nav navbar-nav"
+            data-ng-if="session.clearence > 1"
             >
             <li
                 class="dropdown"
@@ -102,7 +102,9 @@
                 <ul
                     class="dropdown-menu"
                     >
-                    <li>
+                    <li
+                        data-ng-if="session.inscricao"
+                        >
                         <a
                             data-ng-href="/inscricao/{{session.inscricao}}"
                             >
@@ -111,6 +113,7 @@
                     </li>
                     <li
                         class="divider"
+                        data-ng-if="session.inscricao"
                         >
                     </li>
                     <li>

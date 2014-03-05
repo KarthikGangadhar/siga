@@ -3,6 +3,9 @@
         "development": "http://localhost:8002",
         "production": "https://siga.jit.su"
     },
+    "clearences": {
+        "thiagocondurufigueiredo@gmail.com": 3
+    },
     "cookies": {
         "cookieName": "authentication",
         "secret": "1i7kATyBJEtnZqAujpgs9LYGFGUONhw7",

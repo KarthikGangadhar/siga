@@ -2,17 +2,18 @@
     "name": "siga",
     "description": "Sistema de Inscrições com Gerenciamento e Acompanhamento",
     "author": "Thiago Figueiredo <jaywalking101@gmail.com>",
-    "version": "0.0.0-1",
+    "version": "0.0.0-2",
     "scripts": {
         "start": "main.js"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/jaywalking101/siga.git"
+        "url": "https://github.com/slacktracer/siga.git"
     },
     "dependencies": {
         "client-sessions": "0.6.x",
         "express": "3.4.x",
+        "log": "git+https://github.com/slacktracer/log.js.git",
         "moment": "2.5.x",
         "mysql": "2.0.x",
         "q": "0.9.x",
