@@ -22,5 +22,11 @@
         "user": "anzol15",
         "password": "nzl2501",
         "database": "anzol15"
+    },
+    "permissions": {
+        "thiagocondurufigueiredo@gmail.com": [
+            "MULTIPLE",
+            "VIEW_OTHERS"
+        ]
     }
 }

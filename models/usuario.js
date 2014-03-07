@@ -1,24 +1,29 @@
 'use strict';
 module.exports = function usuarioModel(logbook) {
     var db = require('../modules/database')(require('../settings').database),
-        clearences = require('../settings').clearences;
+        clearences = require('../settings').clearences,
+        permissions = require('../settings').permissions;
     return {
         create: function create(usuario) {
             usuario.clearence = clearences[usuario.email] || 0;
+            usuario.permissions = permissions[usuario.email].join() || '';
             return db({
                 query: 'INSERT INTO usuario ( ' +
                         'email, ' +
                         'clearence, ' +
+                        'permissions, ' +
                         '__status__ ' +
                     ') ' +
                     'VALUES ( ' +
+                        '?, ' +
                         '?, ' +
                         '?, ' +
                         '1 ' +
                     ') ',
                 array: [
                     'email',
-                    'clearence'
+                    'clearence',
+                    'permissions'
                 ],
                 data: usuario
             }).then(
@@ -72,13 +77,14 @@ module.exports = function usuarioModel(logbook) {
                     'WHERE __status__ = 1 ' +
                     'ORDER BY email '
             }).then(
-                function resolve(value) {
-                    if (value.length === 0) {
+                function resolve(usuarios) {
+                    // function resolve(value)
+                    if (usuarios.length === 0) {
                         return {
                             message: 'Há nenhum usuário.'
                         };
                     }
-                    return value;
+                    return usuarios;
                 },
                 function reject(reason) {
                     logbook.error(reason, '\nat: ' + __filename);

@@ -10,17 +10,29 @@ angular
             $q
         ) {
             'use strict';
-            var deferred = $q.defer(),
-                SessionPrototype = {
+            var SessionPrototype = {
                     login: function login() {
                         navigator.id.request();
                     },
                     logout: function logout() {
                         navigator.id.logout();
                     },
+                    may: function may(action) {
+                        if (this.permissions === null) {
+                            return false;
+                        }
+                        return this.permissions.indexOf(action) !== -1;
+                    },
+                    mayNot: function mayNot(action) {
+                        if (this.permissions === null) {
+                            return true;
+                        }
+                        return this.permissions.indexOf(action) === -1;
+                    },
                     set: function set(data) {
                         this.email = data ? data.email : '';
                         this.clearence = data ? data.clearence : '';
+                        this.permissions = data ? data.permissions : '';
                         this.inscricao = data ? data.inscricao : '';
                         if (this.inscricao) {
                             $location.path('/inscricao/' + this.inscricao);
@@ -29,6 +41,7 @@ angular
                     unset: function unset() {
                         this.email = null;
                         this.clearence = null;
+                        this.permissions = null;
                         this.inscricao = null;
                         $location.path('/');
                     }
@@ -38,6 +51,7 @@ angular
                     session.set(data);
                     return session;
                 },
+                session = new Session(),
                 activatePersona = function activatePersona(session, currentUser) {
                     navigator.id.watch({
                         loggedInUser: currentUser,
@@ -74,14 +88,13 @@ angular
                 .get('/api/session')
                 .then(
                     function resolve(value) {
-                        var session = new Session(value.data);
+                        session.set(value.data);
                         activatePersona(session, value.data.email || null);
-                        deferred.resolve(session);
                     },
                     function reject(reason) {
                         throw reason;
                     }
                 );
-            return deferred.promise;
+            return session;
         }
     ]);

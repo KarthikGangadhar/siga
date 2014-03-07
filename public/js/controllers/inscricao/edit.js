@@ -111,6 +111,7 @@ angular
             } else {
                 $scope.action = 'Nova';
                 $scope.inscricao = inscricaoService();
+                $scope.inscricao.email = $scope.session.email;
                 // carregador de exemplos para testes
                 // exampleLoader.sherlock($scope.inscricao);
                 exampleLoader.thiago($scope.inscricao);

@@ -18,6 +18,7 @@ module.exports = function sessionController(models, app, logbook) {
                         function resolve(value) {
                             request.authentication.email = value.email;
                             request.authentication.clearence = value.clearence;
+                            request.authentication.permissions = value.permissions.split(',');
                             request.authentication.inscricao = value.inscricao;
                             response.send(request.authentication);
                         },
@@ -35,9 +36,10 @@ module.exports = function sessionController(models, app, logbook) {
     });
     app['delete']('/api/session', function (request, response) {
         // function (request, response, next)
-        delete request.authentication.email;
-        delete request.authentication.clearence;
-        delete request.authentication.inscricao;
+        request.authentication.email = null;
+        request.authentication.clearence = null;
+        request.authentication.permissions = null;
+        request.authentication.inscricao = null;
         response.send(200);
     });
 };

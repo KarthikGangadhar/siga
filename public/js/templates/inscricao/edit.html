@@ -1,5 +1,10 @@
 <div
-    class="row"
+    data-ng-include="'/js/templates/requestLogin.html'"
+    >
+</div>
+<div
+    class="row animate-show"
+    data-ng-show="session.email"
     id="ficha"
     >
     <div
@@ -142,9 +147,10 @@
                 <input
                     class="form-control"
                     data-ng-blur="$_setBlurred('email')"
+                    data-ng-disabled="session.mayNot('MULTIPLE')"
                     data-ng-model="inscricao.email"
                     id="email"
-                    maxlength="256"
+                    maxlength="255"
                     name="email"
                     type="email"
                     required

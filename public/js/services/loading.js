@@ -11,11 +11,17 @@ angular
         ) {
             'use strict';
             var promise,
-                notification,
-                notificationIsOn = false,
-                configuration = {
+                errorConfiguration = {
+                    timeout: 10000,
+                    type: 'error'
+                },
+                errorMessage = 'Ocorreu um erro no carregamento desta página. Por favor, tente novamente.',
+                loadingConfiguration = {
                     dismissable: false
-                };
+                },
+                loadingMessage ='Carregando. Aguarde, por favor!',
+                notification,
+                notificationIsOn = false;
             $rootScope.$on('$routeChangeStart', function onRouteChangeStart() {
                 // function onRouteChangeSuccess(event, message)
                 $timeout.cancel(promise);
@@ -24,7 +30,7 @@ angular
                     notificationIsOn = false;
                 }
                 promise = $timeout(function $timeout() {
-                    notification = notifier('Carregando. Aguarde, por favor!', configuration);
+                    notification = notifier(loadingMessage, loadingConfiguration);
                     notificationIsOn = true;
                 }, 100);
             });
@@ -38,11 +44,14 @@ angular
             });
             $rootScope.$on('$routeChangeError', function onRouteChangeError() {
                 // function onRouteChangeError(event, message)
-                $timeout.cancel(promise);
                 if (notificationIsOn) {
-                    notification.type('danger');
-                    notification.content('Ocorreu um erro no carregamento desta página. Por favor, tente novamente.');
-                    notification.timeout(10000);
+                    notification.type(errorConfiguration.type);
+                    notification.content(errorMessage);
+                    notification.timeout(errorConfiguration.timeout);
+                } else {
+                    $timeout.cancel(promise);
+                    notification = notifier(errorMessage, errorConfiguration);
+                    notificationIsOn = true;
                 }
             });
         }

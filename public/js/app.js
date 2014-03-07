@@ -95,14 +95,6 @@ angular
             loading,
             sessionService
         ) {
-            sessionService
-                .then(
-                    function resolve(session) {
-                        $rootScope.session = session;
-                    },
-                    function reject(reason) {
-                        throw reason;
-                    }
-                );
+            $rootScope.session = sessionService;
         }
     ]);

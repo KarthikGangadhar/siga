@@ -1,0 +1,14 @@
+.animate-show {
+    -webkit-transition: all linear 0.2s;
+    opacity: 1;
+    transition: all linear 0.2s;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    display: block!important;
+}
+
+.animate-show.ng-hide {
+    opacity: 0;
+}
