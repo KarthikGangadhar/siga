@@ -13,7 +13,7 @@ angular
             var promise,
                 errorConfiguration = {
                     timeout: 10000,
-                    type: 'error'
+                    type: 'danger'
                 },
                 errorMessage = 'Ocorreu um erro no carregamento desta página. Por favor, tente novamente.',
                 loadingConfiguration = {
