@@ -129,6 +129,18 @@ module.exports = function usuarioModel(logbook) {
                     throw reason;
                 }
             );
+        },
+        may: function may(action, permissions) {
+            if (permissions === null) {
+                return false;
+            }
+            return permissions.indexOf(action) !== -1;
+        },
+        mayNot: function mayNot(action, permissions) {
+            if (permissions === null) {
+                return true;
+            }
+            return permissions.indexOf(action) === -1;
         }
     };
 };

@@ -221,6 +221,24 @@ module.exports = function inscricaoModel(logbook) {
                     throw reason;
                 }
             );
+        },
+        verifyCPF: function verifyCPF(cpf) {
+            return db({
+                query: 'SELECT cpf FROM inscricao ' +
+                    'WHERE __status__ = 1 ' +
+                    'AND cpf = ? ',
+                array: [
+                    cpf
+                ]
+            }).then(
+                function resolve(value) {
+                    return value;
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    throw reason;
+                }
+            );
         }
     };
 };

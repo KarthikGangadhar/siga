@@ -43,6 +43,14 @@ angular
                             .update($scope.inscricao)
                             .then(
                                 function resolve(value) {
+                                    if (value.message) {
+                                        notifier('O CPF fornecido já foi usado em uma inscrição. Por favor, entre em contato com o administrador do sistema.', {
+                                            timeout: 15000,
+                                            type: 'danger'
+                                        });
+                                        $scope.saveButtonDisabled = false;
+                                        return false;
+                                    }
                                     notifier(validSubmissionMessage, {
                                         location: 'topRight',
                                         timeout: 5000,
@@ -66,6 +74,15 @@ angular
                             .create($scope.inscricao)
                             .then(
                                 function resolve(value) {
+                                    if (value.message) {
+                                        notifier('O CPF fornecido já foi usado em uma inscrição. Por favor, entre em contato com o administrador do sistema.', {
+                                            timeout: 15000,
+                                            type: 'danger'
+                                        });
+                                        $scope.saveButtonDisabled = false;
+                                        $scope.inscricao.format();
+                                        return false;
+                                    }
                                     notifier(validSubmissionMessage, {
                                         location: 'topRight',
                                         timeout: 5000,
