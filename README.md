@@ -1,4 +1,4 @@
 siga
 ====
 
-sistema de inscrições com gerenciamento e acompanhamento
+Sistema de Inscrições com Gerenciamento e Acompanhamento
