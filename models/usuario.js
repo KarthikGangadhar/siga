@@ -4,7 +4,8 @@ module.exports = function usuarioModel(logbook) {
         permissions = require('../settings').permissions;
     return {
         create: function create(usuario) {
-            usuario.permissions = permissions[usuario.email].join() || permissions['*'].join();
+            usuario.permissions = permissions[usuario.email] || permissions['*'];
+            usuario.permissions = usuario.permissions.join();
             return db({
                 query: 'INSERT INTO usuario ( ' +
                         'email, ' +
