@@ -2,9 +2,13 @@
     "name": "siga",
     "description": "Sistema de Inscrições com Gerenciamento e Acompanhamento",
     "author": "Thiago Figueiredo <slacktracer@gmail.com>",
-    "version": "0.0.0-4",
+    "version": "0.0.0-9",
     "scripts": {
         "start": "main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/slacktracer/siga.git"
     },
     "dependencies": {
         "client-sessions": "0.6.x",
