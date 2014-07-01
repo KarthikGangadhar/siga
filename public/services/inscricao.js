@@ -144,6 +144,27 @@ angular
                                 timeout: 5000,
                                 type: 'success'
                             });
+                        },
+                        notifyUnauthorized: function notifyUnauthorized() {
+                            notifier('Esta inscrição não existe ou seu usuário não tem permissão para acessá-la.', {
+                                timeout: 10000,
+                                type: 'danger'
+                            });
+                        }
+                    }
+                },
+                rejectionHandlers = {
+                    readOne: function readOneRejectionHandler(reason, configuration) {
+                        if (
+                            configuration.notifyOnUnauthorized &&
+                            reason.status === 401
+                        ) {
+                            notifications.read.notifyUnauthorized();
+                            throw reason;
+                        }
+                        if (configuration.notifyOnReject) {
+                            notifications.read.notifyReject();
+                            throw reason;
                         }
                     }
                 },
@@ -185,10 +206,7 @@ angular
                                     return value;
                                 },
                                 function reject(reason) {
-                                    if (configuration.notifyOnReject) {
-                                        notifications.read.notifyReject();
-                                    }
-                                    throw reason;
+                                    rejectionHandlers.readOne(reason, configuration);
                                 }
                             );
                     }
@@ -205,10 +223,7 @@ angular
                                 return cache.put(inscricaoService(value.data).format());
                             },
                             function reject(reason) {
-                                if (configuration.notifyOnReject) {
-                                    notifications.read.notifyReject();
-                                }
-                                throw reason;
+                                rejectionHandlers.readOne(reason, configuration);
                             }
                         );
                 }

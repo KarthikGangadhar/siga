@@ -57,7 +57,8 @@ angular
                             return inscricaoService
                                 .read({
                                     id: $route.current.params.id,
-                                    notifyOnReject: true
+                                    notifyOnReject: true,
+                                    notifyOnUnauthorized: true
                                 });
                         }
                     ]
@@ -77,14 +78,15 @@ angular
                             return inscricaoService
                                 .read({
                                     id: $route.current.params.id,
-                                    notifyOnReject: true
+                                    notifyOnReject: true,
+                                    notifyOnUnauthorized: true
                                 });
                         }
                     ]
                 }
             });
             $routeProvider.otherwise({
-                template: '<pre style="position: absolute; right: 50px; bottom: 50px;">Página Inexistente!</pre>'
+                template: '<style>body { background: #ededed; }</style><pre style="font-size: 1.5em; position: absolute; right: 50px; bottom: 50px;"><b>Página Inexistente!</b></pre>'
             });
         }
     ])

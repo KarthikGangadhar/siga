@@ -11,6 +11,7 @@ module.exports = function inscricaoController(models, app, logbook) {
                 usuario.mayNot('VIEW_OTHERS', request.authentication.permissions)
         ) {
             response.send(401);
+            return;
         }
         inscricao
             .read(request.params.id)
@@ -26,10 +27,11 @@ module.exports = function inscricaoController(models, app, logbook) {
     });
     app.post('/api/inscricao', function (request, response) {
         if (
-            request.authentication !== request.body.email &&
+            request.authentication.email !== request.body.email &&
                 usuario.mayNot('MULTIPLE', request.authentication.permissions)
         ) {
             response.send(401);
+            return;
         }
         inscricao
             .verifyCPF(request.body.cpf)
@@ -84,10 +86,11 @@ module.exports = function inscricaoController(models, app, logbook) {
     });
     app.put('/api/inscricao/:id', function (request, response) {
         if (
-            request.authentication !== request.body.email &&
+            request.authentication.email !== request.body.email &&
                 usuario.mayNot('MULTIPLE', request.authentication.permissions)
         ) {
             response.send(401);
+            return;
         }
         inscricao
             .update(request.body)
@@ -106,6 +109,7 @@ module.exports = function inscricaoController(models, app, logbook) {
             usuario.mayNot('DELETE', request.authentication.permissions)
         ) {
             response.send(401);
+            return;
         }
         inscricao
             .destroy(request.params.id)
