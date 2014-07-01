@@ -4,10 +4,12 @@ angular
         '$http',
         '$location',
         '$q',
+        'notifier',
         function sessionFactory(
             $http,
             $location,
-            $q
+            $q,
+            notifier
         ) {
             'use strict';
             var SessionPrototype = {
@@ -51,18 +53,27 @@ angular
                 },
                 session = new Session(),
                 activatePersona = function activatePersona(session, currentUser) {
+                    var notification;
                     navigator.id.watch({
                         loggedInUser: currentUser,
                         onlogin: function onlogin(assertion) {
+                            notification = notifier('Processando Login.', {
+                                type: 'warning'
+                            });
                             $http
                                 .post('/api/session', {
                                     assertion: assertion
                                 })
                                 .then(
                                     function resolve(value) {
+                                        notification.content('Login Processado com Sucesso!');
+                                        notification.type('success');
+                                        notification.timeout(2000);
                                         session.set(value.data);
                                     },
                                     function reject(reason) {
+                                        notification.content('Ocorreu um Erro no Processamento de seu Login. Recarregue esta página e tente novamente. Caso este erro volte a ocorrrer entre em contato com o administrador do sistema.');
+                                        notification.type('danger');
                                         navigator.id.logout();
                                         throw reason;
                                     }
