@@ -1,4 +1,5 @@
 siga
 ====
 
-Sistema de Inscrições com Gerenciamento e Acompanhamento
+Base de desenvolvimento para um Sistema de Inscrição com Gerenciamento e Acompanhamento.
+E aprendizado. E criação de componentes para o futuro. \o/

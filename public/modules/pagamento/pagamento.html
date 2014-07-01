@@ -1,0 +1,39 @@
+<div
+    data-ng-controller="pagamentoController"
+    >
+    <h2>Situação de Pagamento</h2>
+    <p>
+        Neste momento sua inscrição se encontra:
+        <br>
+        <span
+            class="label label-warning"
+            data-ng-if="pagamento.status == 0"
+            >
+            Confirmação Pendente
+        </span>
+        <span
+            class="label label-success"
+            data-ng-if="pagamento.status == 1"
+            >
+            Confirmada
+        </span>
+        <span
+            class="text-muted"
+            data-ng-if="!pagamento.status &amp;&amp; !pagamento.url"
+            >
+            Verificando pagamento...
+        </span>
+    </p>
+    <p
+        data-ng-if="pagamento.status == 0 &amp;&amp; pagamento.url"
+        >
+        Para confirmar sua inscrição visualize seu boleto através do link abaixo:
+        <br>
+        <a
+            data-ng-href="{{pagamento.url}}"
+            target="_blank"
+            >
+            Visualizar Boleto para Impressão
+        </a>
+    </p>
+</div>

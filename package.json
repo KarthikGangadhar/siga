@@ -1,0 +1,25 @@
+{
+    "name": "siga",
+    "description": "Sistema de Inscrições com Gerenciamento e Acompanhamento",
+    "author": "Thiago Figueiredo <slacktracer@gmail.com>",
+    "version": "0.0.0-4",
+    "scripts": {
+        "start": "main.js"
+    },
+    "dependencies": {
+        "client-sessions": "0.6.x",
+        "express": "3.4.x",
+        "log": "git+https://github.com/slacktracer/log.js.git",
+        "moment": "2.5.x",
+        "mysql": "2.0.x",
+        "nodemailer": "0.6.x",
+        "q": "0.9.x",
+        "socket.io": "0.9.x",
+        "underscore": "1.6.x"
+    },
+    "engines": {
+        "node": "0.10.x"
+    },
+    "subdomain": "siga",
+    "private": true
+}

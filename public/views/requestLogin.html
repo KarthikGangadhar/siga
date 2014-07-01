@@ -1,0 +1,27 @@
+<div
+    class="animate-show"
+    data-ng-hide="session.email"
+    >
+    <br>
+    <br>
+    <div
+        class="alert alert-warning"
+        >
+        <p>
+            <strong>Atenção!</strong>
+            Antes de realizar sua inscrição é importante que você seja um usuário registrado neste sistema. Basta confirmar seu e-mail através do
+            <a
+                href="http://www.mozilla.org/persona/"
+                >
+                Mozilla Persona
+            </a>. Caso já tenha se registrado, pressione o botão entrar no canto superior direito.
+        </p>
+        <hr>
+        <button
+            class="btn btn-success btn-lg"
+            data-ng-click="session.login()"
+            >
+            <b>Registrar-se</b>
+        </button>
+    </div>
+</div>
