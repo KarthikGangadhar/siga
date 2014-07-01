@@ -24,7 +24,8 @@ angular
             'use strict';
             var afterInvalidSubmission = false,
                 validSubmissionMessage = '<strong>Sucesso!</strong> Sua inscrição foi salva com sucesso.',
-                invalidSubmissionMessage = '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.';
+                invalidSubmissionMessage = '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.',
+                unwatcher;
             $scope.data_de_nascimento = random.getRandomInt(13, 28).toString(10) + '/' + random.getRandomInt(1, 12).toString(10) + '/' + random.getRandomInt(1948, 1995).toString(10);
             $scope.cpf = cadastroDePessoaFisica();
             $scope.saveButtonDisabled = false;
@@ -129,6 +130,19 @@ angular
                 $scope.action = 'Nova';
                 $scope.inscricao = inscricaoService();
                 $scope.inscricao.email = $scope.session.email;
+                // caso o usuario esteja acessando o sistema pela primeira vez e tentando
+                // se inscrever e necessario escutar o momento em que a sessao e criada
+                // e colocar o email do usuario no campo correspondente no formulario de
+                // inscricao (mesmo porque, o campo nao sera editavel por usuarios sem
+                // a permissao especial: MULTIPLE)
+                if ($scope.inscricao.email === null) {
+                    unwatcher = $scope.$watch('session.email', function watch() {
+                        if ($scope.session.email) {
+                            $scope.inscricao.email = $scope.session.email;
+                            unwatcher();
+                        }
+                    });
+                }
                 // carregador de exemplos para testes
                 // exampleLoader.sherlock($scope.inscricao);
                 // exampleLoader.thiago($scope.inscricao);
