@@ -12,7 +12,6 @@ angular
                 .get('/api/pagamento')
                 .then(
                     function resolve(value) {
-                        console.log(value.data)
                         $scope.pagamento = value.data;
                     },
                     function reject(reason) {

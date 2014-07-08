@@ -50,19 +50,19 @@ module.exports = function usuarioModel(logbook) {
             .then(
                 function resolve(value) {
                     var params = {
-                        dv: settings.primeiroVencimento,
-                        v: value[0].valor,
-                        nn: value[0].inscricao,
-                        nd: value[0].id,
-                                s: value[0].sacado// + ' ' + value[0].cpf
-                            },
-                            url = settings.baseURL + querystring.stringify(params);
-                            return {
-                                status: value[0].status,
-                                url: url
-                            };
-                        }
-                        );
+                            dv: settings.primeiroVencimento,
+                            v: value[0].valor,
+                            nn: value[0].inscricao,
+                            nd: value[0].id,
+                            s: value[0].sacado// + ' ' + value[0].cpf
+                        },
+                        url = settings.baseURL + querystring.stringify(params);
+                    return {
+                        status: value[0].status,
+                        url: url
+                    };
+                }
+            );
         },
         update: function update() {
             return db({
