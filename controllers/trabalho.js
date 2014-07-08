@@ -25,10 +25,15 @@ module.exports = function sessionController(models, app, logbook) {
             logbook.error('Ouve uma tentativa de submissão não autenticada ou sem inscrição realizada');
         }
         if (
-            fileType !== 'application/msword' &&
-                fileType !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' &&
-                fileType !== 'application/octet-stream'
+            trabalhos.tiposAceitos.indexOf(fileType) === -1
         ) {
+        // if (
+        //     fileType !== 'application/msword' &&
+        //         fileType !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' &&
+        //         fileType !== 'application/octet-stream' &&
+        //         // permitindo pdfs!
+        //         fileType !== 'application/pdf'
+        // ) {
             response.send(500);
             logbook.error('Submissão de arquivo em formato inválido: ' + fileType);
             return;
