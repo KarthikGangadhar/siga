@@ -52,8 +52,8 @@ module.exports = function sessionController(models, app, logbook) {
                 logbook.error('Ocorreu o seguinte erro na leitura do arquivo submetido: ', error);
             }
             smtpTransport.sendMail({
-                from: 'Trabalhos <trabalhos@ifnopapxviii.com.br>',
-                to: trabalhos.email,
+                from: 'Trabalhos <' + trabalhos.email + '>',
+                to: trabalhos.destino,
                 subject: 'Trabalho submetido por ' + request.authentication.email,
                 text: 'Em anexo o trabalho submetido por ' + request.authentication.email + mensagemDeAtencao,
                 attachments: [{
@@ -67,9 +67,9 @@ module.exports = function sessionController(models, app, logbook) {
                 } else {
                     response.send(200);
                     smtpTransport.sendMail({
-                        from: 'Trabalhos <trabalhos@ifnopapxviii.com.br>',
+                        from: 'Trabalhos <' + trabalhos.email + '>',
                         to: request.authentication.email,
-                        subject: 'IFNOPAP XVIII - Seu trabalho foi enviado para avaliação',
+                        subject: trabalhos.subject,
                         text: 'Seu trabalho (no arquivo ' + request.files.file.originalFilename + ') foi enviado aos avaliadores!\nObrigado!' + mensagemDeAtencao
                     }, function (error) {
                         if (error) {
