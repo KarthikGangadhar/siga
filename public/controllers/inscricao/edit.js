@@ -145,7 +145,7 @@ angular
                 }
                 // carregador de exemplos para testes
                 // exampleLoader.sherlock($scope.inscricao);
-                // exampleLoader.thiago($scope.inscricao);
+//                exampleLoader.thiago($scope.inscricao);
             }
         }
     ]);

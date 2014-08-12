@@ -8,7 +8,7 @@ angular
                     inscricao.id = 0;
                     inscricao.nome_completo = 'Thiago Condurú Figueiredo';
                     inscricao.data_de_nascimento = '5/8/1981';
-                    inscricao.sexo = 'Masculino';
+                    inscricao.sexo = 'masculino';
                     inscricao.email = 'thiagocondurufigueiredo@gmail.com';
                     inscricao.estrangeiro = false;
                     inscricao.cpf = '32426555670';
@@ -32,10 +32,30 @@ angular
                     inscricao.uf = 'PA';
                     inscricao.cep = '66055000';
                     inscricao.nome_no_cracha = 'Thiago Figueiredo';
-                    inscricao.categoria = 'Profissional';
-                    inscricao.curso_ou_formacao = 'Tecnologia em Processamento de Dados';
-                    inscricao.acronimo_da_instituicao_ou_empresa = 'UNAMA';
-                    inscricao.nome_da_instituicao_ou_empresa = 'Universidade da Amazônia';
+                    inscricao.categoria = 'profissional';
+                    inscricao.pessoa_com_deficiencia = 'false';
+                    inscricao.deficiencia_auditiva = false;
+                    inscricao.deficiencia_motora = false;
+                    inscricao.deficiencia_visual = false;
+                    inscricao.outras_deficiencias = '';
+                    inscricao.grau_de_escolaridade = 'superior_completo';
+                    inscricao.nome_da_ultima_instituicao_de_ensino = 'UNAMA';
+                    inscricao.tipo_da_ultima_instituicao_de_ensino = 'privada';
+                    inscricao.ultimo_curso = 'Tecnologia em Processamento de Dados';
+                    inscricao.area_de_conhecimento_do_ultimo_curso = 'tecnologia';
+                    inscricao.profissao = 'Engenheiro de Software';
+                    inscricao.empresa = 'Self Employed';
+                    inscricao.atividade = 'Engenharia de Software';
+                    inscricao.cidade_de_nascimento = 'Belém';
+                    inscricao.vii = true;
+                    inscricao.vi = false;
+                    inscricao.v = true;
+                    inscricao.iv = false;
+                    inscricao.iii = true;
+                    inscricao.ii = false;
+                    inscricao.i = true;
+                    inscricao.projeto_programa_acao = 'nao_governamental';
+                    inscricao.blog_site_perfil = 'https://plus.google.com/101685121473345418343/posts';
                     return inscricao;
                 },
                 sherlock: function sherlock(inscricao) {

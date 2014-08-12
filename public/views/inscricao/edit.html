@@ -57,8 +57,8 @@
                     id="nome_completo"
                     maxlength="256"
                     name="nome_completo"
-                    type="text"
                     required
+                    type="text"
                     >
             </div>
             <div
@@ -70,6 +70,10 @@
                     for="data_de_nascimento"
                     >
                     Data de Nascimento
+                    <span
+                        class="glyphicon glyphicon-asterisk"
+                        >
+                    </span>
                 </label>
                 <input
                     class="form-control"
@@ -79,6 +83,7 @@
                     id="data_de_nascimento"
                     maxlength="10"
                     name="data_de_nascimento"
+                    required
                     type="text"
                     >
                 <p
@@ -107,10 +112,10 @@
                         <input
                             checked
                             data-ng-model="inscricao.sexo"
-                            id="Feminino"
+                            id="feminino"
                             name="sexo"
                             type="radio"
-                            value="Feminino"
+                            value="feminino"
                             >
                             Feminino
                     </label>
@@ -121,12 +126,26 @@
                     <label>
                         <input
                             data-ng-model="inscricao.sexo"
-                            id="Masculino"
+                            id="masculino"
                             name="sexo"
                             type="radio"
-                            value="Masculino"
+                            value="masculino"
                             >
                             Masculino
+                    </label>
+                </div>
+                <div
+                    class="radio"
+                    >
+                    <label>
+                        <input
+                            data-ng-model="inscricao.sexo"
+                            id="outro"
+                            name="sexo"
+                            type="radio"
+                            value="outro"
+                            >
+                            Outro
                     </label>
                 </div>
             </div>
@@ -156,6 +175,7 @@
                     required
                     >
             </div>
+<!--
             <div
                 class="form-group"
                 >
@@ -173,6 +193,7 @@
                     </label>
                 </div>
             </div>
+-->
             <fieldset>
                 <legend>Documento de Identificação</legend>
                 <div
@@ -206,7 +227,6 @@
                         name="cpf"
                         type="tel"
                         >
-                        <!-- type tel for mobile convenience... -->
                     <p
                         class="help-block"
                         >
@@ -444,7 +464,7 @@
                             >
                     </div>
                 </fieldset>
-                <fieldset>
+                <!-- <fieldset>
                     <legend>Telefone &#8470; 3</legend>
                     <div
                         class="form-group"
@@ -510,7 +530,7 @@
                             type="tel"
                             >
                     </div>
-                </fieldset>
+                </fieldset> -->
                 <div
                     data-ng-show="inscricao.estrangeiro"
                     >
@@ -809,10 +829,10 @@
                             <input
                                 checked
                                 data-ng-model="inscricao.categoria"
-                                id="Estudante"
+                                id="estudante"
                                 name="categoria"
                                 type="radio"
-                                value="Estudante"
+                                value="estudante"
                                 >
                                 Estudante
                         </label>
@@ -823,10 +843,24 @@
                         <label>
                             <input
                                 data-ng-model="inscricao.categoria"
-                                id="Profissional"
+                                id="professor"
                                 name="categoria"
                                 type="radio"
-                                value="Profissional"
+                                value="professor"
+                                >
+                                Professor
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.categoria"
+                                id="profissional"
+                                name="categoria"
+                                type="radio"
+                                value="profissional"
                                 >
                                 Profissional
                         </label>
@@ -834,27 +868,251 @@
                 </div>
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': isInvalidField('curso_ou_formacao') }"
                     >
                     <label
                         class="control-label"
-                        for="curso_ou_formacao"
+                        for="pessoa_com_deficiencia"
                         >
-                        Curso ou Formação
+                        Pessoa com Deficiência
                         <span
                             class="glyphicon glyphicon-asterisk"
                             >
                         </span>
                     </label>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.pessoa_com_deficiencia"
+                                id="publica"
+                                name="pessoa_com_deficiencia"
+                                type="radio"
+                                value="true"
+                                >
+                                Sim
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.pessoa_com_deficiencia"
+                                id="privada"
+                                name="pessoa_com_deficiencia"
+                                type="radio"
+                                value="false"
+                                >
+                                Não
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    >
+                    <label
+                        class="control-label"
+                        for="tipo_de_deficiencia"
+                        >
+                        Tipos de Deficiência
+                    </label>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-disabled="inscricao.pessoa_com_deficiencia == 'false'"
+                                data-ng-model="inscricao.deficiencia_auditiva"
+                                id="deficiencia_auditiva"
+                                name="deficiencia_auditiva"
+                                type="checkbox"
+                                >
+                                Auditiva
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-disabled="inscricao.pessoa_com_deficiencia == 'false'"
+                                data-ng-model="inscricao.deficiencia_motora"
+                                id="deficiencia_motora"
+                                name="deficiencia_motora"
+                                type="checkbox"
+                                >
+                                Motora
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-disabled="inscricao.pessoa_com_deficiencia == 'false'"
+                                data-ng-model="inscricao.deficiencia_visual"
+                                id="deficiencia_visual"
+                                name="deficiencia_visual"
+                                type="checkbox"
+                                >
+                                Visual
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('outras_deficiencias') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="outras_deficiencias"
+                        >
+                        Outras Deficiências
+                    </label>
                     <input
                         class="form-control"
-                        data-ng-blur="$_setBlurred('curso_ou_formacao')"
-                        data-ng-model="inscricao.curso_ou_formacao"
-                        id="curso_ou_formacao"
+                        data-ng-blur="$_setBlurred('outras_deficiencias')"
+                        data-ng-disabled="inscricao.pessoa_com_deficiencia == 'false'"
+                        data-ng-model="inscricao.outras_deficiencias"
+                        id="outras_deficiencias"
                         maxlength="256"
-                        name="curso_ou_formacao"
+                        name="outras_deficiencias"
                         type="text"
-                        required
+                        >
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Informações Adicionais</legend>
+                <div
+                    class="form-group"
+                    >
+                    <label
+                        class="control-label"
+                        for="grau_de_escolaridade"
+                        >
+                        Qual seu grau de escolaridade?
+                    </label>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="grau_de_escolaridade_nenhum"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="nenhum"
+                                >
+                                Nenhum
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="fundamental"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="fundamental"
+                                >
+                                Fundamental
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="medio"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="medio"
+                                >
+                                Médio
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="superior_incompleto"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="superior_incompleto"
+                                >
+                                Superior Incompleto
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="superior_completo"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="superior_completo"
+                                >
+                                Superior Completo
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="latu_sensu"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="pos_graduacao_latu_sensu"
+                                >
+                                Pós-graduação <i>latu sensu</i> (especilização, aperfeiçoamento, mba)
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.grau_de_escolaridade"
+                                id="stricto_sensu"
+                                name="grau_de_escolaridade"
+                                type="radio"
+                                value="pos_graduacao_stricto_sensu"
+                                >
+                                Pós-graduação <i>stricto sensu</i> (mestrado, doutorado, pós-doutorado)
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('nome_da_ultima_instituicao_de_ensino') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="nome_da_ultima_instituicao_de_ensino"
+                        >
+                        Qual o nome da sua última instituição de ensino?
+                    </label>
+                    <input
+                        class="form-control"
+                        data-ng-blur="$_setBlurred('nome_da_ultima_instituicao_de_ensino')"
+                        data-ng-model="inscricao.nome_da_ultima_instituicao_de_ensino"
+                        id="nome_da_ultima_instituicao_de_ensino"
+                        maxlength="256"
+                        name="nome_da_ultima_instituicao_de_ensino"
+                        type="text"
                         >
                 </div>
                 <div
@@ -862,43 +1120,452 @@
                     >
                     <label
                         class="control-label"
-                        for="acronimo_da_instituicao_ou_empresa"
+                        for="tipo_da_ultima_instituicao_de_ensino"
                         >
-                        Acrônimo da Instituição ou Empresa
+                        Qual o tipo da sua última escola?
+                    </label>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.tipo_da_ultima_instituicao_de_ensino"
+                                id="privada"
+                                name="tipo_da_ultima_instituicao_de_ensino"
+                                type="radio"
+                                value="privada"
+                                >
+                                Privada
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.tipo_da_ultima_instituicao_de_ensino"
+                                id="publica"
+                                name="tipo_da_ultima_instituicao_de_ensino"
+                                type="radio"
+                                value="publica"
+                                >
+                                Pública
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('ultimo_curso') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="ultimo_curso"
+                        >
+                        Qual foi seu último curso?
                     </label>
                     <input
                         class="form-control"
-                        data-ng-blur="$_setBlurred('acronimo_da_instituicao_ou_empresa')"
-                        data-ng-model="inscricao.acronimo_da_instituicao_ou_empresa"
-                        id="acronimo_da_instituicao_ou_empresa"
-                        maxlength="64"
-                        name="acronimo_da_instituicao_ou_empresa"
+                        data-ng-blur="$_setBlurred('ultimo_curso')"
+                        data-ng-model="inscricao.ultimo_curso"
+                        id="ultimo_curso"
+                        maxlength="256"
+                        name="ultimo_curso"
                         type="text"
                         >
                 </div>
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': isInvalidField('nome_da_instituicao_ou_empresa') }"
                     >
                     <label
                         class="control-label"
-                        for="nome_da_instituicao_ou_empresa"
+                        for="area_de_conhecimento_do_ultimo_curso"
                         >
-                        Nome da Instituição ou Empresa
-                        <span
-                            class="glyphicon glyphicon-asterisk"
-                            >
-                        </span>
+                        Qual a área de conhecimento do seu último curso?
+                    </label>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="area_de_conhecimento_do_ultimo_curso_nenhuma"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="nenhuma"
+                                >
+                                Nenhuma
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="artes"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="artes"
+                                >
+                                Artes
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="exatas"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="exatas"
+                                >
+                                Exatas
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="humanidades"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="humanidades"
+                                >
+                                Humanidades
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="saude"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="saude"
+                                >
+                                Saúde
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="tecnologia"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="tecnologia"
+                                >
+                                Tecnologia
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.area_de_conhecimento_do_ultimo_curso"
+                                id="terra"
+                                name="area_de_conhecimento_do_ultimo_curso"
+                                type="radio"
+                                value="terra"
+                                >
+                                Terra
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('profissao') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="profissao"
+                        >
+                        Qual sua profissão?
                     </label>
                     <input
                         class="form-control"
-                        data-ng-blur="$_setBlurred('nome_da_instituicao_ou_empresa')"
-                        data-ng-model="inscricao.nome_da_instituicao_ou_empresa"
-                        id="nome_da_instituicao_ou_empresa"
+                        data-ng-blur="$_setBlurred('profissao')"
+                        data-ng-model="inscricao.profissao"
+                        id="profissao"
                         maxlength="256"
-                        name="nome_da_instituicao_ou_empresa"
+                        name="profissao"
                         type="text"
-                        required
+                        >
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('empresa') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="empresa"
+                        >
+                        Em qual empresa você trabalha?
+                    </label>
+                    <input
+                        class="form-control"
+                        data-ng-blur="$_setBlurred('empresa')"
+                        data-ng-model="inscricao.empresa"
+                        id="empresa"
+                        maxlength="256"
+                        name="empresa"
+                        type="text"
+                        >
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('atividade') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="atividade"
+                        >
+                        Que tipo de atividade você executa?
+                    </label>
+                    <input
+                        class="form-control"
+                        data-ng-blur="$_setBlurred('atividade')"
+                        data-ng-model="inscricao.atividade"
+                        id="atividade"
+                        maxlength="256"
+                        name="atividade"
+                        type="text"
+                        >
+                </div>
+                <hr>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('cidade_de_nascimento') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="cidade_de_nascimento"
+                        >
+                        Em qual cidade você nasceu?
+                    </label>
+                    <input
+                        class="form-control"
+                        data-ng-blur="$_setBlurred('cidade_de_nascimento')"
+                        data-ng-model="inscricao.cidade_de_nascimento"
+                        id="cidade_de_nascimento"
+                        maxlength="256"
+                        name="cidade_de_nascimento"
+                        type="text"
+                        >
+                </div>
+                <div
+                    class="form-group"
+                    >
+                    <label
+                        class="control-label"
+                        for="participou_de_foruns_anteriores"
+                        >
+                        Se você participou de algum Fórum Brasileiro de Educação Ambiental anterior selecione as alternativas correspondentes
+                    </label>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.vii"
+                                id="vii"
+                                name="vii"
+                                type="checkbox"
+                                >
+                                VII, na Bahia
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.vi"
+                                id="vi"
+                                name="vi"
+                                type="checkbox"
+                                >
+                                VI, no Rio de Janeiro
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.v"
+                                id="v"
+                                name="v"
+                                type="checkbox"
+                                >
+                                V, em Goiás
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.iv"
+                                id="iv"
+                                name="iv"
+                                type="checkbox"
+                                >
+                                IV, no Espírito Santo
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.iii"
+                                id="iii"
+                                name="iii"
+                                type="checkbox"
+                                >
+                                III, em São Paulo
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.ii"
+                                id="ii"
+                                name="ii"
+                                type="checkbox"
+                                >
+                                II, em São Paulo
+                        </label>
+                    </div>
+                    <div
+                        class="checkbox"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.i"
+                                id="i"
+                                name="i"
+                                type="checkbox"
+                                >
+                                I, em São Paulo
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    >
+                    <label
+                        class="control-label"
+                        for="tipo_de_projeto_programa_acao"
+                        >
+                        Se você faz parte de algum projeto, programa ou ação que desenvolve atividades de educação ambiental marque a alternativa mais adequada
+                    </label>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.tipo_de_projeto_programa_acao"
+                                id="tipo_de_projeto_programa_acao_nenhum"
+                                name="tipo_de_projeto_programa_acao"
+                                type="radio"
+                                value="nenhum"
+                                >
+                                Não faço parte de projeto, programa ou ação alguma
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.tipo_de_projeto_programa_acao"
+                                id="academica"
+                                name="tipo_de_projeto_programa_acao"
+                                type="radio"
+                                value="academica"
+                                >
+                                Ação Acadêmica (Escolar)
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                checked
+                                data-ng-model="inscricao.tipo_de_projeto_programa_acao"
+                                id="empresarial"
+                                name="tipo_de_projeto_programa_acao"
+                                type="radio"
+                                value="empresarial"
+                                >
+                                Ação Empresarial
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.tipo_de_projeto_programa_acao"
+                                id="nao_governamental"
+                                name="tipo_de_projeto_programa_acao"
+                                type="radio"
+                                value="nao_governamental"
+                                >
+                                Ação em Organização Não Governamental ou Movimento Social
+                        </label>
+                    </div>
+                    <div
+                        class="radio"
+                        >
+                        <label>
+                            <input
+                                data-ng-model="inscricao.tipo_de_projeto_programa_acao"
+                                id="politica"
+                                name="tipo_de_projeto_programa_acao"
+                                type="radio"
+                                value="politica"
+                                >
+                                Ação de Gestão de Política Pública
+                        </label>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': isInvalidField('blog_site_perfil') }"
+                    >
+                    <label
+                        class="control-label"
+                        for="blog_site_perfil"
+                        >
+                        Você possui um blog, site ou perfil em rede social?
+                    </label>
+                    <input
+                        class="form-control"
+                        data-ng-blur="$_setBlurred('blog_site_perfil')"
+                        data-ng-model="inscricao.blog_site_perfil"
+                        id="blog_site_perfil"
+                        maxlength="256"
+                        name="blog_site_perfil"
+                        type="text"
                         >
                 </div>
             </fieldset>

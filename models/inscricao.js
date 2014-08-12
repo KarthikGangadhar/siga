@@ -5,6 +5,7 @@ module.exports = function inscricaoModel(logbook) {
     return {
         create: function create(inscricao) {
             inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();
+            console.log(inscricao)
             return db({
                 query: 'INSERT INTO inscricao ( ' +
                         'nome_completo, ' +
@@ -26,12 +27,52 @@ module.exports = function inscricaoModel(logbook) {
                         'endereco, ' +
                         'nome_no_cracha, ' +
                         'categoria, ' +
-                        'curso_ou_formacao, ' +
-                        'acronimo_da_instituicao_ou_empresa, ' +
-                        'nome_da_instituicao_ou_empresa, ' +
+                        'pessoa_com_deficiencia, ' +
+                        'deficiencia_auditiva, ' +
+                        'deficiencia_motora, ' +
+                        'deficiencia_visual, ' +
+                        'outras_deficiencias, ' +
+                        'grau_de_escolaridade, ' +
+                        'nome_da_ultima_instituicao_de_ensino, ' +
+                        'tipo_da_ultima_instituicao_de_ensino, ' +
+                        'ultimo_curso, ' +
+                        'area_de_conhecimento_do_ultimo_curso, ' +
+                        'profissao, ' +
+                        'empresa, ' +
+                        'atividade, ' +
+                        'cidade_de_nascimento, ' +
+                        'vii, ' +
+                        'vi, ' +
+                        'v, ' +
+                        'iv, ' +
+                        'iii, ' +
+                        'ii, ' +
+                        'i, ' +
+                        'tipo_de_projeto_programa_acao, ' +
+                        'blog_site_perfil, ' +
                         '__status__ ' +
                     ') ' +
                     'VALUES ( ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
+                        '?, ' +
                         '?, ' +
                         '?, ' +
                         '?, ' +
@@ -76,13 +117,34 @@ module.exports = function inscricaoModel(logbook) {
                     'endereco',
                     'nome_no_cracha',
                     'categoria',
-                    'curso_ou_formacao',
-                    'acronimo_da_instituicao_ou_empresa',
-                    'nome_da_instituicao_ou_empresa'
+                    'pessoa_com_deficiencia',
+                    'deficiencia_auditiva',
+                    'deficiencia_motora',
+                    'deficiencia_visual',
+                    'outras_deficiencias',
+                    'grau_de_escolaridade',
+                    'nome_da_ultima_instituicao_de_ensino',
+                    'tipo_da_ultima_instituicao_de_ensino',
+                    'ultimo_curso',
+                    'area_de_conhecimento_do_ultimo_curso',
+                    'profissao',
+                    'empresa',
+                    'atividade',
+                    'cidade_de_nascimento',
+                    'vii',
+                    'vi',
+                    'v',
+                    'iv',
+                    'iii',
+                    'ii',
+                    'i',
+                    'tipo_de_projeto_programa_acao',
+                    'blog_site_perfil'
                 ],
                 data: inscricao
             }).then(
                 function resolve(value) {
+                    console.log(value)
                     return value;
                 },
                 function reject(reason) {
@@ -164,9 +226,29 @@ module.exports = function inscricaoModel(logbook) {
                         'endereco = ?, ' +
                         'nome_no_cracha = ?, ' +
                         'categoria = ?, ' +
-                        'curso_ou_formacao = ?, ' +
-                        'acronimo_da_instituicao_ou_empresa = ?, ' +
-                        'nome_da_instituicao_ou_empresa = ? ' +
+                        'pessoa_com_deficiencia = ?, ' +
+                        'deficiencia_auditiva = ?, ' +
+                        'deficiencia_motora = ?, ' +
+                        'deficiencia_visual = ?, ' +
+                        'outras_deficiencias = ?, ' +
+                        'grau_de_escolaridade = ?, ' +
+                        'nome_da_ultima_instituicao_de_ensino = ?, ' +
+                        'tipo_da_ultima_instituicao_de_ensino = ?, ' +
+                        'ultimo_curso = ?, ' +
+                        'area_de_conhecimento_do_ultimo_curso = ?, ' +
+                        'profissao = ?, ' +
+                        'empresa = ?, ' +
+                        'atividade = ?, ' +
+                        'cidade_de_nascimento = ?, ' +
+                        'vii = ?, ' +
+                        'vi = ?, ' +
+                        'v = ?, ' +
+                        'iv = ?, ' +
+                        'iii = ?, ' +
+                        'ii = ?, ' +
+                        'i = ?, ' +
+                        'tipo_de_projeto_programa_acao = ?, ' +
+                        'blog_site_perfil = ? ' +
                     'WHERE id = ? ',
                 array: [
                     'nome_completo',
@@ -188,9 +270,29 @@ module.exports = function inscricaoModel(logbook) {
                     'endereco',
                     'nome_no_cracha',
                     'categoria',
-                    'curso_ou_formacao',
-                    'acronimo_da_instituicao_ou_empresa',
-                    'nome_da_instituicao_ou_empresa',
+                    'pessoa_com_deficiencia',
+                    'deficiencia_auditiva',
+                    'deficiencia_motora',
+                    'deficiencia_visual',
+                    'outras_deficiencias',
+                    'grau_de_escolaridade',
+                    'nome_da_ultima_instituicao_de_ensino',
+                    'tipo_da_ultima_instituicao_de_ensino',
+                    'ultimo_curso',
+                    'area_de_conhecimento_do_ultimo_curso',
+                    'profissao',
+                    'empresa',
+                    'atividade',
+                    'cidade_de_nascimento',
+                    'vii',
+                    'vi',
+                    'v',
+                    'iv',
+                    'iii',
+                    'ii',
+                    'i',
+                    'tipo_de_projeto_programa_acao',
+                    'blog_site_perfil',
                     'id'
                 ],
                 data: inscricao
