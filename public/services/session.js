@@ -32,8 +32,8 @@ angular
                         return this.permissions.indexOf(action) === -1;
                     },
                     set: function set(data) {
-                        this.email = data ? data.email : '';
-                        this.permissions = data ? data.permissions : '';
+                        this.email = data && data.email ? data.email : '';
+                        this.permissions = data && data.permissions ? data.permissions : '';
                         this.inscricao = data ? data.inscricao : '';
                         if (this.inscricao) {
                             $location.path('/inscricao/' + this.inscricao);
