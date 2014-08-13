@@ -135,7 +135,7 @@ angular
                 // e colocar o email do usuario no campo correspondente no formulario de
                 // inscricao (mesmo porque, o campo nao sera editavel por usuarios sem
                 // a permissao especial: MULTIPLE)
-                if ($scope.inscricao.email === null) {
+                if ($scope.inscricao.email === '') {
                     unwatcher = $scope.$watch('session.email', function watch() {
                         if ($scope.session.email) {
                             $scope.inscricao.email = $scope.session.email;
