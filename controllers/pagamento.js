@@ -10,6 +10,7 @@ module.exports = function sessionController(models, app, logbook) {
         .read(request.authentication.inscricao)
         .then(
             function resolve(value) {
+                value.dadosDePagamento = dadosDePagamento;
                 response.send(value)
             },
             function reject(reason) {

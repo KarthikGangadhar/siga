@@ -21,10 +21,10 @@ module.exports = function usuarioModel(logbook) {
                 '1 ' +
                 ') ',
             array: [
-            'inscricao',
-            'valor',
-            'sacado',
-            'status'
+                'inscricao',
+                'valor',
+                'sacado',
+                'status'
             ],
             data: pagamento
         })

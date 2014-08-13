@@ -3,7 +3,29 @@
     >
     <h2>Situação de Pagamento</h2>
     <p>
-        Neste momento sua inscrição se encontra:
+        Para que sua inscrição seja efetivada basta realizar um depósito ou transferência no valor de <b>R${{valor}},00</b> e <strong>enviar uma cópia do comprovante de depósito ou tranferência para o endereço</strong>: <a href="mailto:inscricaoviiifbea@gmail.com">inscricaoviiifbea@gmail.com</a>.
+    </p>
+    <p>
+        Os dados para a relização do depósito ou transferência são:
+        <br>
+    </p>
+    <div class="well">
+      Conta-Corrente: <strong>99.472-3</strong>
+      <br>
+      Agência: <strong>3702-8</strong> (Banco do Brasil)
+      <br>
+      Código Identificador: <strong>1.062.134-2</strong>
+      <br>
+      Titular: <strong>Fundação de Amparo e Desenvolvimento da Pesquisa - FADESP</strong>
+    </div>
+    <div
+        class="alert alert-warning"
+        >
+        <strong>Atenção!</strong>
+        O Código Identificador é indispensável.
+    </div>
+    <p>
+        Neste momento o <i>status</i> de sua inscrição é:
         <br>
         <span
             class="label label-warning"
@@ -23,17 +45,5 @@
             >
             Verificando pagamento...
         </span>
-    </p>
-    <p
-        data-ng-if="pagamento.status == 0 &amp;&amp; pagamento.url"
-        >
-        Para confirmar sua inscrição visualize seu boleto através do link abaixo:
-        <br>
-        <a
-            data-ng-href="{{pagamento.url}}"
-            target="_blank"
-            >
-            Visualizar Boleto para Impressão
-        </a>
     </p>
 </div>

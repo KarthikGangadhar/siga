@@ -13,6 +13,7 @@ angular
                 .then(
                     function resolve(value) {
                         $scope.pagamento = value.data;
+                        $scope.valor = $scope.pagamento.dadosDePagamento.valores[$scope.inscricao.categoria];
                     },
                     function reject(reason) {
                         console.log(reason)
