@@ -38,7 +38,7 @@ module.exports = function sessionController(models, app, logbook) {
             logbook.error('Submissão de arquivo em formato inválido: ' + fileType);
             return;
         }
-        fs.readFile(request.files.file.path, function (error, data) {
+        fs.readFile(request.files.file.path, function onRead(error, data) {
             var smtpTransport = nodemailer.createTransport('SMTP', {
                     service: 'Gmail',
                     auth: {
@@ -46,16 +46,16 @@ module.exports = function sessionController(models, app, logbook) {
                         pass: trabalhos.password
                     }
                 }),
-                mensagemDeAtencao = '\n\n\nAtenção, este e-mail foi enviado automaticamente. Não o responda. Em caso dúvidas ou quaisquer outras questões entre em contato com o administrador do sistema.';
+                        mensagemDeAtencao = '\n\n\nAtenção, este e-mail foi enviado automaticamente. Não o responda. Em caso dúvidas ou quaisquer outras questões entre em contato com o administrador do sistema.';
             if (error) {
                 response.send(500);
                 logbook.error('Ocorreu o seguinte erro na leitura do arquivo submetido: ', error);
             }
             smtpTransport.sendMail({
-                from: 'Trabalhos <' + trabalhos.email + '>',
-                to: trabalhos.destino,
-                subject: 'Trabalho submetido por ' + request.authentication.email,
-                text: 'Em anexo o trabalho submetido por ' + request.authentication.email + mensagemDeAtencao,
+                from: 'Submissões FBEA VIII <' + trabalhos.email + '>',
+                to: trabalhos.tiposDeSubmissao[request.body.tipoDeSubmissao].email,
+                subject: 'Documento submetido por ' + request.authentication.email,
+                text: 'Em anexo o documento submetido por ' + request.authentication.email + trabalhos.mensagemDeAtencao,
                 attachments: [{
                     fileName: request.files.file.originalFilename,
                     contents: data
@@ -63,14 +63,14 @@ module.exports = function sessionController(models, app, logbook) {
             }, function sendMailHandler(error) {
                 if (error) {
                     response.send(500);
-                    logbook.error('Ocorreu o seguinte erro no envio do trabalho submetido: ', error);
+                    logbook.error('Ocorreu o seguinte erro no envio da submissão: ', error);
                 } else {
                     response.send(200);
                     smtpTransport.sendMail({
-                        from: 'Trabalhos <' + trabalhos.email + '>',
+                        from: 'Submissões FBEA VIII <' + trabalhos.email + '>',
                         to: request.authentication.email,
-                        subject: trabalhos.subject,
-                        text: 'Seu trabalho (no arquivo ' + request.files.file.originalFilename + ') foi enviado aos avaliadores!\nObrigado!' + mensagemDeAtencao
+                        subject: 'FBEA VIII - Submissão realizada com sucesso',
+                        text: 'Sua submissão (no arquivo ' + request.files.file.originalFilename + ') foi enviada com sucesso!\nObrigado!' + mensagemDeAtencao
                     }, function (error) {
                         if (error) {
                             logbook.error('Ocorreu o seguinte erro no envio do e-mail de confirmação para o usuário ' + request.authentication.email, error);
@@ -79,5 +79,46 @@ module.exports = function sessionController(models, app, logbook) {
                 }
             });
         });
+        // fs.readFile(request.files.file.path, function (error, data) {
+        //     var smtpTransport = nodemailer.createTransport('SMTP', {
+        //             service: 'Gmail',
+        //             auth: {
+        //                 user: trabalhos.email,
+        //                 pass: trabalhos.password
+        //             }
+        //         }),
+        //         mensagemDeAtencao = '\n\n\nAtenção, este e-mail foi enviado automaticamente. Não o responda. Em caso dúvidas ou quaisquer outras questões entre em contato com o administrador do sistema.';
+        //     if (error) {
+        //         response.send(500);
+        //         logbook.error('Ocorreu o seguinte erro na leitura do arquivo submetido: ', error);
+        //     }
+        //     smtpTransport.sendMail({
+        //         from: 'Trabalhos <' + trabalhos.email + '>',
+        //         to: trabalhos.destino,
+        //         subject: 'Trabalho submetido por ' + request.authentication.email,
+        //         text: 'Em anexo o trabalho submetido por ' + request.authentication.email + mensagemDeAtencao,
+        //         attachments: [{
+        //             fileName: request.files.file.originalFilename,
+        //             contents: data
+        //         }]
+        //     }, function sendMailHandler(error) {
+        //         if (error) {
+        //             response.send(500);
+        //             logbook.error('Ocorreu o seguinte erro no envio do trabalho submetido: ', error);
+        //         } else {
+        //             response.send(200);
+        //             smtpTransport.sendMail({
+        //                 from: 'Trabalhos <' + trabalhos.email + '>',
+        //                 to: request.authentication.email,
+        //                 subject: trabalhos.subject,
+        //                 text: 'Seu trabalho (no arquivo ' + request.files.file.originalFilename + ') foi enviado aos avaliadores!\nObrigado!' + mensagemDeAtencao
+        //             }, function (error) {
+        //                 if (error) {
+        //                     logbook.error('Ocorreu o seguinte erro no envio do e-mail de confirmação para o usuário ' + request.authentication.email, error);
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
     });
 };
