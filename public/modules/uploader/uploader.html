@@ -2,9 +2,7 @@
     data-ng-controller="uploadController"
     >
     <h2>Submissões</h2>
-    <div
-        data-ng-hide="success"
-        >
+    <div>
         <form
             data-ng-submit="submit()"
             name="ficha_de_submissao"
@@ -80,8 +78,43 @@
                     </label>
                 </div>
             </div>
+            <hr>
             <p>
-                Antes de enviar, certifique-se de estar seguindo as regras de submissão.
+                <strong>Antes de selecionar e enviar, certifique-se de estar seguindo as regras de submissão disponíveis em:</strong>
+            </p>
+            <p
+                data-ng-show="submissao.tipoDeSubmissao == 'artigo'"
+                >
+                <a target="_blank" href="http://educacaoambiental.net/#/submissoes">
+                    educacaoambiental.net/#/submissoes
+                </a>
+            </p>
+            <p
+                data-ng-show="submissao.tipoDeSubmissao == 'oficina'"
+                >
+                <a target="_blank" href="http://educacaoambiental.net/#/oficinas">
+                    educacaoambiental.net/#/oficinas
+                </a>
+                <br>
+                <br>
+                E usar o <strong><a target="_blank" href="http://educacaoambiental.net/downloads/fichaminicursos.docx">Formulário de Submissão de Oficinas e Minicursos</a></strong>.
+            </p>
+            <p
+                data-ng-show="submissao.tipoDeSubmissao == 'sessao'"
+                >
+            <a target="_blank" href="http://educacaoambiental.net/#/paineis">
+                educacaoambiental.net/#/paineis
+            </a>
+            <br>
+            <br>
+            E usar o <strong><a target="_blank" href="http://educacaoambiental.net/downloads/fichapaineis.docx">Formulário de Submissão de Sessões de Painéis</a></strong>.
+            </p>
+            <p
+                data-ng-show="submissao.tipoDeSubmissao == 'vivencia'"
+                >
+                <a target="_blank" href="http://educacaoambiental.net/#/vivencias">
+                    educacaoambiental.net/#/vivencias
+                </a>
             </p>
             <span
                 class="btn btn-info btn-lg btn-file"
