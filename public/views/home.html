@@ -8,12 +8,12 @@
         <h1
             class="text-center"
             >
-            SIGLA 2014
+            VIII FBEA
         </h1>
         <p
             class="lead text-center"
             >
-            Participe do Simpósio Interamericano de Gastroenterologia Laparoscópica Avançada. Inscrições abertas.
+            Participe do Fórum Brasileiro de Educação Ambiental. Inscrições abertas.
         </p>
         <div
             class="row"
@@ -32,17 +32,14 @@
             </div>
             <div
                 class="col-md-4"
-                data-ng-class="{
-                    'col-md-offset-4': session.inscricao
-                }"
+                data-ng-if="!session.inscricao"
                 >
-                <a
+                <button
                     class="btn btn-lg btn-info btn-block"
-                    href="/inscricao"
-                    role="button"
+                    data-ng-click="session.login()"
                     >
                     Já estou inscrito
-                </a>
+                </button>
             </div>
         </div>
     </div>
