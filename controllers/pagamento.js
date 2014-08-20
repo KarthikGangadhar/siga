@@ -43,7 +43,7 @@ module.exports = function sessionController(models, app, logbook) {
     });
     app.post('/api/pagamento/status', function (request, response) {
         pagamento
-            .update(request.body.id)
+            .update(request.body.id, request.body.valor)
             .then(
                 function resolve(value) {
                     response.send(value);

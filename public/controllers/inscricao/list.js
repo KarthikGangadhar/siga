@@ -13,14 +13,17 @@ angular
         ) {
             'use strict';
             $scope.confirmar = function confirmar(id, inscricao) {
+                var
+                    valor;
+                valor = prompt('Insira o valor pago');
                 inscricaoService
-                    .confirmar(id)
+                    .confirmar(id, valor)
                     .then(
                         function resolve(value) {
                             inscricao.status = 1;
                         },
                         function reject(reason) {
-                            inscricao.status = false;
+                            inscricao.status = 'erro';
                         }
                     );
             };

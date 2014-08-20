@@ -97,7 +97,7 @@ angular
                                 this.pessoa_com_deficiencia = 1;
                             }
                         }
-//                        checkboxes para deficiências
+                        // checkboxes para deficiências
                         if (this.deficiencia_auditiva === 0) {
                             this.deficiencia_auditiva = false;
                         } else {
@@ -459,10 +459,11 @@ angular
                         }
                     );
             };
-            inscricaoService.confirmar = function confirmar(id) {
+            inscricaoService.confirmar = function confirmar(id, valor) {
                 return $http
                     .post('/api/pagamento/status/', {
-                        id: id
+                        id: id,
+                        valor: valor
                     })
                     .then(
                         function resolve(value) {
