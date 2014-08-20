@@ -64,17 +64,14 @@ module.exports = function usuarioModel(logbook) {
                 }
             );
         },
-        update: function update() {
+        update: function update(id) {
             return db({
-                query: 'SELECT 1 + 1 '
-                // query: 'UPDATE pagamento SET ' +
-                //         'inscricao = ? ' +
-                //     'WHERE email = ? ',
-                // array: [
-                //     'inscricao',
-                //     'email'
-                // ],
-                // data: pagamento
+                query: 'UPDATE pagamento SET ' +
+                        'status = 1 ' +
+                    'WHERE id = ? ',
+                array: [
+                    id
+                ]
             })
             .then(
                 function resolve(value) {

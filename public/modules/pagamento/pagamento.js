@@ -9,7 +9,7 @@ angular
         ) {
             'use strict';
             $http
-                .get('/api/pagamento')
+                .get('/api/pagamento/' + $scope.inscricao.id)
                 .then(
                     function resolve(value) {
                         $scope.pagamento = value.data;
