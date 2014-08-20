@@ -339,6 +339,7 @@ angular
                     inscricao.i = data ? data.i : false;
                     inscricao.tipo_de_projeto_programa_acao = data ? data.tipo_de_projeto_programa_acao : 'nenhum';
                     inscricao.blog_site_perfil = data ? data.blog_site_perfil : '';
+                    inscricao.status = data ? data.status : 0;
                     return inscricao;
                 },
                 notifications = {
@@ -455,6 +456,20 @@ angular
                         },
                         function reject(reason) {
                             throw reason;
+                        }
+                    );
+            };
+            inscricaoService.confirmar = function confirmar(id) {
+                return $http
+                    .post('/api/pagamento/status/', {
+                        id: id
+                    })
+                    .then(
+                        function resolve(value) {
+                            console.log(value)
+                        },
+                        function reject(reason) {
+                            console.log(reason)
                         }
                     );
             };

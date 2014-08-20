@@ -105,6 +105,10 @@
                             >
                             Endereço
                         </th>
+                        <th
+                            >
+                            Confirmação
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,7 +121,7 @@
                             <a
                                 href="/inscricao/{{inscricao.id}}"
                                 >
-                                {{inscricao.nome_completo}}
+                                {{inscricao.nome_completo | uppercase}}
                             </a>
                         </td>
                         <td
@@ -128,7 +132,7 @@
                         <td
                             data-ng-show="show.sexo"
                             >
-                            {{inscricao.sexo}}
+                            {{inscricao.sexo | uppercase}}
                         </td>
                         <td
                             data-ng-show="show.email"
@@ -229,6 +233,33 @@
                             data-ng-show="show.endereco"
                             >
                             {{inscricao.endereco}}
+                        </td>
+                        <td
+                            style="text-align: center"
+                            >
+                            <button
+                                class="
+                                    btn
+                                "
+                                data-ng-click="confirmar(inscricao.id, inscricao)"
+                                data-ng-show="inscricao.status == 0"
+                                >
+                                Confirmar
+                            </button>
+                            <button
+                                class="
+                                    btn
+                                "
+                                data-ng-show="inscricao.status == 1"
+                                disabled
+                                >
+                                Confirmada
+                            </button>
+                            <span
+                                data-ng-show="inscricao.status == false"
+                                >
+                                Erro!
+                            </span>
                         </td>
                     </tr>
                 </tbody>

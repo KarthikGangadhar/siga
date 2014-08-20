@@ -4,12 +4,26 @@ angular
         '$route',
         '$scope',
         'data',
+        'inscricaoService',
         function inscricao_ListController(
             $route,
             $scope,
-            data
+            data,
+            inscricaoService
         ) {
             'use strict';
+            $scope.confirmar = function confirmar(id, inscricao) {
+                inscricaoService
+                    .confirmar(id)
+                    .then(
+                        function resolve(value) {
+                            inscricao.status = 1;
+                        },
+                        function reject(reason) {
+                            inscricao.status = false;
+                        }
+                    );
+            };
             if (data.message) {
                 $scope.emptyMessage = data.message;
             } else {
@@ -21,7 +35,7 @@ angular
                 sexo: true,
                 email: false,
                 cpf: true,
-                documento_de_identificacao: true,
+                documento_de_identificacao: false,
                 telefones: true,
                 logradouro: false,
                 numero: false,

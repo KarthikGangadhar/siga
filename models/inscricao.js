@@ -180,9 +180,14 @@ module.exports = function inscricaoModel(logbook) {
                 );
             }
             return db({
-                query: 'SELECT * FROM inscricao ' +
-                    'WHERE __status__ = 1 ' +
-                    'ORDER BY nome_completo '
+                query: 'SELECT * ' +
+                    'FROM inscricao ' +
+                    'INNER JOIN pagamento ON inscricao.id = pagamento.inscricao ' +
+                    'WHERE inscricao.__status__ = 1 ' +
+                    'ORDER BY inscricao.nome_completo '
+                // query: 'SELECT * FROM inscricao ' +
+                //     'WHERE __status__ = 1 ' +
+                //     'ORDER BY nome_completo '
             }).then(
                 function resolve(value) {
                     if (value.length === 0) {
