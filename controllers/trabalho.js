@@ -70,7 +70,7 @@ module.exports = function sessionController(models, app, logbook) {
                         from: 'Submissões FBEA VIII <' + trabalhos.email + '>',
                         to: request.authentication.email,
                         subject: 'FBEA VIII - Submissão realizada com sucesso',
-                        text: 'Sua submissão (no arquivo ' + request.files.file.originalFilename + ') foi enviada com sucesso!\nObrigado!' + mensagemDeAtencao
+                        text: 'Sua submissão (no arquivo ' + request.files.file.originalFilename + ') foi enviada com sucesso!\n\nA Comissão Científica e a organização do evento divulgarão no site até no máximo dia 30 de outubro a relação das propostas aprovadas ou selecionadas.\n\nObrigado!' + mensagemDeAtencao
                     }, function (error) {
                         if (error) {
                             logbook.error('Ocorreu o seguinte erro no envio do e-mail de confirmação para o usuário ' + request.authentication.email, error);

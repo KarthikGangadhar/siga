@@ -65,7 +65,6 @@ module.exports = function usuarioModel(logbook) {
             );
         },
         update: function update(id, valor) {
-            console.log(valor)
             return db({
                 query: 'UPDATE pagamento SET ' +
                         'valor = ?, ' +
