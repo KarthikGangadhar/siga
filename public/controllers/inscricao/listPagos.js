@@ -1,17 +1,20 @@
 angular
     .module('main')
-    .controller('inscricao/listController', [
+    .controller('inscricao/listPagosController', [
         '$route',
         '$scope',
         'data',
         'inscricaoService',
-        function inscricao_ListController(
+        function inscricao_ListPagosController(
             $route,
             $scope,
             data,
             inscricaoService
         ) {
             'use strict';
+            $scope.formatDate = function formatDate(date) {
+                return moment(date).utc().format('DD/MM/YYYY')
+            };
             $scope.total = 0;
             $scope.confirmar = function confirmar(id, inscricao) {
                 var
@@ -36,12 +39,12 @@ angular
             }
             $scope.show = {
                 nome_completo: true,
-                data_de_nascimento: true,
-                sexo: true,
+                data_de_nascimento: false,
+                sexo: false,
                 email: false,
                 cpf: true,
                 documento_de_identificacao: false,
-                telefones: true,
+                telefones: false,
                 logradouro: false,
                 numero: false,
                 complemento: false,
@@ -49,7 +52,9 @@ angular
                 localidade: false,
                 uf: false,
                 cep: false,
-                endereco: false
+                endereco: false,
+                valor: true,
+                data: true
             };
         }
     ]);

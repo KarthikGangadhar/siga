@@ -5,6 +5,66 @@ module.exports = function inscricaoController(models, app, logbook) {
         pagamento = models.pagamento,
         settings = require('../settings').dadosDePagamento,
         q = require('q');
+    app.get('/api/inscricao/naopagos', function (request, response) {
+        if (
+            +request.authentication.inscricao !== +request.params.id &&
+                usuario.mayNot('VIEW_OTHERS', request.authentication.permissions)
+        ) {
+            response.send(401);
+            return;
+        }
+        inscricao
+            .readNaoPagos()
+            .then(
+                function resolve(value) {
+                    response.send(value);
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    response.send(500);
+                }
+            );
+    });
+    app.get('/api/inscricao/pagos', function (request, response) {
+        if (
+            +request.authentication.inscricao !== +request.params.id &&
+                usuario.mayNot('VIEW_OTHERS', request.authentication.permissions)
+        ) {
+            response.send(401);
+            return;
+        }
+        inscricao
+            .readPagos()
+            .then(
+                function resolve(value) {
+                    response.send(value);
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    response.send(500);
+                }
+            );
+    });
+    app.get('/api/inscricao/isentos', function (request, response) {
+        if (
+            +request.authentication.inscricao !== +request.params.id &&
+                usuario.mayNot('VIEW_OTHERS', request.authentication.permissions)
+        ) {
+            response.send(401);
+            return;
+        }
+        inscricao
+            .readIsentos()
+            .then(
+                function resolve(value) {
+                    response.send(value);
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    response.send(500);
+                }
+            );
+    });
     app.get('/api/inscricao/:id?', function (request, response) {
         if (
             +request.authentication.inscricao !== +request.params.id &&

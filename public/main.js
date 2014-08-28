@@ -39,6 +39,57 @@ angular
                     ]
                 }
             });
+            $routeProvider.when('/inscricao/listar/pagos', {
+                templateUrl: '/views/inscricao/list_pagos.html',
+                controller: 'inscricao/listPagosController',
+                resolve: {
+                    data: [
+                        'inscricaoService',
+                        function data(
+                            inscricaoService
+                        ) {
+                            return inscricaoService
+                                .readPagos({
+                                    notifyOnReject: true
+                                });
+                        }
+                    ]
+                }
+            });
+            $routeProvider.when('/inscricao/listar/naopagos', {
+                templateUrl: '/views/inscricao/list_naopagos.html',
+                controller: 'inscricao/listNaoPagosController',
+                resolve: {
+                    data: [
+                        'inscricaoService',
+                        function data(
+                            inscricaoService
+                        ) {
+                            return inscricaoService
+                                .readNaoPagos({
+                                    notifyOnReject: true
+                                });
+                        }
+                    ]
+                }
+            });
+            $routeProvider.when('/inscricao/listar/isentos', {
+                templateUrl: '/views/inscricao/list_isentos.html',
+                controller: 'inscricao/listIsentosController',
+                resolve: {
+                    data: [
+                        'inscricaoService',
+                        function data(
+                            inscricaoService
+                        ) {
+                            return inscricaoService
+                                .readIsentos({
+                                    notifyOnReject: true
+                                });
+                        }
+                    ]
+                }
+            });
             $routeProvider.when('/inscricao/nova', {
                 templateUrl: '/views/inscricao/edit.html',
                 controller: 'inscricao/editController'

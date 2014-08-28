@@ -340,6 +340,8 @@ angular
                     inscricao.tipo_de_projeto_programa_acao = data ? data.tipo_de_projeto_programa_acao : 'nenhum';
                     inscricao.blog_site_perfil = data ? data.blog_site_perfil : '';
                     inscricao.status = data ? data.status : 0;
+                    inscricao.valor = data ? data.valor : '';
+                    inscricao.data = data ? data.data : '';
                     return inscricao;
                 },
                 notifications = {
@@ -441,6 +443,69 @@ angular
                 }
                 return $http
                     .get('/api/inscricao/')
+                    .then(
+                        function resolve(value) {
+                            var inscricoes = [];
+                            if (value.data.message) {
+                                return value.data;
+                            }
+                            value.data.forEach(function forEach(element) {
+                                // forEach(element, index, array)
+                                var inscricao = inscricaoService(element).format();
+                                inscricoes.push(inscricao);
+                            });
+                            return inscricoes;
+                        },
+                        function reject(reason) {
+                            throw reason;
+                        }
+                    );
+            };
+            inscricaoService.readIsentos = function readIsentos() {
+                return $http
+                    .get('/api/inscricao/isentos')
+                    .then(
+                        function resolve(value) {
+                            var inscricoes = [];
+                            if (value.data.message) {
+                                return value.data;
+                            }
+                            value.data.forEach(function forEach(element) {
+                                // forEach(element, index, array)
+                                var inscricao = inscricaoService(element).format();
+                                inscricoes.push(inscricao);
+                            });
+                            return inscricoes;
+                        },
+                        function reject(reason) {
+                            throw reason;
+                        }
+                    );
+            };
+            inscricaoService.readNaoPagos = function readIsentos() {
+                return $http
+                    .get('/api/inscricao/naopagos')
+                    .then(
+                        function resolve(value) {
+                            var inscricoes = [];
+                            if (value.data.message) {
+                                return value.data;
+                            }
+                            value.data.forEach(function forEach(element) {
+                                // forEach(element, index, array)
+                                var inscricao = inscricaoService(element).format();
+                                inscricoes.push(inscricao);
+                            });
+                            return inscricoes;
+                        },
+                        function reject(reason) {
+                            throw reason;
+                        }
+                    );
+            };
+            inscricaoService.readPagos = function readPagos() {
+                return $http
+                    .get('/api/inscricao/pagos')
                     .then(
                         function resolve(value) {
                             var inscricoes = [];

@@ -10,7 +10,7 @@
     <div
         class="col-md-12"
         >
-        <h1>Lista de Inscrições</h1>
+        <h1>Lista de Inscrições Pagas</h1>
         <hr>
         <div
             data-ng-if="emptyMessage"
@@ -111,6 +111,16 @@
                             data-ng-show="show.endereco"
                             >
                             Endereço
+                        </th>
+                        <th
+                            data-ng-show="show.valor"
+                            >
+                            Valor
+                        </th>
+                        <th
+                            data-ng-show="show.data"
+                            >
+                            Data
                         </th>
                         <th
                             >
@@ -240,6 +250,16 @@
                             data-ng-show="show.endereco"
                             >
                             {{inscricao.endereco}}
+                        </td>
+                        <td
+                            data-ng-show="show.valor"
+                            >
+                            R${{inscricao.valor}},00
+                        </td>
+                        <td
+                            data-ng-show="show.data"
+                            >
+                            {{formatDate(inscricao.data)}}
                         </td>
                         <td
                             style="text-align: center"

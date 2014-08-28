@@ -1,11 +1,11 @@
 angular
     .module('main')
-    .controller('inscricao/listController', [
+    .controller('inscricao/listIsentosController', [
         '$route',
         '$scope',
         'data',
         'inscricaoService',
-        function inscricao_ListController(
+        function inscricao_ListIsentosController(
             $route,
             $scope,
             data,

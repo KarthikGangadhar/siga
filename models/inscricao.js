@@ -5,7 +5,6 @@ module.exports = function inscricaoModel(logbook) {
     return {
         create: function create(inscricao) {
             inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();
-            console.log(inscricao)
             return db({
                 query: 'INSERT INTO inscricao ( ' +
                         'nome_completo, ' +
@@ -193,6 +192,98 @@ module.exports = function inscricaoModel(logbook) {
                     if (value.length === 0) {
                         return {
                             message: 'Há nenhuma inscrição.'
+                        };
+                    }
+                    value.forEach(function forEach(element) {
+                        // forEach(element, index, array)
+                        element.data_de_nascimento = moment(element.data_de_nascimento).format('DD/MM/YYYY');
+                    });
+                    return value;
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    throw reason;
+                }
+            );
+        },
+        readNaoPagos: function readNaoPagos(id) {
+            return db({
+                query: 'SELECT * ' +
+                    'FROM inscricao ' +
+                    'INNER JOIN pagamento ON inscricao.id = pagamento.inscricao ' +
+                    'WHERE inscricao.__status__ = 1 ' +
+                    'AND pagamento.status = 0 ' +
+                    'ORDER BY inscricao.nome_completo '
+                // query: 'SELECT * FROM inscricao ' +
+                //     'WHERE __status__ = 1 ' +
+                //     'ORDER BY nome_completo '
+            }).then(
+                function resolve(value) {
+                    if (value.length === 0) {
+                        return {
+                            message: 'Há nenhuma inscrição nesta situação.'
+                        };
+                    }
+                    value.forEach(function forEach(element) {
+                        // forEach(element, index, array)
+                        element.data_de_nascimento = moment(element.data_de_nascimento).format('DD/MM/YYYY');
+                    });
+                    return value;
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    throw reason;
+                }
+            );
+        },
+        readPagos: function readPagos(id) {
+            return db({
+                query: 'SELECT * ' +
+                    'FROM inscricao ' +
+                    'INNER JOIN pagamento ON inscricao.id = pagamento.inscricao ' +
+                    'WHERE inscricao.__status__ = 1 ' +
+                    'AND pagamento.valor > 0 ' +
+                    'AND pagamento.status = 1 ' +
+                    'ORDER BY inscricao.nome_completo '
+                // query: 'SELECT * FROM inscricao ' +
+                //     'WHERE __status__ = 1 ' +
+                //     'ORDER BY nome_completo '
+            }).then(
+                function resolve(value) {
+                    if (value.length === 0) {
+                        return {
+                            message: 'Há nenhuma inscrição nesta situação.'
+                        };
+                    }
+                    value.forEach(function forEach(element) {
+                        // forEach(element, index, array)
+                        element.data_de_nascimento = moment(element.data_de_nascimento).format('DD/MM/YYYY');
+                    });
+                    return value;
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    throw reason;
+                }
+            );
+        },
+        readIsentos: function readIsentos(id) {
+            return db({
+                query: 'SELECT * ' +
+                    'FROM inscricao ' +
+                    'INNER JOIN pagamento ON inscricao.id = pagamento.inscricao ' +
+                    'WHERE inscricao.__status__ = 1 ' +
+                    'AND pagamento.valor = 0 ' +
+                    'AND pagamento.status = 1 ' +
+                    'ORDER BY inscricao.nome_completo '
+                // query: 'SELECT * FROM inscricao ' +
+                //     'WHERE __status__ = 1 ' +
+                //     'ORDER BY nome_completo '
+            }).then(
+                function resolve(value) {
+                    if (value.length === 0) {
+                        return {
+                            message: 'Há nenhuma inscrição nesta situação.'
                         };
                     }
                     value.forEach(function forEach(element) {
