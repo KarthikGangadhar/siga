@@ -28,3 +28,4 @@ node_modules
 /settings.json
 /TODO
 /.eslintrc
+/.zedstate

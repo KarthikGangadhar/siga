@@ -64,14 +64,17 @@ module.exports = function usuarioModel(logbook) {
                 }
             );
         },
-        update: function update(id, valor) {
+        update: function update(id, valor, data) {
+            console.log(data);
             return db({
                 query: 'UPDATE pagamento SET ' +
                         'valor = ?, ' +
+                        'data = ?, ' +
                         'status = 1 ' +
                     'WHERE id = ? ',
                 array: [
                     valor,
+                    data,
                     id
                 ]
             })

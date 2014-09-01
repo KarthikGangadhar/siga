@@ -15,12 +15,18 @@ angular
             $scope.total = 0;
             $scope.confirmar = function confirmar(id, inscricao) {
                 var
+                    data,
                     valor;
                 valor = prompt('Insira o valor pago');
+                data = prompt('Insira a data do pagamento');
                 inscricaoService
-                    .confirmar(id, valor)
+                    .confirmar(id, valor, data)
                     .then(
                         function resolve(value) {
+                            if (value.status === 401) {
+                                alert('Ação Não Autorizada!');
+                                return;
+                            }
                             inscricao.status = 1;
                         },
                         function reject(reason) {

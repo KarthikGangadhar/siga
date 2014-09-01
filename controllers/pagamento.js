@@ -42,8 +42,16 @@ module.exports = function sessionController(models, app, logbook) {
             );
     });
     app.post('/api/pagamento/status', function (request, response) {
+        console.log(request.authentication.permissions)
+        if (
+            +request.authentication.inscricao !== +request.params.id &&
+                usuario.mayNot('CONFIRM', request.authentication.permissions)
+        ) {
+            response.send(401);
+            return;
+        }
         pagamento
-            .update(request.body.id, request.body.valor)
+            .update(request.body.id, request.body.valor, request.body.data)
             .then(
                 function resolve(value) {
                     response.send(value);

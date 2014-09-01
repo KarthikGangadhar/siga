@@ -524,18 +524,21 @@ angular
                         }
                     );
             };
-            inscricaoService.confirmar = function confirmar(id, valor) {
+            inscricaoService.confirmar = function confirmar(id, valor, data) {
                 return $http
                     .post('/api/pagamento/status/', {
                         id: id,
-                        valor: valor
+                        valor: valor,
+                        data: data
                     })
                     .then(
                         function resolve(value) {
-                            console.log(value)
+                            // console.log(value)
+                            return value;
                         },
                         function reject(reason) {
-                            console.log(reason)
+                            // console.log(reason)
+                            return reason;
                         }
                     );
             };
