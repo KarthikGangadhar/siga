@@ -16,9 +16,15 @@ angular
             $scope.confirmar = function confirmar(id, inscricao) {
                 var
                     data,
+                    dataNaoAjustada,
                     valor;
                 valor = prompt('Insira o valor pago');
-                data = prompt('Insira a data do pagamento');
+                dataNaoAjustada = prompt('Insira a data do pagamento');
+                data = moment.utc(dataNaoAjustada, 'DD/MM/YYYY').format();
+                if (!moment(data).isValid()) {
+                    alert('A data "' + dataNaoAjustada + '" é inválida. Confirmação cancelada.');
+                    return;
+                }
                 inscricaoService
                     .confirmar(id, valor, data)
                     .then(
