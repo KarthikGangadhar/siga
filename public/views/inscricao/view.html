@@ -18,6 +18,12 @@
             <strong>{{emptyMessage}}</strong>
         </div>
         <div
+            class="alert alert-warning"
+            >
+            <strong>Inscrição Concluída!</strong>
+            Sua inscrição foi realizada. A <strong>sumissão de trabalhos</strong> foi prorrogada até  30 de outubro e <strong>é opcional, não obrigatória</strong>.
+        </div>
+        <div
             class="row"
             >
             <div
@@ -389,7 +395,7 @@
                 class="col-md-4">
                 <div
                     data-ng-if="inscricao"
-                    data-ng-include="'/modules/uploader/uploader.html'"
+                    data-ng-include="'/modules/pagamento/pagamento.html'"
                     >
                 </div>
             </div>
@@ -397,7 +403,7 @@
                 class="col-md-4">
                 <div
                     data-ng-if="inscricao"
-                    data-ng-include="'/modules/pagamento/pagamento.html'"
+                    data-ng-include="'/modules/uploader/uploader.html'"
                     >
                 </div>
             </div>
