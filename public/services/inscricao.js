@@ -461,6 +461,21 @@ angular
                         }
                     );
             };
+            inscricaoService.full = function full() {
+                return $http
+                    .get('/api/inscricao/encerrada')
+                    .then(
+                        function resolve(value) {
+                            if (value.data.message) {
+                                return value.data;
+                            }
+                            return value.data;
+                        },
+                        function reject(reason) {
+                            throw reason;
+                        }
+                    );
+            };
             inscricaoService.readIsentos = function readIsentos() {
                 return $http
                     .get('/api/inscricao/isentos')

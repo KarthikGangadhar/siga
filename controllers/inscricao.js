@@ -65,6 +65,19 @@ module.exports = function inscricaoController(models, app, logbook) {
                 }
             );
     });
+    app.get('/api/inscricao/encerrada', function (request, response) {
+        inscricao
+            .full()
+            .then(
+                function resolve(value) {
+                    response.send(value);
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    response.send(500);
+                }
+            );
+    });
     app.get('/api/inscricao/:id?', function (request, response) {
         if (
             +request.authentication.inscricao !== +request.params.id &&

@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function inscricaoModel(logbook) {
     var moment = require('moment'),
-        db = require('../modules/database')(require('../settings').database);
+        db = require('../modules/database')(require('../settings').database),
+        info = require('../settings').info;
     return {
         create: function create(inscricao) {
             inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();
@@ -291,6 +292,19 @@ module.exports = function inscricaoModel(logbook) {
                         element.data_de_nascimento = moment(element.data_de_nascimento).format('DD/MM/YYYY');
                     });
                     return value;
+                },
+                function reject(reason) {
+                    logbook.error(reason, '\nat: ' + __filename);
+                    throw reason;
+                }
+            );
+        },
+        full: function full() {
+            return db({
+                query: 'SELECT COUNT(*) AS count FROM inscricao '
+            }).then(
+                function resolve(value) {
+                    return value[0].count >= info.limite;
                 },
                 function reject(reason) {
                     logbook.error(reason, '\nat: ' + __filename);

@@ -20,7 +20,20 @@ angular
             $locationProvider.html5Mode(true);
             $routeProvider.when('/', {
                 templateUrl: '/views/home.html',
-                controller: 'homeController'
+                controller: 'homeController',
+                resolve: {
+                    data: [
+                        'inscricaoService',
+                        function data(
+                            inscricaoService
+                        ) {
+                            return inscricaoService
+                                .full({
+                                    notifyOnReject: true
+                                });
+                        }
+                    ]
+                }
             });
             $routeProvider.when('/inscricao/listar', {
                 templateUrl: '/views/inscricao/list.html',

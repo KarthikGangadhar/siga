@@ -13,10 +13,23 @@
         <p
             class="lead text-center"
             >
-            Participe do Fórum Brasileiro de Educação Ambiental. Inscrições abertas.
+            Participe do Fórum Brasileiro de Educação Ambiental.
+            <span
+                data-ng-hide="data"
+                >
+                Inscrições abertas.
+            </span>
+            <br>
+            <span
+                class="text-danger"
+                data-ng-show="data"
+                >
+                <strong>Inscrições encerradas.</strong>
+            </span>
         </p>
         <div
             class="row"
+            data-ng-hide="data"
             >
             <div
                 class="col-md-4 col-md-offset-2"
