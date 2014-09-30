@@ -18,13 +18,26 @@ angular
             $scope.total = 0;
             $scope.confirmar = function confirmar(id, inscricao) {
                 var
+                    data,
+                    dataNaoAjustada,
                     valor;
                 valor = prompt('Insira o valor pago');
+                dataNaoAjustada = prompt('Insira a data do pagamento');
+                data = moment.utc(dataNaoAjustada, 'DD/MM/YYYY').format();
+                if (!moment(data).isValid()) {
+                    alert('A data "' + dataNaoAjustada + '" é inválida. Confirmação cancelada.');
+                    return;
+                }
                 inscricaoService
-                    .confirmar(id, valor)
+                    .confirmar(id, valor, data)
                     .then(
                         function resolve(value) {
+                            if (value.status === 401) {
+                                alert('Ação Não Autorizada!');
+                                return;
+                            }
                             inscricao.status = 1;
+                            $route.reload();
                         },
                         function reject(reason) {
                             inscricao.status = 'erro';
