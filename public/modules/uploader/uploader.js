@@ -43,11 +43,15 @@ angular
                     $scope.percent = 0;
                 }, 200);
               })
-              .error(function error() {
-                $scope.fail = true;
+              .error(function error(data) {
                 $timeout(function $timeout() {
                     $scope.percent = 0;
                 }, 200);
+                if (data === 'Gone') {
+                    $scope.encerradas = true;
+                    return;
+                }
+                $scope.fail = true;
               });
               //.then(success, error, progress);
             }

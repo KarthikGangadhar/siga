@@ -17,6 +17,20 @@
             >
             <strong>{{emptyMessage}}</strong>
         </div>
+        <label>
+            Exibir Sexo
+            <input
+                data-ng-model="show.sexo"
+                type="checkbox"
+                >
+        </label>
+        <label>
+            Exibir Data de Nascimento
+            <input
+                data-ng-model="show.data_de_nascimento"
+                type="checkbox"
+                >
+        </label>
         <div
             class="
                 pull-right
@@ -249,7 +263,7 @@
                                     btn
                                     btn-xs
                                 "
-                                data-ng-click="confirmar(inscricao.id, inscricao)"
+                                data-ng-click="confirmar(inscricao.pagamento, inscricao)"
                                 data-ng-show="inscricao.status == 0"
                                 >
                                 Confirmar

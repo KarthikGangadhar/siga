@@ -42,7 +42,6 @@ module.exports = function sessionController(models, app, logbook) {
             );
     });
     app.post('/api/pagamento/status', function (request, response) {
-        console.log(request.authentication.permissions)
         if (
             +request.authentication.inscricao !== +request.params.id &&
                 usuario.mayNot('CONFIRM', request.authentication.permissions)

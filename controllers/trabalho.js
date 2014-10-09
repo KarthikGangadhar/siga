@@ -23,6 +23,8 @@ module.exports = function sessionController(models, app, logbook) {
         if (!request.authentication.inscricao) {
             response.send(500);
             logbook.error('Ouve uma tentativa de submissão não autenticada ou sem inscrição realizada');
+            logbook.error('Detalhes:');
+            logbook.error(request.authentication);
         }
         if (
             trabalhos.tiposAceitos.indexOf(fileType) === -1

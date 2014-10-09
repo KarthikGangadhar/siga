@@ -339,6 +339,7 @@ angular
                     inscricao.i = data ? data.i : false;
                     inscricao.tipo_de_projeto_programa_acao = data ? data.tipo_de_projeto_programa_acao : 'nenhum';
                     inscricao.blog_site_perfil = data ? data.blog_site_perfil : '';
+                    inscricao.pagamento = data ? data.pagamento : 0;
                     inscricao.status = data ? data.status : 0;
                     inscricao.valor = data ? data.valor : '';
                     inscricao.data = data ? data.data : '';

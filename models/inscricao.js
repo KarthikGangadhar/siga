@@ -144,7 +144,6 @@ module.exports = function inscricaoModel(logbook) {
                 data: inscricao
             }).then(
                 function resolve(value) {
-                    console.log(value)
                     return value;
                 },
                 function reject(reason) {
@@ -180,7 +179,39 @@ module.exports = function inscricaoModel(logbook) {
                 );
             }
             return db({
-                query: 'SELECT * ' +
+                query: 'SELECT ' +
+                        'inscricao.id, ' +
+                        'inscricao.nome_completo, ' +
+                        'inscricao.data_de_nascimento, ' +
+                        'inscricao.sexo, ' +
+                        'inscricao.email, ' +
+                        'inscricao.cpf, ' +
+                        'inscricao.telefones, ' +
+                        'pagamento.id AS pagamento, ' +
+                        'pagamento.status ' +
+// 'inscricao.nome_completo, ' +
+// 'inscricao.data_de_nascimento, ' +
+// 'inscricao.sexo, ' +
+// 'inscricao.email, ' +
+// 'inscricao.estrangeiro, ' +
+// 'inscricao.cpf, ' +
+// 'inscricao.nome_do_documento, ' +
+// 'inscricao.numero_do_documento, ' +
+// 'inscricao.telefones, ' +
+// 'inscricao.logradouro, ' +
+// 'inscricao.numero, ' +
+// 'inscricao.complemento, ' +
+// 'inscricao.bairro, ' +
+// 'inscricao.localidade, ' +
+// 'inscricao.uf, ' +
+// 'inscricao.cep, ' +
+// 'inscricao.endereco, ' +
+// 'inscricao.nome_no_cracha, ' +
+// 'inscricao.categoria, ' +
+// 'pagamento.id AS pagamento, ' +
+// 'pagamento.status, ' +
+// 'pagamento.valor, ' +
+// 'pagamento.data ' +
                     'FROM inscricao ' +
                     'INNER JOIN pagamento ON inscricao.id = pagamento.inscricao ' +
                     'WHERE inscricao.__status__ = 1 ' +

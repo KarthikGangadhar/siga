@@ -7,27 +7,27 @@ module.exports = function usuarioModel(logbook) {
         create: function create(pagamento) {
             return db({
                 query: 'INSERT INTO pagamento ( ' +
-                    'inscricao, ' +
-                    'valor, ' +
-                    'sacado, ' +
-                    'status, ' +
-                    '__status__ ' +
-                    ') ' +
-            'VALUES ( ' +
-                '?, ' +
-                '?, ' +
-                '?, ' +
-                '?, ' +
-                '1 ' +
-                ') ',
-            array: [
-                'inscricao',
-                'valor',
-                'sacado',
-                'status'
-            ],
-            data: pagamento
-        })
+                        'inscricao, ' +
+                        'valor, ' +
+                        'sacado, ' +
+                        'status, ' +
+                        '__status__ ' +
+                        ') ' +
+                'VALUES ( ' +
+                    '?, ' +
+                    '?, ' +
+                    '?, ' +
+                    '?, ' +
+                    '1 ' +
+                    ') ',
+                array: [
+                    'inscricao',
+                    'valor',
+                    'sacado',
+                    'status'
+                ],
+                data: pagamento
+            })
             .then(
                 function resolve(value) {
                     return value;
