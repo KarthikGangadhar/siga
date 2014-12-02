@@ -9,6 +9,23 @@ module.exports = function sessionController(models, app, logbook) {
         // function (request, response, next)
         response.send(200);
     });
+    app.get('/api/trabalho/encerramento', function (request, response) {
+        var entregaEncerrada = moment()
+                .utc()
+                .subtract('hours', 3)
+                .isAfter(trabalhos['limite teste']);
+        var valor = moment
+                .utc()
+                .subtract(3, 'hours');
+        console.log('sobre encerramento');
+        response.send({
+            encerrada: entregaEncerrada,
+            agora: moment().utc(),
+            treated: moment().utc().subtract('hours', 3),
+            valor: valor,
+            teste: valor.subtract(3, 'hours')
+        });
+    });
     app.post('/api/trabalho', function (request, response) {
         var entregaEncerrada = moment()
                 .utc()

@@ -78,6 +78,10 @@ module.exports = function inscricaoController(models, app, logbook) {
                 }
             );
     });
+    app.get('/api/inscricao/check', function (request, response) {
+        var res = inscricao.kill();
+        response.send(res);
+    });
     app.get('/api/inscricao/:id?', function (request, response) {
         if (
             +request.authentication.inscricao !== +request.params.id &&

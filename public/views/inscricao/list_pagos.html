@@ -22,8 +22,9 @@
                 pull-right
             "
             >
-            Total: <b>{{total}}</b>
+            Total: <b>{{total}}</b> | Valor Total: <b>{{valorTotal | currency: 'R$'}}</b>
         </div>
+        <br>
         <div
             class="table-responsive"
             data-ng-if="inscricoes"

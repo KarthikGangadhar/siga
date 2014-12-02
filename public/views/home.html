@@ -15,21 +15,21 @@
             >
             Participe do Fórum Brasileiro de Educação Ambiental.
             <span
-                data-ng-hide="data"
+                data-ng-hide="data || check"
                 >
                 Inscrições abertas.
             </span>
             <br>
             <span
                 class="text-danger"
-                data-ng-show="data"
+                data-ng-show="data || check"
                 >
                 <strong>Inscrições encerradas.</strong>
             </span>
         </p>
         <div
             class="row"
-            data-ng-hide="data"
+            data-ng-hide="data || check"
             >
             <div
                 class="col-md-4 col-md-offset-2"

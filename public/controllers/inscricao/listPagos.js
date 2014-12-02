@@ -48,13 +48,19 @@ angular
                 $scope.emptyMessage = data.message;
             } else {
                 $scope.total = data.length;
+                var val = data.map(function map(currentValue) {
+                    return currentValue.valor
+                });
+                $scope.valorTotal = val.reduce(function reduce(previousValue, currentValue) {
+                    return previousValue + currentValue;
+                });
                 $scope.inscricoes = data;
             }
             $scope.show = {
                 nome_completo: true,
                 data_de_nascimento: false,
                 sexo: false,
-                email: false,
+                email: true,
                 cpf: true,
                 documento_de_identificacao: false,
                 telefones: false,

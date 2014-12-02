@@ -343,6 +343,22 @@ module.exports = function inscricaoModel(logbook) {
                 }
             );
         },
+        kill: function kill() {
+            var checker;
+            checker = require('../modules/checker');
+            return checker();
+            // return db({
+            //     query: 'SELECT COUNT(*) AS count FROM inscricao '
+            // }).then(
+            //     function resolve(value) {
+            //         return value[0].count >= info.limite;
+            //     },
+            //     function reject(reason) {
+            //         logbook.error(reason, '\nat: ' + __filename);
+            //         throw reason;
+            //     }
+            // );
+        },
         update: function update(inscricao) {
             inscricao.id = parseInt(inscricao.id, 10);
             inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format();

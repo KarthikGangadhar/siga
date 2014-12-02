@@ -41,7 +41,7 @@ angular
                 nome_completo: true,
                 data_de_nascimento: false,
                 sexo: false,
-                email: false,
+                email: true,
                 cpf: true,
                 documento_de_identificacao: false,
                 telefones: false,
