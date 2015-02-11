@@ -53,6 +53,16 @@
                             Nome
                         </th>
                         <th
+                            data-ng-show="show.nome_no_cracha"
+                            >
+                            Nome no Crachá
+                        </th>
+                        <th
+                            data-ng-show="show.empresa"
+                            >
+                            Empresa
+                        </th>
+                        <th
                             data-ng-show="show.data_de_nascimento"
                             >
                             Nascimento
@@ -144,6 +154,16 @@
                                 >
                                 {{inscricao.nome_completo | uppercase}}
                             </a>
+                        </td>
+                        <td
+                            data-ng-show="show.nome_no_cracha"
+                            >
+                            {{inscricao.nome_no_cracha}}
+                        </td>
+                        <td
+                            data-ng-show="show.empresa"
+                            >
+                            {{inscricao.empresa}}
                         </td>
                         <td
                             data-ng-show="show.data_de_nascimento"

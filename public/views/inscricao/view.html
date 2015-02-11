@@ -17,12 +17,12 @@
             >
             <strong>{{emptyMessage}}</strong>
         </div>
-        <div
+        <!-- <div
             class="alert alert-warning"
             >
             <strong>Inscrição Concluída!</strong>
             Sua inscrição foi realizada. A <strong>sumissão de trabalhos</strong> foi prorrogada até 5 de novembro e <strong>é opcional, não obrigatória</strong>.
-        </div>
+        </div> -->
         <div
             class="row"
             >
@@ -383,29 +383,34 @@
                         {{inscricao.nome_da_instituicao_ou_empresa}}
                     </dd>
                 </dl>
-                <a
+                <!-- <a
                     class="btn btn-info"
                     data-ng-href="/inscricao/{{inscricao.id}}/editar"
                     data-ng-if="inscricao"
                     >
                     Editar
-                </a>
+                </a> -->
             </div>
             <div
                 class="col-md-4">
                 <div
+                    data-ng-if="inscricao"
+                    data-ng-include="'/modules/certificado/certificado.html'"
+                    >
+                </div>
+                <!-- <div
                     data-ng-if="inscricao"
                     data-ng-include="'/modules/pagamento/pagamento.html'"
                     >
-                </div>
+                </div> -->
             </div>
             <div
                 class="col-md-4">
-                <div
+                <!-- <div
                     data-ng-if="inscricao"
                     data-ng-include="'/modules/uploader/uploader.html'"
                     >
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

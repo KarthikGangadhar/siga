@@ -39,6 +39,8 @@ angular
             }
             $scope.show = {
                 nome_completo: true,
+                nome_no_cracha: true,
+                empresa: true,
                 data_de_nascimento: false,
                 sexo: false,
                 email: true,

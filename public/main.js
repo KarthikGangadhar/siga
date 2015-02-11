@@ -7,7 +7,8 @@ angular
         'ngTouch',
         'notifier',
         'Scope.safeApply',
-        'stPagamento'
+        'stPagamento',
+        'sgCertificado'
     ])
     .config([
         '$routeProvider',

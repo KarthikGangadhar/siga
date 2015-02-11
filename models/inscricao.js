@@ -182,6 +182,8 @@ module.exports = function inscricaoModel(logbook) {
                 query: 'SELECT ' +
                         'inscricao.id, ' +
                         'inscricao.nome_completo, ' +
+'inscricao.nome_no_cracha, ' +
+'inscricao.empresa, ' +
                         'inscricao.data_de_nascimento, ' +
                         'inscricao.sexo, ' +
                         'inscricao.email, ' +
@@ -206,7 +208,6 @@ module.exports = function inscricaoModel(logbook) {
 // 'inscricao.uf, ' +
 // 'inscricao.cep, ' +
 // 'inscricao.endereco, ' +
-// 'inscricao.nome_no_cracha, ' +
 // 'inscricao.categoria, ' +
 // 'pagamento.id AS pagamento, ' +
 // 'pagamento.status, ' +
